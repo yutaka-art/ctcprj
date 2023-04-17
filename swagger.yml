@@ -4784,90 +4784,239 @@ paths:
     get:
       tags:
         - Application
+      security:
+        - bearer: []
       summary: 提供プランリスト取得
       description: >-
         [Overview]
 
 
-        提供プランの絞り込み条件（Input）に合致する提供プランのリストを返す。※有効な提供プランのみ。
+
+        提供プランの絞り込み条件（Input）に合致する提供プランのリストを返却する
+
 
 
         [Details]
 
 
-        1.Queryから「OrderChannelCategory」, 「ContractName」, 「PlanType」,
-        「OrderDate」, 「OrderTime」, 「OrderCategory」を取得する。
-          - 1-1. 上記の項目が空白の場合、ステータスコード400と以下のエラーメッセージを返し処理を終了する。
+
+        1.Queryよりparametersにて定義しているパラメータを取得する。
+          - 1-1. 上記の必須項目が空白の場合、ステータスコード400と以下のエラーメッセージを返し処理を終了する。
             - {項目名, 項目名}が空白です。
-          - 1-2. 「OrderDate」の書式がyyyy-mm-ddでない場合、ステータスコード400と以下のエラーメッセージを返し処理を終了する。
-            - 「申込日の書式が不正です」
-          - 1-3. 「OrderTime」の書式がhh:mm:ssでない場合、ステータスコード400と以下のエラーメッセージを返し処理を終了する。
-            - 「申込時間の書式が不正です」            
-        2.「OrderChannelCategory」,「ContractName」,「PlanType」,「OrderDate」,「OrderTime」,「OrderCategory」をリクエスト項目として、c-mapの「提供プランリスト取得API」をコールする。
+          - 1-2. パラメータの形式チェックを行い、不正な場合は、ステータスコード400と以下のエラーメッセージを返し処理を終了する。
+            - 「XXXXの書式が不正です」
+        2.parametersにて定義しているパラメータをリクエスト項目として、c-mapの「提供プランリスト取得API」をコールする。
           - 2-1. httpステータスが400番台の場合、エラーメッセージを格納しhttpステータス400を返す。
           - 2-2. httpステータスが500番台の場合、エラーメッセージを格納しhttpステータス500を返す。
           - 2-3. httpステータスが200の場合、APIから取得したレスポンスを下記レスポンス項目に設定する。
 
         ※（）はc-mapのAPI一覧の資料で定義されている日本語項目名
 
-        -        [PackageName]:「PackageName(TBD)」（パッケージ名）
 
-        -        [PackageDescription]:「PackageDescription(TBD)」
+        -       
+        [OfferPlansInfo].[PackageInfos].[CMAP_PackageBundle__c].[Id]:「[OfferPlansInfo].[PackageInfos].[CMAP_PackageBundle__c].[Id][Id]」(パッケージID)
 
-        -        [BundleName]:「BundleName(TBD)」（バンドル名）
 
-        -        [BundleDescription]:「BundleDescription(TBD)」
+        -       
+        [OfferPlansInfo].[PackageInfos].[CMAP_PackageBundle__c].[Name]:「[OfferPlansInfo].[PackageInfos].[CMAP_PackageBundle__c].[Name][Name]」(パッケージ名)
 
-        -        [PlanName]:「OfferPlanName(TBD)」（提供プラン名（画面表示用））
 
-        -        [ShortPlanName]:「OfferPlanName(TBD)」（提供プラン名（画面表示短縮用））
+        -       
+        [OfferPlansInfo].[PackageInfos].[CMAP_PackageBundle__c].[CMAP_Description__c]:「[OfferPlansInfo].[PackageInfos].[CMAP_PackageBundle__c].[CMAP_Description__c][CMAP_Description__c]」(説明)
 
-        -        [PlanDescription]:「PlanDescription(TBD)」
-             
+
+        -       
+        [OfferPlansInfo].[PackageInfos].[CMAP_PackageBundle__c].[BundleInfos].[Id]:「[OfferPlansInfo].[PackageInfos].[CMAP_PackageBundle__c].[BundleInfos].[Id][Id]」(パッケージID)
+
+
+        -       
+        [OfferPlansInfo].[PackageInfos].[CMAP_PackageBundle__c].[BundleInfos].[Name]:「[OfferPlansInfo].[PackageInfos].[CMAP_PackageBundle__c].[BundleInfos].[Name][Name]」(パッケージ名)
+
+
+        -       
+        [OfferPlansInfo].[PackageInfos].[CMAP_PackageBundle__c].[BundleInfos].[CMAP_Description__c]:「[OfferPlansInfo].[PackageInfos].[CMAP_PackageBundle__c].[BundleInfos].[CMAP_Description__c][CMAP_Description__c]」(説明)
+
+
+        -       
+        [OfferPlansInfo].[PackageInfos].[OfferPlans].[BundleInfos].[Id]:「[OfferPlansInfo].[PackageInfos].[OfferPlans].[BundleInfos].[Id][Id]」(提供プランID)
+
+
+        -       
+        [OfferPlansInfo].[PackageInfos].[OfferPlans].[BundleInfos].[CMAP_OfferPackage__c]:「[OfferPlansInfo].[PackageInfos].[OfferPlans].[BundleInfos].[CMAP_OfferPackage__c][CMAP_OfferPackage__c]」(提供パッケージ)
+
+
+        -       
+        [OfferPlansInfo].[PackageInfos].[OfferPlans].[BundleInfos].[CMAP_OfferPlanNameForDisplay__c]:「[OfferPlansInfo].[PackageInfos].[OfferPlans].[BundleInfos].[CMAP_OfferPlanNameForDisplay__c][CMAP_OfferPlanNameForDisplay__c]」(提供プラン名（画面表示用）)
+
+
+        -       
+        [OfferPlansInfo].[PackageInfos].[OfferPlans].[BundleInfos].[CMAP_OfferPlanShortNameForDisplay__c]:「[OfferPlansInfo].[PackageInfos].[OfferPlans].[BundleInfos].[CMAP_OfferPlanShortNameForDisplay__c][CMAP_OfferPlanShortNameForDisplay__c]」(提供プラン名（画面短縮表示用）)
+
+
+        -       
+        [OfferPlansInfo].[PackageInfos].[OfferPlans].[BundleInfos].[CMAP_Description__c]:「[OfferPlansInfo].[PackageInfos].[OfferPlans].[BundleInfos].[CMAP_Description__c][CMAP_Description__c]」(説明)
+
+
+        -       
+        [OfferPlansInfo].[OfferMethodInfo].[CMAP_OfferArea__c].[Id]:「[OfferPlansInfo].[OfferMethodInfo].[CMAP_OfferArea__c].[Id][Id]」(提供エリアID)
+
+
+        -       
+        [OfferPlansInfo].[OfferMethodInfo].[CMAP_OfferArea__c].[CMAP_AccessCircuit__c]:「[OfferPlansInfo].[OfferMethodInfo].[CMAP_OfferArea__c].[CMAP_AccessCircuit__c][CMAP_AccessCircuit__c]」(アクセス回線ID)
+
+
+        -       
+        [OfferPlansInfo].[OfferMethodInfo].[CMAP_OfferArea__c].[CMAP_AccessCircuitName__c]:「[OfferPlansInfo].[OfferMethodInfo].[CMAP_OfferArea__c].[CMAP_AccessCircuitName__c][CMAP_AccessCircuitName__c]」(アクセス回線名)
+
+
+        -       
+        [OfferPlansInfo].[OfferMethodInfo].[CMAP_OfferArea__c].[CMAP_AccessCircuitNameForDisplay__c]:「[OfferPlansInfo].[OfferMethodInfo].[CMAP_OfferArea__c].[CMAP_AccessCircuitNameForDisplay__c][CMAP_AccessCircuitNameForDisplay__c]」(アクセス回線名（画面表示用）)
+
+
+        -       
+        [OfferPlansInfo].[OfferMethodInfo].[CMAP_OfferArea__c].[CMAP_BlockNumberGroupUnitCenter__c]:「[OfferPlansInfo].[OfferMethodInfo].[CMAP_OfferArea__c].[CMAP_BlockNumberGroupUnitCenter__c][CMAP_BlockNumberGroupUnitCenter__c]」(ブロック番号／GC局)
+
+
+        -       
+        [OfferPlansInfo].[OfferMethodInfo].[CMAP_OfferArea__c].[CMAP_StandardOpeningDays__c]:「[OfferPlansInfo].[OfferMethodInfo].[CMAP_OfferArea__c].[CMAP_StandardOpeningDays__c][CMAP_StandardOpeningDays__c]」(標準開通日数)
+
+
+        -       
+        [OfferPlansInfo].[OfferMethodInfo].[CMAP_OfferArea__c].[CMAP_StandardOpeningMonths__c]:「[OfferPlansInfo].[OfferMethodInfo].[CMAP_OfferArea__c].[CMAP_StandardOpeningMonths__c][CMAP_StandardOpeningMonths__c]」(標準開通月数)
+
+
+        -       
+        [OfferPlansInfo].[OfferMethodInfo].[CMAP_OfferArea__c].[CMAP_OfferableFloor__c]:「[OfferPlansInfo].[OfferMethodInfo].[CMAP_OfferArea__c].[CMAP_OfferableFloor__c][CMAP_OfferableFloor__c]」(提供可能階数)
+
+
+        -       
+        [OfferPlansInfo].[OfferMethodInfo].[CMAP_LayerDeliveryDuration__c].[Id]:「[OfferPlansInfo].[OfferMethodInfo].[CMAP_LayerDeliveryDuration__c].[Id][Id]」(レイヤ納期ID)
+
+
+        -       
+        [OfferPlansInfo].[OfferMethodInfo].[CMAP_LayerDeliveryDuration__c].[CMAP_StandardOpeningDays__c]:「[OfferPlansInfo].[OfferMethodInfo].[CMAP_LayerDeliveryDuration__c].[CMAP_StandardOpeningDays__c][CMAP_StandardOpeningDays__c]」(標準開通日数)
+
+
+        -       
+        [OfferPlansInfo].[OfferMethodInfo].[CMAP_LayerDeliveryDuration__c].[CMAP_StandardOpeningMonths__c]:「[OfferPlansInfo].[OfferMethodInfo].[CMAP_LayerDeliveryDuration__c].[CMAP_StandardOpeningMonths__c][CMAP_StandardOpeningMonths__c]」(標準開通月数)
+
+
+        -       
+        [OfferPlansInfo].[OfferMethodInfo].[OfferableServiceGroupInfos].[serviceGroup]:「[OfferPlansInfo].[OfferMethodInfo].[OfferableServiceGroupInfos].[serviceGroup][serviceGroup]」(サービスグループ)
+
+
+        -       
+        [OfferPlansInfo].[OfferMethodInfo].[OfferableServiceGroupInfos].[offerableServiceNames]:「[OfferPlansInfo].[OfferMethodInfo].[OfferableServiceGroupInfos].[offerableServiceNames][offerableServiceNames]」(提供可能サービス名リスト)
+
+
+        -       
+        [OfferPlansInfo].[OfferMethodInfo].[OfferableServiceGroupInfos].[hasChannelInfo]:「[OfferPlansInfo].[OfferMethodInfo].[OfferableServiceGroupInfos].[hasChannelInfo][hasChannelInfo]」(チャンネル情報あり)
+
+
+        -       
+        [OfferPlansInfo].[offerMethodName]:「[OfferPlansInfo].[offerMethodName][offerMethodName]」(提供方式名)
       operationId: RetrieveOfferPlanList
       parameters:
-        - name: OrderChannelCategory
-          in: query
+        - in: query
+          name: OrderChannelCategory
           description: 申込チャネル区分
           required: true
           schema:
             type: string
-            example: web
-        - name: ContractName
-          in: query
+            example: Web
+        - in: query
+          name: AgencyId
+          description: 代理店ID
+          required: false
+          schema:
+            type: string
+            example: XXXXX
+        - in: query
+          name: ShopId
+          description: 店舗ID
+          required: false
+          schema:
+            type: string
+            example: XXXXX
+        - in: query
+          name: ContractName
           description: 契約名義
           required: true
           schema:
             type: string
-            example: 個人
-        - name: PlanType
-          in: query
+            example: Individual
+        - in: query
+          name: PlanType
           description: プラン種類
           required: true
           schema:
             type: string
-            example: 回線
-        - name: OrderDate
-          in: query
+            example: Circuit
+        - in: query
+          name: ResidenceType
+          description: 住戸形態
+          required: false
+          schema:
+            type: string
+            example: Home
+        - in: query
+          name: OfferAreaId
+          description: 提供エリアID
+          required: false
+          schema:
+            type: string
+            example: XXXXX
+        - in: query
+          name: PropertyOfferMethodId
+          description: 物件提供方式ID
+          required: false
+          schema:
+            type: string
+            example: XXXXX
+        - in: query
+          name: EffectiveDate
           description: 申込日
           required: true
           schema:
             type: string
-            example: '2023-03-03T00:00:00.000Z'
-        - name: OrderTime
-          in: query
+            format: date
+            example: '2023-12-31T00:00:00.000Z'
+        - in: query
+          name: EffectiveTime
           description: 申込時間
           required: true
           schema:
             type: string
-            example: '10:30:33'
-        - name: OrderCategory
-          in: query
-          description: 申込区分
+            format: partial-time
+            example: '23:59:59'
+        - in: query
+          name: OrderCategoryCurrentlySelected
+          description: 申込区分（選択中/単一）
           required: true
           schema:
             type: string
-            example: NewContract
+            example: PlanChange
+        - in: query
+          name: OrderCategoryPreviouslySelected
+          description: 申込区分（変更前/複数）
+          required: false
+          schema:
+            type: string
+            example: NewContractPurchace
+        - in: query
+          name: PrefectureCode
+          description: 都道府県コード
+          required: false
+          schema:
+            type: string
+            example: 12
+        - in: query
+          name: ExcludesUnchangebleContractProduct
+          description: 契約変更不可商品除外
+          required: false
+          schema:
+            type: boolean
+            example: false
       responses:
         '200':
           description: 成功時
@@ -4876,64 +5025,162 @@ paths:
               schema:
                 type: object
                 properties:
-                  OfferPlanList:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        PackageInformationList:
-                          type: array
-                          items:
-                            type: object
-                            properties:
-                              Package:
+                  OfferPlansInfo:
+                    type: object
+                    description: 提供プランリスト取得情報
+                    properties:
+                      PackageInfos:
+                        type: array
+                        description: パッケージ情報リスト
+                        items:
+                          type: object
+                          properties:
+                            CMAP_PackageBundle__c:
+                              type: object
+                              description: パッケージ（パッケージオブジェクト レコードタイプ：パッケージ）
+                              properties:
+                                Id:
+                                  type: string
+                                  description: パッケージID
+                                  example: XXXX
+                                Name:
+                                  type: string
+                                  description: パッケージ名
+                                  example: XXXX
+                                CMAP_Description__c:
+                                  type: string
+                                  description: 説明
+                                  example: XXXX
+                            BundleInfos:
+                              type: array
+                              description: バンドル情報リスト
+                              items:
                                 type: object
                                 properties:
-                                  PackageName:
-                                    type: string
-                                    description: パッケージ名
-                                    example: パッケージ
-                                  PackageDescription:
-                                    type: string
-                                    description: パッケージの説明文
-                                    example: パッケージの説明文が入ります
-                              BundleInformationList:
-                                type: array
-                                items:
-                                  type: object
-                                  properties:
-                                    Bundle:
+                                  CMAP_PackageBundle__c:
+                                    type: object
+                                    properties:
+                                      Id:
+                                        type: string
+                                        description: パッケージID
+                                        example: XXXX
+                                      Name:
+                                        type: string
+                                        description: パッケージ名
+                                        example: XXXX
+                                      CMAP_Description__c:
+                                        type: string
+                                        description: 説明
+                                        example: XXXX
+                                  OfferPlans:
+                                    type: array
+                                    description: 提供プランリスト
+                                    items:
                                       type: object
                                       properties:
-                                        BundleName:
+                                        Id:
                                           type: string
-                                          description: バンドル名
-                                          example: バンドル
-                                        BundleDescription:
+                                          description: 提供プランID
+                                          example: XXXX
+                                        CMAP_OfferPackage__c:
                                           type: string
-                                          description: バンドルの説明文
-                                          example: バンドルの説明文が入ります
-                                    OfferPlanList:
-                                      type: array
-                                      items:
-                                        type: object
-                                        properties:
-                                          OfferPlanID:
-                                            type: string
-                                            description: 提供プランID
-                                            example: 1234564789
-                                          PlanName:
-                                            type: string
-                                            description: 提供プラン名（画面表示用）
-                                            example: 光インターネット標準（フルカスタム）NETFLIX パックタイプF
-                                          ShortPlanName:
-                                            type: string
-                                            description: 提供プラン名（画面表示短縮用）
-                                            example: Netflix+10Gベストエフォート 4,100円（税込）/月～
-                                          PlanDescription:
-                                            type: string
-                                            description: 提供プランの説明文
-                                            example: 提供プランの説明文が入ります
+                                          description: 提供パッケージ
+                                          example: XXXX
+                                        CMAP_OfferPlanNameForDisplay__c:
+                                          type: string
+                                          description: 提供プラン名（画面表示用）
+                                          example: 光インターネット標準（フルカスタム）NETFLIX パックタイプF
+                                        CMAP_OfferPlanShortNameForDisplay__c:
+                                          type: string
+                                          description: 提供プラン名（画面短縮表示用）
+                                          example: Netflix+10Gベストエフォート 4,100円（税込）/月～
+                                        CMAP_Description__c:
+                                          type: string
+                                          description: 説明
+                                          example: XXXX
+                      OfferMethodInfo:
+                        type: object
+                        description: 提供方式情報
+                        properties:
+                          CMAP_OfferArea__c:
+                            type: object
+                            description: 提供エリア
+                            properties:
+                              Id:
+                                type: string
+                                description: 提供エリアID
+                                example: XXXX
+                              CMAP_AccessCircuit__c:
+                                type: string
+                                description: アクセス回線ID
+                                example: XXXX
+                              CMAP_AccessCircuitName__c:
+                                type: string
+                                description: アクセス回線名
+                                example: XXXX
+                              CMAP_AccessCircuitNameForDisplay__c:
+                                type: string
+                                description: アクセス回線名（画面表示用）
+                                example: XXXX
+                              CMAP_BlockNumberGroupUnitCenter__c:
+                                type: string
+                                description: ブロック番号／GC局
+                                example: XXXX
+                              CMAP_StandardOpeningDays__c:
+                                type: integer
+                                description: 標準開通日数
+                                example: 20
+                                format: int32
+                              CMAP_StandardOpeningMonths__c:
+                                type: integer
+                                description: 標準開通月数
+                                example: 1
+                                format: int32
+                              CMAP_OfferableFloor__c:
+                                type: string
+                                description: 提供可能階数
+                                example: 制限なし
+                          CMAP_LayerDeliveryDuration__c:
+                            type: object
+                            description: レイヤ納期
+                            properties:
+                              Id:
+                                type: string
+                                description: レイヤ納期ID
+                                example: XXXX
+                              CMAP_StandardOpeningDays__c:
+                                type: integer
+                                description: 標準開通日数
+                                example: 20
+                                format: int32
+                              CMAP_StandardOpeningMonths__c:
+                                type: integer
+                                description: 標準開通月数
+                                example: 1
+                                format: int32
+                          OfferableServiceGroupInfos:
+                            type: array
+                            description: 提供可能サービスグループ情報リスト
+                            items:
+                              type: object
+                              properties:
+                                serviceGroup:
+                                  type: string
+                                  description: サービスグループ
+                                  example: XXXX
+                                offerableServiceNames:
+                                  type: array
+                                  items: {}
+                                  description: 提供可能サービス名リスト
+                                  example: XXXX
+                                hasChannelInfo:
+                                  type: boolean
+                                  description: チャンネル情報あり
+                                  example: true
+                      offerMethodName:
+                        type: string
+                        description: 提供方式名
+                        example: XXXX
         '400':
           description: |-
             [Bad Request]
@@ -4950,64 +5197,507 @@ paths:
     get:
       tags:
         - Application
+      security:
+        - bearer: []
       summary: 提供プラン商品リスト取得
       description: >-
         [Overview]
 
 
+
         ユーザが指定した提供プラン（1件）に含まれる商品のリストを返す。
+
 
 
         [Details]
 
 
-        1.Queryから「OfferPlanID」,「ContractName」,「OrderChannelCategory」,「OrderCategory」を取得する。
-          - 1-1. 上記の項目が空白の場合、ステータスコード400と以下のエラーメッセージを返し処理を終了する。
+
+        1.Queryよりparametersにて定義しているパラメータを取得する。
+          - 1-1. 上記の必須項目が空白の場合、ステータスコード400と以下のエラーメッセージを返し処理を終了する。
             - {項目名, 項目名}が空白です。
-          - 1-2. 「OfferPlanID」の文字数が18文字以上の場合、ステータスコード400と以下のエラーメッセージを返し処理を終了する。
-            - 「提供プランIDの桁数が不正です」
-        2.「OfferPlanID」,「ContractName」,「OrderChannelCategory」,「OrderCategory」をリクエスト項目として、c-mapの「提供プラン商品リスト取得API」をコールする。
+          - 1-2. パラメータの形式チェックを行い、不正な場合は、ステータスコード400と以下のエラーメッセージを返し処理を終了する。
+            - 「XXXXの書式が不正です」
+        2.parametersにて定義しているパラメータをリクエスト項目として、c-mapの「提供プラン商品リスト取得API」をコールする。
           - 2-1. httpステータスが400番台の場合、エラーメッセージを格納しhttpステータス400を返す。
           - 2-2. httpステータスが500番台の場合、エラーメッセージを格納しhttpステータス500を返す。
           - 2-3. httpステータスが200の場合、APIから取得したレスポンスを下記レスポンス項目に設定する。
 
         ※（）はc-mapのAPI一覧の資料で定義されている日本語項目名
 
-        -        [PeroductName]:「PackageName(TBD)」（商品名）
 
         -       
-        [NotesOnCancellation]:「NotesOnCancellation(TBD)」（解約時の注意事項）        
-             
+        [MainSubProductGroupInfos].[ProductGroup]:「[MainSubProductGroupInfos].[ProductGroup][Id]」(メイン商品/サブ商品グループID)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductGroup]:「[MainSubProductGroupInfos].[ProductGroup][CMAP_MainSubProductGroupCategory__c]」(メイン商品/サブ商品グループ区分)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductGroup]:「[MainSubProductGroupInfos].[ProductGroup][Name]」(メイン商品/サブ商品グループ名)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductGroup]:「[MainSubProductGroupInfos].[ProductGroup][CMAP_ImportantMatterDescription__c]」(重要事項説明ID)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[CMAP_ProductGroup__c]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[CMAP_ProductGroup__c][Id]」(商品カテゴリID)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[CMAP_ProductGroup__c]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[CMAP_ProductGroup__c][Name]」(商品カテゴリ名)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[CMAP_ProductGroup__c]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[CMAP_ProductGroup__c][CMAP_ImportantMatterDescription__c]」(重要事項説明ID)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product][Id]」(商品ID)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product][Name]」(商品名)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product][CMAP_ItemCategory__c]」(商品区分)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product][CMAP_Precaution__c]」(注意事項)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product][CMAP_TerminationPrecaution__c]」(解約時の注意事項)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product][CMAP_CancellationPrecaution__c]」(キャンセル時の注意事項)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product][CMAP_ProductImageURL__c]」(商品画像URL)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product][CMAP_HasOrderItemAttributeDefinition__c]」(申込商品属性定義あり)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product][CMAP_TaxationCategory__c]」(課税区分)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product][CMAP_QuantityCategory__c]」(数量区分)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product][CMAP_DefaultQuantity__c]」(初期数量)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product][CMAP_Unchargeable__c]」(請求対象外)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product][CMAP_UnselectableSingleProduct__c]」(単品選択不可)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product][CMAP_IsPackagePrice__c]」(パッケージ料金)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product][CMAP_ChangeablePrice__c]」(金額変更可)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product][CMAP_OtherCompanyScreenTransitionLinkDescription__c]」(他社画面遷移リンク（説明）)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product][CMAP_OtherCompanyScreenTransitionLinkURL__c]」(他社画面遷移リンク（URL）)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product][CMAP_InheritableMovementAssetAttribute__c]」(移転時納入商品属性引継可)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product][CMAP_InheritableMovementOrderItemAttribute__c]」(移転時申込商品属性引継可)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product][CMAP_UnchangeableContract__c]」(契約変更不可)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product][CMAP_MainSubProductGroupSortOrder__c]」(メイン商品/サブ商品グループ並び順)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product][CMAP_ProductCategorySortOrder__c]」(商品カテゴリ並び順)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[Product][CMAP_SortOrder__c]」(並び順)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[OfferPlanProduct]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[OfferPlanProduct][Id]」(提供プラン商品ID)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[OfferPlanProduct]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[OfferPlanProduct][CMAP_DependenceGroupProductId__c]」(依存グループ商品ID)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[OfferPlanProduct]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[OfferPlanProduct][CMAP_DependenceProductId__c]」(依存商品ID)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[OfferPlanProduct]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[OfferPlanProduct][CMAP_DependenceProductTypeForApplication__c]」(依存商品タイプ（適用）)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[OfferPlanProductSelectionMethod]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[OfferPlanProductSelectionMethod][CMAP_ProductSelectionMethod__c]」(商品選択方式)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[OfferPlanProductSelectionMethod]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[OfferPlanProductSelectionMethod][CMAP_ProductSelectionGroupNumber__c]」(商品選択グループ番号)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[OfferPlanProductSelectionMethod]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[OfferPlanProductSelectionMethod][CMAP_DefaultSelection__c]」(デフォルト選択)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[OfferPlanProductSelectionMethods]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[OfferPlanProductSelectionMethods][Id]」(商品選択依存商品ID)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[OfferPlanProductSelectionMethods]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[OfferPlanProductSelectionMethods][CMAP_ProductSelectionMethod__c]」(商品選択方式)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[OfferPlanProductSelectionMethods]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[OfferPlanProductSelectionMethods][CMAP_ProductSelectionGroupNumber__c]」(商品選択グループ番号)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[OfferPlanProductSelectionMethods]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[OfferPlanProductSelectionMethods][CMAP_DefaultSelection__c]」(デフォルト選択)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[PricebookEntry]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[PricebookEntry][CMAP_PriceCategory__c]」(価格区分)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[PricebookEntry]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[PricebookEntry][CMAP_PriceCategoryDefault__c]」(デフォルト価格区分)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[PricebookEntry]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[PricebookEntry][UnitPrice]」(リスト価格)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[PricebookEntry]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[PricebookEntry][CMAP_UnitPriceTaxIncluded__c]」(リスト価格(税込))
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[PricebookEntry]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[PricebookEntry][CMAP_InstalmentPricePerMonthTaxExcluded__c]」(分割払い価格/月(税抜))
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[PricebookEntry]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[PricebookEntry][CMAP_InstalmentPricePerMonthTaxIncluded__c]」(分割払い価格/月(税込))
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[PricebookEntry]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[PricebookEntry][CMAP_NumberOfInstallments__c]」(分割回数)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[PricebookEntry]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[PricebookEntry][CMAP_InstalmentFirstMonthPriceTaxExcluded__c]」(分割払い初月価格/月(税抜))
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[PricebookEntry]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[PricebookEntry][CMAP_InstalmentFirstMonthPriceTaxIncluded__c]」(分割払い初月価格/月(税込))
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[PricebookEntry]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[PricebookEntry][CMAP_AnnualPaymentPriceTaxExcluded__c]」(年額払い価格(税抜))
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[PricebookEntry]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[PricebookEntry][CMAP_AnnualPaymentPriceTaxIncluded__c]」(年額払い価格(税込))
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[PricebookEntry]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[PricebookEntry][CMAP_AvailableDailyPricing__c]」(価格日割あり)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[PricebookEntry]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[PricebookEntry][CMAP_ConsumptionTaxRate__c]」(消費税率)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[ProductAddition]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[ProductAddition][setProductId]」(セット商品ID)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[ProductAddition]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[ProductAddition][readOnly]」(読み取り専用)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[PackagePriceImportantMatterDescriptions]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[PackagePriceImportantMatterDescriptions][Id]」(商品グループID)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[PackagePriceImportantMatterDescriptions]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[PackagePriceImportantMatterDescriptions][Name]」(商品グループ名)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[PackagePriceImportantMatterDescriptions]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SingleProductInfo].[PackagePriceImportantMatterDescriptions][CMAP_ImportantMatterDescription__c]」(重要事項説明ID)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product][Id]」(商品ID)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product][Name]」(商品名)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product][CMAP_ItemCategory__c]」(商品区分)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product][CMAP_Precaution__c]」(注意事項)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product][CMAP_TerminationPrecaution__c]」(解約時の注意事項)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product][CMAP_CancellationPrecaution__c]」(キャンセル時の注意事項)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product][CMAP_ProductImageURL__c]」(商品画像URL)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product][CMAP_HasOrderItemAttributeDefinition__c]」(申込商品属性定義あり)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product][CMAP_TaxationCategory__c]」(課税区分)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product][CMAP_QuantityCategory__c]」(数量区分)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product][CMAP_DefaultQuantity__c]」(初期数量)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product][CMAP_Unchargeable__c]」(請求対象外)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product][CMAP_UnselectableSingleProduct__c]」(単品選択不可)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product][CMAP_IsPackagePrice__c]」(パッケージ料金)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product][CMAP_ChangeablePrice__c]」(金額変更可)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product][CMAP_OtherCompanyScreenTransitionLinkDescription__c]」(他社画面遷移リンク（説明）)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product][CMAP_OtherCompanyScreenTransitionLinkURL__c]」(他社画面遷移リンク（URL）)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product][CMAP_InheritableMovementAssetAttribute__c]」(移転時納入商品属性引継可)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product][CMAP_InheritableMovementOrderItemAttribute__c]」(移転時申込商品属性引継可)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product][CMAP_UnchangeableContract__c]」(契約変更不可)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product][CMAP_MainSubProductGroupSortOrder__c]」(メイン商品/サブ商品グループ並び順)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product][CMAP_ProductCategorySortOrder__c]」(商品カテゴリ並び順)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[Product][CMAP_SortOrder__c]」(並び順)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[PricebookEntry]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[PricebookEntry][CMAP_PriceCategory__c]」(価格区分)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[PricebookEntry]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[PricebookEntry][CMAP_PriceCategoryDefault__c]」(デフォルト価格区分)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[PricebookEntry]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[PricebookEntry][UnitPrice]」(リスト価格)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[PricebookEntry]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[PricebookEntry][CMAP_UnitPriceTaxIncluded__c]」(リスト価格(税込))
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[PricebookEntry]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[PricebookEntry][CMAP_InstalmentPricePerMonthTaxExcluded__c]」(分割払い価格/月(税抜))
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[PricebookEntry]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[PricebookEntry][CMAP_InstalmentPricePerMonthTaxIncluded__c]」(分割払い価格/月(税込))
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[PricebookEntry]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[PricebookEntry][CMAP_NumberOfInstallments__c]」(分割回数)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[PricebookEntry]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[PricebookEntry][CMAP_InstalmentFirstMonthPriceTaxExcluded__c]」(分割払い初月価格/月(税抜))
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[PricebookEntry]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[PricebookEntry][CMAP_InstalmentFirstMonthPriceTaxIncluded__c]」(分割払い初月価格/月(税込))
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[PricebookEntry]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[PricebookEntry][CMAP_AnnualPaymentPriceTaxExcluded__c]」(年額払い価格(税抜))
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[PricebookEntry]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[PricebookEntry][CMAP_AnnualPaymentPriceTaxIncluded__c]」(年額払い価格(税込))
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[PricebookEntry]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[PricebookEntry][CMAP_AvailableDailyPricing__c]」(価格日割あり)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[PricebookEntry]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[PricebookEntry][CMAP_ConsumptionTaxRate__c]」(消費税率)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[ProductAddition]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[ProductAddition][setProductId]」(セット商品ID)
+
+
+        -       
+        [MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[ProductAddition]:「[MainSubProductGroupInfos].[ProductCategoryInfos].[ProductInfos].[SetUnitProductInfos].[ProductAddition][readOnly]」(読み取り専用)
       operationId: RetrieveOfferPlanProductList
       parameters:
-        - name: OfferPlanID
-          in: query
+        - in: query
+          name: OfferPlanId
           description: 提供プランID
           required: true
           schema:
             type: string
-            example: 123456789
-        - name: ContractName
-          in: query
+            example: XXXXX
+        - in: query
+          name: ContractName
           description: 契約名義
           required: true
           schema:
             type: string
-            example: 個人
-        - name: OrderChannelCategory
-          in: query
+            example: Individual
+        - in: query
+          name: ResidenceType
+          description: 住戸形態
+          required: false
+          schema:
+            type: string
+            example: Home
+        - in: query
+          name: OfferAreaId
+          description: 提供エリアID
+          required: false
+          schema:
+            type: string
+            example: XXXXX
+        - in: query
+          name: PropertyOfferMethodId
+          description: 物件提供方式ID
+          required: false
+          schema:
+            type: string
+            example: XXXXX
+        - in: query
+          name: OrderCategoryCurrentlySelected
+          description: 申込区分（選択中/単一）
+          required: true
+          schema:
+            type: string
+            example: PlanChange
+        - in: query
+          name: OrderCategoryPreviouslySelected
+          description: 申込区分（変更前/複数）
+          required: false
+          schema:
+            type: string
+            example: NewContractPurchace
+        - in: query
+          name: OrderChannelCategory
           description: 申込チャネル区分
           required: true
           schema:
             type: string
-            example: web
-        - name: OrderCategory
-          in: query
-          description: 申込区分
-          required: true
+            example: Web
+        - in: query
+          name: AgencyId
+          description: 代理店ID
+          required: false
           schema:
             type: string
-            example: NewContract
+            example: XXXXX
+        - in: query
+          name: ShopId
+          description: 店舗ID
+          required: false
+          schema:
+            type: string
+            example: XXXXX
+        - in: query
+          name: ExcludesUnchangebleContractProduct
+          description: 契約変更不可商品除外
+          required: false
+          schema:
+            type: boolean
+            example: true
+        - in: query
+          name: PrefectureCode
+          description: 都道府県コード
+          required: false
+          schema:
+            type: string
+            example: 12
       responses:
         '200':
           description: 成功時
@@ -5016,48 +5706,502 @@ paths:
               schema:
                 type: object
                 properties:
-                  ProductGroupInformationList:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        productGroup:
+                  MainSubProductGroupInfos:
+                    type: object
+                    description: メイン商品/サブ商品グループ情報リスト
+                    properties:
+                      ProductGroup:
+                        type: object
+                        description: メイン商品／サブ商品グループ（商品グループオブジェクト）
+                        properties:
+                          Id:
+                            type: string
+                            description: メイン商品/サブ商品グループID
+                            example: XXXXX
+                          CMAP_MainSubProductGroupCategory__c:
+                            type: string
+                            description: メイン商品/サブ商品グループ区分
+                            example: MainProductGroup
+                          Name:
+                            type: string
+                            description: メイン商品/サブ商品グループ名
+                            example: XXXXX
+                          CMAP_ImportantMatterDescription__c:
+                            type: string
+                            description: 重要事項説明ID
+                            example: XXXXX
+                      ProductCategoryInfos:
+                        type: array
+                        description: 商品カテゴリ情報リスト（商品グループオブジェクト）
+                        items:
                           type: object
                           properties:
-                            ProiductGroupName:
+                            CMAP_ProductGroup__c:
                               type: object
-                              description: メイン商品/サブ商品グループ名
-                              example: 光電話
-                        ProductCategoryInformationList:
-                          properties:
-                            ProductCategory:
-                              type: object
+                              description: 商品カテゴリ
                               properties:
-                                ProductCategoryName:
+                                Id:
+                                  type: string
+                                  description: 商品カテゴリID
+                                  example: XXXXX
+                                Name:
                                   type: string
                                   description: 商品カテゴリ名
-                                  example: 光テレビ
-                            ProductSelectGroupNumberInformationList:
+                                  example: XXXXX
+                                CMAP_ImportantMatterDescription__c:
+                                  type: string
+                                  description: 重要事項説明ID
+                                  example: XXXXX
+                            ProductInfos:
                               type: array
+                              description: 商品情報リスト
                               items:
                                 type: object
                                 properties:
-                                  ProductInformationList:
+                                  SingleProductInfo:
+                                    type: object
+                                    description: 単品商品情報
+                                    properties:
+                                      Product:
+                                        type: object
+                                        description: 商品
+                                        properties:
+                                          Id:
+                                            type: string
+                                            description: 商品ID
+                                            example: XXXXX
+                                          Name:
+                                            type: string
+                                            description: 商品名
+                                            example: スタンダードプラン
+                                          CMAP_ItemCategory__c:
+                                            type: string
+                                            description: 商品区分
+                                            example: SingleProduct
+                                          CMAP_Precaution__c:
+                                            type: string
+                                            description: 注意事項
+                                            example: XXXXX
+                                          CMAP_TerminationPrecaution__c:
+                                            type: string
+                                            description: 解約時の注意事項
+                                            example: XXXXX
+                                          CMAP_CancellationPrecaution__c:
+                                            type: string
+                                            description: キャンセル時の注意事項
+                                            example: XXXXX
+                                          CMAP_ProductImageURL__c:
+                                            type: string
+                                            description: 商品画像URL
+                                            example: https://hoge
+                                          CMAP_HasOrderItemAttributeDefinition__c:
+                                            type: boolean
+                                            description: 申込商品属性定義あり
+                                            example: false
+                                          CMAP_TaxationCategory__c:
+                                            type: string
+                                            description: 課税区分
+                                            example: Taxation
+                                          CMAP_QuantityCategory__c:
+                                            type: string
+                                            description: 数量区分
+                                            example: FixedQuantity
+                                          CMAP_DefaultQuantity__c:
+                                            type: integer
+                                            description: 初期数量
+                                            example: 2
+                                            format: int32
+                                          CMAP_Unchargeable__c:
+                                            type: boolean
+                                            description: 請求対象外
+                                            example: false
+                                          CMAP_UnselectableSingleProduct__c:
+                                            type: boolean
+                                            description: 単品選択不可
+                                            example: false
+                                          CMAP_IsPackagePrice__c:
+                                            type: boolean
+                                            description: パッケージ料金
+                                            example: false
+                                          CMAP_ChangeablePrice__c:
+                                            type: boolean
+                                            description: 金額変更可
+                                            example: false
+                                          CMAP_OtherCompanyScreenTransitionLinkDescription__c:
+                                            type: string
+                                            description: 他社画面遷移リンク（説明）
+                                            example: XXXXX
+                                          CMAP_OtherCompanyScreenTransitionLinkURL__c:
+                                            type: string
+                                            description: 他社画面遷移リンク（URL）
+                                            example: https://hoge
+                                          CMAP_InheritableMovementAssetAttribute__c:
+                                            type: boolean
+                                            description: 移転時納入商品属性引継可
+                                            example: false
+                                          CMAP_InheritableMovementOrderItemAttribute__c:
+                                            type: boolean
+                                            description: 移転時申込商品属性引継可
+                                            example: false
+                                          CMAP_UnchangeableContract__c:
+                                            type: boolean
+                                            description: 契約変更不可
+                                            example: false
+                                          CMAP_MainSubProductGroupSortOrder__c:
+                                            type: integer
+                                            description: メイン商品/サブ商品グループ並び順
+                                            example: 1
+                                            format: int32
+                                          CMAP_ProductCategorySortOrder__c:
+                                            type: integer
+                                            description: 商品カテゴリ並び順
+                                            example: 1
+                                            format: int32
+                                          CMAP_SortOrder__c:
+                                            type: integer
+                                            description: 並び順
+                                            example: 1
+                                            format: int32
+                                      OfferPlanProduct:
+                                        type: object
+                                        description: 提供プラン商品
+                                        properties:
+                                          Id:
+                                            type: string
+                                            description: 提供プラン商品ID
+                                            example: XXXXX
+                                          CMAP_DependenceGroupProductId__c:
+                                            type: string
+                                            description: 依存グループ商品ID
+                                            example: XXXXX
+                                          CMAP_DependenceProductId__c:
+                                            type: string
+                                            description: 依存商品ID
+                                            example: XXXXX
+                                          CMAP_DependenceProductTypeForApplication__c:
+                                            type: string
+                                            description: 依存商品タイプ（適用）
+                                            example: DependenceProduct
+                                      OfferPlanProductSelectionMethod:
+                                        type: object
+                                        description: 提供プラン商品選択方式
+                                        properties:
+                                          CMAP_ProductSelectionMethod__c:
+                                            type: string
+                                            description: 商品選択方式
+                                            example: StandardOffer
+                                          CMAP_ProductSelectionGroupNumber__c:
+                                            type: integer
+                                            description: 商品選択グループ番号
+                                            example: 2
+                                            format: int32
+                                          CMAP_DefaultSelection__c:
+                                            type: boolean
+                                            description: デフォルト選択
+                                            example: false
+                                      OfferPlanProductSelectionMethods:
+                                        type: array
+                                        description: 提供プラン商品選択方式リスト（依存）
+                                        items:
+                                          type: object
+                                          properties:
+                                            Id:
+                                              type: string
+                                              description: 商品選択依存商品ID
+                                              example: XXXXX
+                                            CMAP_ProductSelectionMethod__c:
+                                              type: string
+                                              description: 商品選択方式
+                                              example: SelectableStandardOffer
+                                            CMAP_ProductSelectionGroupNumber__c:
+                                              type: integer
+                                              description: 商品選択グループ番号
+                                              example: 2
+                                              format: int32
+                                            CMAP_DefaultSelection__c:
+                                              type: boolean
+                                              description: デフォルト選択
+                                              example: false
+                                      PricebookEntry:
+                                        type: object
+                                        description: 価格表エントリ
+                                        properties:
+                                          CMAP_PriceCategory__c:
+                                            type: string
+                                            description: 価格区分
+                                            example: LumpSumPayment
+                                          CMAP_PriceCategoryDefault__c:
+                                            type: string
+                                            description: デフォルト価格区分
+                                            example: InstalmentPayment
+                                          UnitPrice:
+                                            type: integer
+                                            description: リスト価格
+                                            example: 50000
+                                            format: int32
+                                          CMAP_UnitPriceTaxIncluded__c:
+                                            type: integer
+                                            description: リスト価格(税込)
+                                            example: 55000
+                                            format: int32
+                                          CMAP_InstalmentPricePerMonthTaxExcluded__c:
+                                            type: integer
+                                            description: 分割払い価格/月(税抜)
+                                            example: 5000
+                                            format: int32
+                                          CMAP_InstalmentPricePerMonthTaxIncluded__c:
+                                            type: integer
+                                            description: 分割払い価格/月(税込)
+                                            example: 5500
+                                            format: int32
+                                          CMAP_NumberOfInstallments__c:
+                                            type: integer
+                                            description: 分割回数
+                                            example: 10
+                                            format: int32
+                                          CMAP_InstalmentFirstMonthPriceTaxExcluded__c:
+                                            type: integer
+                                            description: 分割払い初月価格/月(税抜)
+                                            example: 5000
+                                            format: int32
+                                          CMAP_InstalmentFirstMonthPriceTaxIncluded__c:
+                                            type: integer
+                                            description: 分割払い初月価格/月(税込)
+                                            example: 5500
+                                            format: int32
+                                          CMAP_AnnualPaymentPriceTaxExcluded__c:
+                                            type: integer
+                                            description: 年額払い価格(税抜)
+                                            example: 0
+                                            format: int32
+                                          CMAP_AnnualPaymentPriceTaxIncluded__c:
+                                            type: integer
+                                            description: 年額払い価格(税込)
+                                            example: 0
+                                            format: int32
+                                          CMAP_AvailableDailyPricing__c:
+                                            type: boolean
+                                            description: 価格日割あり
+                                            example: false
+                                          CMAP_ConsumptionTaxRate__c:
+                                            type: number
+                                            description: 消費税率
+                                            example: 10
+                                            format: float
+                                      ProductAddition:
+                                        type: object
+                                        description: 商品補足情報
+                                        properties:
+                                          setProductId:
+                                            type: string
+                                            description: セット商品ID
+                                            example: XXXXX
+                                          readOnly:
+                                            type: boolean
+                                            description: 読み取り専用
+                                            example: false
+                                      PackagePriceImportantMatterDescriptions:
+                                        type: array
+                                        description: パッケージ料金重要事項説明リスト
+                                        items:
+                                          type: object
+                                          properties:
+                                            Id:
+                                              type: string
+                                              description: 商品グループID
+                                              example: XXXXX
+                                            Name:
+                                              type: string
+                                              description: 商品グループ名
+                                              example: XXXXX
+                                            CMAP_ImportantMatterDescription__c:
+                                              type: string
+                                              description: 重要事項説明ID
+                                              example: XXXXX
+                                  SetUnitProductInfos:
                                     type: array
+                                    description: セット内単品商品情報リスト
                                     items:
                                       type: object
                                       properties:
                                         Product:
                                           type: object
+                                          description: 商品
                                           properties:
-                                            ProductName:
+                                            Id:
+                                              type: string
+                                              description: 商品ID
+                                              example: XXXXX
+                                            Name:
                                               type: string
                                               description: 商品名
                                               example: スタンダードプラン
-                                            NotesOnCancellation:
+                                            CMAP_ItemCategory__c:
+                                              type: string
+                                              description: 商品区分
+                                              example: SingleProduct
+                                            CMAP_Precaution__c:
+                                              type: string
+                                              description: 注意事項
+                                              example: XXXXX
+                                            CMAP_TerminationPrecaution__c:
                                               type: string
                                               description: 解約時の注意事項
-                                              example: 商品解約時の注意事項が入ります
+                                              example: XXXXX
+                                            CMAP_CancellationPrecaution__c:
+                                              type: string
+                                              description: キャンセル時の注意事項
+                                              example: XXXXX
+                                            CMAP_ProductImageURL__c:
+                                              type: string
+                                              description: 商品画像URL
+                                              example: https://hoge
+                                            CMAP_HasOrderItemAttributeDefinition__c:
+                                              type: boolean
+                                              description: 申込商品属性定義あり
+                                              example: false
+                                            CMAP_TaxationCategory__c:
+                                              type: string
+                                              description: 課税区分
+                                              example: Taxation
+                                            CMAP_QuantityCategory__c:
+                                              type: string
+                                              description: 数量区分
+                                              example: FixedQuantity
+                                            CMAP_DefaultQuantity__c:
+                                              type: integer
+                                              description: 初期数量
+                                              example: 2
+                                              format: int32
+                                            CMAP_Unchargeable__c:
+                                              type: boolean
+                                              description: 請求対象外
+                                              example: false
+                                            CMAP_UnselectableSingleProduct__c:
+                                              type: boolean
+                                              description: 単品選択不可
+                                              example: false
+                                            CMAP_IsPackagePrice__c:
+                                              type: boolean
+                                              description: パッケージ料金
+                                              example: false
+                                            CMAP_ChangeablePrice__c:
+                                              type: boolean
+                                              description: 金額変更可
+                                              example: false
+                                            CMAP_OtherCompanyScreenTransitionLinkDescription__c:
+                                              type: string
+                                              description: 他社画面遷移リンク（説明）
+                                              example: XXXXX
+                                            CMAP_OtherCompanyScreenTransitionLinkURL__c:
+                                              type: string
+                                              description: 他社画面遷移リンク（URL）
+                                              example: https://hoge
+                                            CMAP_InheritableMovementAssetAttribute__c:
+                                              type: boolean
+                                              description: 移転時納入商品属性引継可
+                                              example: false
+                                            CMAP_InheritableMovementOrderItemAttribute__c:
+                                              type: boolean
+                                              description: 移転時申込商品属性引継可
+                                              example: false
+                                            CMAP_UnchangeableContract__c:
+                                              type: boolean
+                                              description: 契約変更不可
+                                              example: false
+                                            CMAP_MainSubProductGroupSortOrder__c:
+                                              type: integer
+                                              description: メイン商品/サブ商品グループ並び順
+                                              example: 1
+                                              format: int32
+                                            CMAP_ProductCategorySortOrder__c:
+                                              type: integer
+                                              description: 商品カテゴリ並び順
+                                              example: 1
+                                              format: int32
+                                            CMAP_SortOrder__c:
+                                              type: integer
+                                              description: 並び順
+                                              example: 1
+                                              format: int32
+                                        PricebookEntry:
+                                          type: object
+                                          description: 価格表エントリ
+                                          properties:
+                                            CMAP_PriceCategory__c:
+                                              type: string
+                                              description: 価格区分
+                                              example: LumpSumPayment
+                                            CMAP_PriceCategoryDefault__c:
+                                              type: string
+                                              description: デフォルト価格区分
+                                              example: InstalmentPayment
+                                            UnitPrice:
+                                              type: integer
+                                              description: リスト価格
+                                              example: 50000
+                                              format: int32
+                                            CMAP_UnitPriceTaxIncluded__c:
+                                              type: integer
+                                              description: リスト価格(税込)
+                                              example: 55000
+                                              format: int32
+                                            CMAP_InstalmentPricePerMonthTaxExcluded__c:
+                                              type: integer
+                                              description: 分割払い価格/月(税抜)
+                                              example: 5000
+                                              format: int32
+                                            CMAP_InstalmentPricePerMonthTaxIncluded__c:
+                                              type: integer
+                                              description: 分割払い価格/月(税込)
+                                              example: 5500
+                                              format: int32
+                                            CMAP_NumberOfInstallments__c:
+                                              type: integer
+                                              description: 分割回数
+                                              example: 10
+                                              format: int32
+                                            CMAP_InstalmentFirstMonthPriceTaxExcluded__c:
+                                              type: integer
+                                              description: 分割払い初月価格/月(税抜)
+                                              example: 5000
+                                              format: int32
+                                            CMAP_InstalmentFirstMonthPriceTaxIncluded__c:
+                                              type: integer
+                                              description: 分割払い初月価格/月(税込)
+                                              example: 5500
+                                              format: int32
+                                            CMAP_AnnualPaymentPriceTaxExcluded__c:
+                                              type: integer
+                                              description: 年額払い価格(税抜)
+                                              example: 0
+                                              format: int32
+                                            CMAP_AnnualPaymentPriceTaxIncluded__c:
+                                              type: integer
+                                              description: 年額払い価格(税込)
+                                              example: 0
+                                              format: int32
+                                            CMAP_AvailableDailyPricing__c:
+                                              type: boolean
+                                              description: 価格日割あり
+                                              example: false
+                                            CMAP_ConsumptionTaxRate__c:
+                                              type: number
+                                              description: 消費税率
+                                              example: 10
+                                              format: float
+                                        ProductAddition:
+                                          type: object
+                                          description: 商品補足情報
+                                          properties:
+                                            setProductId:
+                                              type: string
+                                              description: セット商品ID
+                                              example: XXXXX
+                                            readOnly:
+                                              type: boolean
+                                              description: 読み取り専用
+                                              example: false
         '400':
           description: |-
             [Bad Request]
@@ -5803,49 +6947,52 @@ paths:
 
             ExceptionのStackTraceを格納して返却する。
   /application/RetrieveAddressInfo:
-    post:
+    get:
       tags:
         - Application
-      summary: 住所取得
+      summary: 住所コード検索
       description: |-
         [Overview]
 
-        INPUTの住所コードに紐づく住所情報（郵便番号、都道府県、市区町村、大字通称、字丁目）を取得する。
+        INPUTの住所コードに紐づく住所情報を取得する。
 
         [Details]       
 
-        1. RquestHeaderから「AddressCode」を取得し、バリデーションチェックを行う。
+        1. Queryから「adressCodes」を取得し、バリデーションチェックを行う。
           - 1-1. 必須チェックを行う。
             - 1-1-1. NGだった場合、レスポンス「Result」にfalse、「ErrorMessage」に下記エラーメッセージを設定し、httpステータス400を返し処理を終了する。
               - ｛項目名, 項目名｝が空白です。 
           - 1-2. 桁数チェックを行う。
-            - 1-2-1. 11桁ではない場合、レスポンス「Result」にfalse、「ErrorMessage」に下記エラーメッセージを設定し、httpステータス400を返し処理を終了する。
+            - 1-2-1. 11桁ではない文字列が含まれる場合、レスポンス「Result」にfalse、「ErrorMessage」に下記エラーメッセージを設定し、httpステータス400を返し処理を終了する。
               - ｛項目名, 項目名｝の桁数が不正です。
 
         2.下記リクエスト項目を設定してc-mapの住所コード検索APIをコールする。
-          - AddressCode：AddressCode（※本APIのINPUT）
+          - adressCodes：adressCodes（※本APIのINPUT）
 
         3.c-mapからのレスポンスに応じて値を返却する。  
           - 3-1. httpステータスが400番台の場合、エラーメッセージを格納し、レスポンス項目（「Result」にfalse、「ErrorMessage」にエラーメッセージ）を設定してhttpステータス400を返し処理を終了する。
           - 3-2. httpステータスが500番台の場合、エラーメッセージを格納し、レスポンス項目（「Result」にfalse、「ErrorMessage」にエラーメッセージ）を設定してhttpステータス500を返し処理を終了する。
-          - 3-3. httpステータスが200の場合、下記レスポンス項目を返却する。
-            -  PostalCode：PostalCode（郵便番号）
-            -  State：State（都道府県名）
-            -  City：City（市区町村名）
-            -  Street1：Street1（大字・通称名）
-            -  Street2：Street2（字・丁目名）
+          - 3-3. httpステータスが200でレスポンスが0件の場合、空のリストを返却する。
+            -  streets：空
+          - 3-4. httpステータスが200でレスポンスが1件以上の場合、下記レスポンス項目を返却する。
+            -  streets：streets（字・丁目リスト）
 
             ※（）はc-mapのAPI一覧の資料で定義されている日本語項目名
-            
+          
       operationId: RetrieveAddressInfo
       parameters:
-        - name: AddressCode
-          in: header
-          description: 住所コード
+        - name: adressCodes
+          in: query
+          description: 住所コードリスト
           required: true
           schema:
-            type: string
-            example: '12345678901'
+            type: array
+            items:
+              type: string
+              description: 住所コード
+          example:
+            - '23223001001'
+            - '23223001002'
       responses:
         '200':
           description: 成功時
@@ -5854,26 +7001,52 @@ paths:
               schema:
                 type: object
                 properties:
-                  PostalCode:
-                    type: string
-                    description: 郵便番号
-                    example: '1234567'
-                  State:
-                    type: string
-                    description: 都道府県名
-                    example: true
-                  City:
-                    type: string
-                    description: 市区町村名
-                    example: true
-                  Street1:
-                    type: string
-                    description: 大字・通称名
-                    example: true
-                  Street2:
-                    type: string
-                    description: 字・丁目名
-                    example: ''
+                  streets:
+                    type: array
+                    description: 字・丁目リスト
+                    items:
+                      type: object
+                      properties:
+                        CMAP_PostalCode__c:
+                          type: string
+                          description: 郵便番号
+                          example: '1234567'
+                        CMAP_PrefectureCode__c:
+                          type: string
+                          description: 都道府県コード
+                          example: '23'
+                        CMAP_PrefectureName__c:
+                          type: string
+                          description: 都道府県名
+                          example: 愛知県
+                        CMAP_CityCode__c:
+                          type: string
+                          description: 市区町村コード
+                          example: '223'
+                        CMAP_CityName__c:
+                          type: string
+                          description: 市区町村名
+                          example: 大府市
+                        CMAP_AliasCode__c:
+                          type: string
+                          description: 大字・通称コード
+                          example: '001'
+                        CMAP_AliasName__c:
+                          type: string
+                          description: 大字・通称名
+                          example: XXXXX
+                        CMAP_StreetCode__c:
+                          type: string
+                          description: 字・丁目コード
+                          example: '001'
+                        CMAP_StreetName__c:
+                          type: string
+                          description: 字・丁目名
+                          example: XXXXX
+                        CMAP_AdressCode__c:
+                          type: string
+                          description: 住所コード
+                          example: '23223001001'
         '400':
           description: |-
             [Bad Request]
@@ -7566,6 +8739,349 @@ paths:
                     type: string
                     description: エラーメッセージ
                     example: ''
+        '400':
+          description: |-
+            [Bad Request]
+
+            処理結果に応じたエラーメッセージを格納し返却する。
+
+             詳しくは[Details]参照
+        '500':
+          description: |-
+            [Internal Server Error]
+
+            ExceptionのStackTraceを格納して返却する。
+  /application/RetrieveOfferMethodList:
+    get:
+      tags:
+        - Application
+      summary: 提供方式リスト取得API
+      description: |-
+        [Overview]
+
+        指定されたエリアで利用可能な提供方式リストを取得する。
+
+        [Details]
+
+        1.Queryから取得したパラメータに対してバリデーションチェックを行う。
+          - 1-1. 必須チェックを行う。
+            - PrefectureCode
+            - CityCode
+            - OrderChannelCategory
+            - 1-1-1. NGだった場合、下記エラーメッセージと共にhttpステータス400を返し処理を終了する
+              - ｛項目名, 項目名｝が空白です。
+          - 1-2. 桁数チェックを行う。
+            - PrefectureCode：2桁
+            - CityCode：3桁
+            - PriorityOfferMethod：80桁以内
+            - BlockNumberTypeC：20桁以内
+            - LayerCodeTypeC：20桁以内
+            - GroupUnitCenterTypeK：20桁以内
+            - LayerCodeTypeK：20桁以内
+            - GroupUnitCenterTypeS：20桁以内
+            - LayerCodeTypeS：20桁以内
+            - 1-2-1. NGだった場合、下記エラーメッセージと共にhttpステータス400を返し処理を終了する
+              - ｛項目名, 項目名｝の桁数が不正です。
+
+        2.下記リクエスト項目を設定してc-mapの「提供方式リスト取得API」をコールする。
+          - prefectureCode：PrefectureCode（※本APIのINPUT）
+          - cityCode：CityCode（※本APIのINPUT）
+          - priorityOfferMethod：PriorityOfferMethod（※本APIのINPUT）
+          - blockNumberTypeC：BlockNumberTypeC（※本APIのINPUT）
+          - layerCodeTypeC：LayerCodeTypeC（※本APIのINPUT）
+          - groupUnitCenterTypeK：GroupUnitCenterTypeK（※本APIのINPUT）
+          - layerCodeTypeK：LayerCodeTypeK（※本APIのINPUT）
+          - groupUnitCenterTypeS：GroupUnitCenterTypeS（※本APIのINPUT）
+          - layerCodeTypeS：LayerCodeTypeS（※本APIのINPUT）
+          - orderChannelCategory：OrderChannelCategory（※本APIのINPUT）
+          - residenceType：ResidenceType（※本APIのINPUT）
+
+        3.c-mapからのレスポンスに応じて値を返却する。
+          - 3-1. httpステータスが400番代の場合、エラーメッセージを格納しhttpステータス400を返し処理を終了する。
+          - 3.2. httpステータスが500番代の場合、エラーメッセージを格納しhttpステータス500を返し処理を終了する。
+          - 3.3. httpステータスが200の場合、下記レスポンス項目に値を設定する。
+            -  [OfferMethodInfos]：「offerMethodInfos」(提供方式情報リスト)
+          - 3.4. httpステータスが200でレスポンスが空のリストの場合、空のリストを返却する。
+      operationId: RetrieveOfferMethodList
+      parameters:
+        - name: PrefectureCode
+          in: query
+          description: 都道府県コード
+          required: true
+          schema:
+            type: string
+            example: '01'
+        - name: CityCode
+          in: query
+          description: 市区町村コード
+          required: true
+          schema:
+            type: string
+            example: '001'
+        - name: PriorityOfferMethod
+          in: query
+          description: 優先提供方式
+          required: false
+          schema:
+            type: string
+            example: タイプC
+        - name: BlockNumberTypeC
+          in: query
+          description: ブロック番号（タイプC）
+          required: false
+          schema:
+            type: string
+            example: 033-14
+        - name: LayerCodeTypeC
+          in: query
+          description: レイヤコード（タイプC）
+          required: false
+          schema:
+            type: string
+            example: CQ
+        - name: GroupUnitCenterTypeK
+          in: query
+          description: GC局（タイプK）
+          required: false
+          schema:
+            type: string
+            example: '5555'
+        - name: LayerCodeTypeK
+          in: query
+          description: レイヤコード（タイプK）
+          required: false
+          schema:
+            type: string
+            example: CQ
+        - name: GroupUnitCenterTypeS
+          in: query
+          description: GC局（タイプS）
+          required: false
+          schema:
+            type: string
+            example: '5555'
+        - name: LayerCodeTypeS
+          in: query
+          description: レイヤコード（タイプS）
+          required: false
+          schema:
+            type: string
+            example: CQ
+        - name: OrderChannelCategory
+          in: query
+          description: 申込チャネル区分
+          required: true
+          schema:
+            type: string
+            example: Web
+        - name: ResidenceType
+          in: query
+          description: 住宅形態
+          required: false
+          schema:
+            type: string
+            example: Home
+      responses:
+        '200':
+          description: 成功時
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  OfferMethodInfos:
+                    type: array
+                    description: 提供方式情報リスト
+                    items:
+                      type: object
+                      properties:
+                        OfferArea:
+                          type: object
+                          description: 提供エリア
+                          properties:
+                            OfferAreaId:
+                              type: string
+                              description: 提供エリアID
+                              example: '000000000000000001'
+                            AccessCircuit:
+                              type: string
+                              description: アクセス回線ID
+                              example: '000000000000000001'
+                            AccessCircuitName:
+                              type: string
+                              description: アクセス回線名
+                              example: タイプC
+                            BlockNumberGroupUnitCenter:
+                              type: string
+                              description: ブロック番号／GC局
+                              example: 033-14
+                            StandardOpeningDays:
+                              type: integer
+                              description: 標準開通日数
+                              example: 45
+                            StandardOpeningMonths:
+                              type: integer
+                              description: 標準開通月数
+                              example: 1.5
+                            OfferableFloor:
+                              type: string
+                              description: 提供可能階数
+                              example: 制限なし
+                        LayerDeliveryDuration:
+                          type: object
+                          description: レイヤ納期
+                          properties:
+                            LayerDeliveryDurationId:
+                              type: string
+                              description: レイヤ納期ID
+                              example: '000000000000000001'
+                            StandardOpeningDays:
+                              type: integer
+                              description: 標準開通日数
+                              example: 45
+                            StandardOpeningMonths:
+                              type: integer
+                              description: 標準開通月数
+                              example: 1.5
+                        OfferableServiceGroupInfos:
+                          type: array
+                          description: 提供可能サービスグループ情報リスト
+                          items:
+                            type: object
+                            properties:
+                              ServiceGroup:
+                                type: string
+                                description: サービスグループ
+                                example: 電話
+                              OfferableServiceNames:
+                                type: array
+                                description: 提供可能サービス名リスト
+                                items:
+                                  type: string
+                                  example:
+                                    - 10G
+                                    - 1G
+                                    - 30M
+                              HasChannelInfo:
+                                type: boolean
+                                description: チャンネル情報あり
+                                example: true
+        '400':
+          description: |-
+            [Bad Request]
+
+            処理結果に応じたエラーメッセージを格納し返却する。
+
+             詳しくは[Details]参照
+        '500':
+          description: |-
+            [Internal Server Error]
+
+            ExceptionのStackTraceを格納して返却する。
+  /application/RetrieveChannelList:
+    get:
+      tags:
+        - Application
+      summary: 光テレビチャンネル取得API
+      description: |-
+        [Overview]
+
+        指定されたエリアで提供される光チャンネルを取得する。
+
+        [Details]
+
+        1.Queryから取得したパラメータに対してバリデーションチェックを行う。
+          - 1-1. 必須チェックを行う。
+            - BlockNumberGroupUnitCenter
+            - PrefectureCode 
+            - CityCode
+            - AccessCircuit
+            - 1-1-1. NGだった場合、下記エラーメッセージと共にhttpステータス400を返し処理を終了する
+              - ｛項目名, 項目名｝が空白です。
+          - 1-2. 桁数チェックを行う。
+            - BlockNumberGroupUnitCenter：20桁以内
+            - PrefectureCode：2桁
+            - CityCode：3桁
+            - AccessCircuit：80桁以内
+            - 1-2-1. NGだった場合、下記エラーメッセージと共にhttpステータス400を返し処理を終了する
+              - ｛項目名, 項目名｝の桁数が不正です。
+
+        2.下記リクエスト項目を設定してc-mapの「光テレビチャンネル取得API」をコールする。
+          - blockNumberGroupUnitCenter：BlockNumberGroupUnitCenter（※本APIのINPUT）
+          - prefectureCode：PrefectureCode（※本APIのINPUT）
+          - cityCode：CityCode（※本APIのINPUT）
+          - accessCircuit：AccessCircuit（※本APIのINPUT）
+
+        3.c-mapからのレスポンスに応じて値を返却する。
+          - 3-1. httpステータスが400番代の場合、エラーメッセージを格納しhttpステータス400を返し処理を終了する。
+          - 3.2. httpステータスが500番代の場合、エラーメッセージを格納しhttpステータス500を返し処理を終了する。
+          - 3.3. httpステータスが200の場合、下記レスポンス項目に値を設定する。
+            -  [ChannelByBroadcastingCodes]：「channelByBroadcastingCodes」(放送コード別チャンネルリスト)
+          - 3.4. httpステータスが200でレスポンスが空のリストの場合、空のリストを返却する。
+      operationId: RetrieveChannelList
+      parameters:
+        - name: BlockNumberGroupUnitCenter
+          in: query
+          description: ブロック番号／GC局
+          required: true
+          schema:
+            type: string
+            example: 033-14
+        - name: PrefectureCode
+          in: query
+          description: 都道府県コード
+          required: true
+          schema:
+            type: string
+            example: '001'
+        - name: CityCode
+          in: query
+          description: 市区町村コード
+          required: true
+          schema:
+            type: string
+            example: '01'
+        - name: AccessCircuit
+          in: query
+          description: アクセス回線
+          required: true
+          schema:
+            type: string
+            example: タイプC
+      responses:
+        '200':
+          description: 成功時
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ChannelByBroadcastingCodes:
+                    type: array
+                    description: 放送コード別チャンネルリスト
+                    items:
+                      type: object
+                      properties:
+                        ChannelName:
+                          type: string
+                          description: チャンネル名
+                          example: 東海テレビ
+                        ChannelNumber:
+                          type: integer
+                          description: チャンネル番号
+                          example: 1
+                        BroadcastingCodeCategory:
+                          type: string
+                          description: 放送コード区分
+                          example: 地上デジタル:DigitalTerrestrial
+                        SpecialNotes:
+                          type: string
+                          description: 特記
+                          example: ※1
+                        SpecialNotesContent:
+                          type: string
+                          description: 特記内容
+                          example: XXXXXX
         '400':
           description: |-
             [Bad Request]
