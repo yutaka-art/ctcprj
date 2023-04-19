@@ -49,6 +49,8 @@ paths:
     get:
       tags:
         - Common
+      security:
+        - bearer: []
       summary: マスタ値取得API
       description: |-
         [Overview]
@@ -57,8 +59,8 @@ paths:
 
         [Details]
 
-        1.Queryから「masterName」を取得する。
-          - 1-1. 「masterName」が空白の場合、400を返し処理を終了する。
+        1.Queryから「MasterName」を取得する。
+          - 1-1. 「MasterName」が空白の場合、400を返し処理を終了する。
 
         2.「マスター名称」から[マスタマッピング]テーブルを検索する。
 
@@ -67,23 +69,23 @@ paths:
         3.[マスタマッピング].[マスタタイプ]が「0:Sitecore」の場合 
         - 3-1. 該当する「masterName」のマスタをSitecore内の「ctc-master」配下から検索する。
         - 3-2.   sitecoreから取得したマスタ値を下記レスポンス項目に設定する。
-        -        [code]:「Code」
-        -        [value]:「Value」
-        -        [description]:「description」
-        -        [icon]:「IconUrl」
+        -        [Code]:「Code」
+        -        [Value]:「Value」
+        -        [Description]:「description」
+        -        [Icon]:「IconUrl」
 
         4.[マスタマッピング].[マスタタイプ]が「1:Saleforce」の場合 
         - 3-1. 該当する「masterName」のマスタをSalesforceのAPIをコールする。
         - 3-2.   APIから取得したマスタ値を下記レスポンス項目に設定する。
-        -        [code]:「Code(TBD)」
-        -        [value]:「Value(TBD)」
-        -        [description]:「description(TBD)」
+        -        [Code]:「Code(TBD)」
+        -        [Value]:「Value(TBD)」
+        -        [Description]:「description(TBD)」
 
         5.その他レスポンス項目を設定し、レスポンスを返す。 
-        -        [masterName]:「MasterMapping-MasterName」
+        -        [MasterName]:「MasterMapping-MasterName」
       operationId: RetrieveMaster
       parameters:
-        - name: masterName
+        - name: MasterName
           in: query
           description: マスタ名称を指定
           required: true
@@ -98,30 +100,30 @@ paths:
               schema:
                 type: object
                 properties:
-                  masterName:
+                  MasterName:
                     type: integer
                     format: int64
                     description: マスター名称
                     example: プラン種類区分マスタ
-                  values:
+                  Values:
                     type: array
                     items:
                       type: object
                       properties:
-                        code:
+                        Code:
                           type: integer
                           format: int64
                           description: マスターのコード値
                           example: 1
-                        value:
+                        Value:
                           type: string
                           description: マスターの値
                           example: 光契約回線
-                        description:
+                        Description:
                           type: string
                           description: マスターの説明
                           example: 光契約回線はこちら
-                        icon:
+                        Icon:
                           type: string
                           description: マスターのアイコンのurl
                           example: >-
@@ -3230,6 +3232,8 @@ paths:
     get:
       tags:
         - Application
+      security:
+        - bearer: []
       summary: プラン種類区分マスタ値取得
       description: |-
         [Overview]
@@ -3237,10 +3241,10 @@ paths:
         [Details]
         1.プラン種類区分マスタをSitecore内の「ctc-master」配下から検索し、
         取得したmaster値を下記レスポンス項目に設定する。
-        -        [PlanTypeCode]:「PlanTypeMasterCode」
-        -        [PlanTypeLabel]:「PlanTypeMasterLabel」
-        -        [PlanTypeDescription]:「PlanTypeMasterDescription」
-        -        [PlanTypeIsLinePlan]:「PlanTypeMasterIsLinePlan」
+        -        [Code]:「PlanTypeMasterCode」
+        -        [Label]:「PlanTypeMasterLabel」
+        -        [Description]:「PlanTypeMasterDescription」
+        -        [IsLinePlan]:「PlanTypeMasterIsLinePlan」
       operationId: RetrievePlanTypeMaster
       responses:
         '200':
@@ -3250,36 +3254,39 @@ paths:
               schema:
                 type: object
                 properties:
-                  RetrievePlanType:
+                  RetrievePlanTypes:
                     type: array
                     items:
                       type: object
                       properties:
-                        PlanTypeCode:
+                        Code:
                           type: integer
                           format: int64
                           description: プラン種類区分のコード
                           example: 1
-                        PlanTypeLabel:
+                        Label:
                           type: string
                           description: プラン種類区分のラベル
                           example: 光インターネット回線を含むプラン
-                        PlanTypeDescription:
+                        Description:
                           type: string
                           description: プラン種類区分の説明
                           example: 光回線のご契約はこちら
-                        PlanTypeIsLinePlan:
+                        IsLinePlan:
                           type: boolean
                           description: プラン種類区分の回線プランフラグ
                           example: true
         '400':
           description: |-
             [Bad Request]
-             処理結果に応じたエラーメッセージを格納し返却する。
-             詳しくは[Details]参照
+
+            処理結果に応じたエラーメッセージを格納し返却する。
+
+            詳しくは[Details]参照
         '500':
           description: |-
             [Internal Server Error]
+
             ExceptionのStackTraceを格納して返却する。
   /application/RetrieveImportantMattersDescription:
     get:
