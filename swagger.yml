@@ -2384,6 +2384,2096 @@ paths:
             [Internal Server Error]
 
             ExceptionのStackTraceを格納して返却する。
+  /order/SampleInfo:
+    post:
+      tags:
+        - Order
+      security:
+        - bearer: []
+      summary: サンプルモデル定義用API
+      description: |-
+        [Overview]
+
+        モデル作成用
+
+        [Details]
+      operationId: UpdateCustomerInfo
+      requestBody:
+        description: リクエスト項目を指定
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                OrderRelatedInfo:
+                  type: object
+                  description: 申込関連情報
+                  properties:
+                    AccountInfo:
+                      type: object
+                      description: 顧客情報
+                      properties:
+                        Account:
+                          type: object
+                          description: 顧客
+                          properties:
+                            Id:
+                              title: 顧客ID
+                              type: string
+                              maxLength: 18
+                              example: XXXXX
+                            CMAP_ContractName__c:
+                              title: 契約名義
+                              type: string
+                              maxLength: 255
+                              example: Individual
+                            LastName:
+                              title: 顧客名（姓）・企業／団体名
+                              type: string
+                              maxLength: 80
+                              example: 中部
+                            FirstName:
+                              title: 顧客名（名）
+                              type: string
+                              maxLength: 40
+                              example: 太郎
+                            CMAP_LastNameKana__c:
+                              title: 顧客名（セイ）
+                              type: string
+                              maxLength: 80
+                              example: チュウブ
+                            CMAP_FirstNameKana__c:
+                              title: 顧客名（メイ）
+                              type: string
+                              maxLength: 40
+                              example: タロウ
+                            CMAP_Gender__c:
+                              title: 性別
+                              type: string
+                              maxLength: 255
+                              example: Male
+                            CMAP_Birthday__c:
+                              title: 生年月日
+                              type: string
+                              format: date
+                              example: '1990-01-01'
+                            CMAP_CompanyName__c:
+                              title: 企業／団体名（フリガナ）
+                              type: string
+                              maxLength: 255
+                              example: null
+                            CMAP_DepartmentName__c:
+                              title: 部署名
+                              type: string
+                              maxLength: 255
+                              example: null
+                            CMAP_EmployeeName__c:
+                              title: 担当者名
+                              type: string
+                              maxLength: 255
+                              example: null
+                            CMAP_EmployeeNameKana__c:
+                              title: 担当者名（フリガナ）
+                              type: string
+                              maxLength: 255
+                              example: null
+                            BillingPostalCode:
+                              title: 連絡先住所 郵便番号
+                              type: string
+                              maxLength: 20
+                              example: 450-0001
+                            BillingState:
+                              title: 連絡先住所 都道府県
+                              type: string
+                              maxLength: 255
+                              example: 13
+                            BillingCity:
+                              title: 連絡先住所 市区郡
+                              type: string
+                              maxLength: 40
+                              example: 名古屋市中村区
+                            BillingStreet:
+                              title: 連絡先住所 町名・番地
+                              type: string
+                              maxLength: 255
+                              example: 那古野1-1
+                            MansionName__c:
+                              title: 連絡先住所 建物名
+                              type: string
+                              maxLength: 255
+                              example: 第一マンション
+                            RoomNo__c:
+                              title: 連絡先住所 部屋番号
+                              type: string
+                              maxLength: 255
+                              example: 101
+                            Phone:
+                              title: 連絡先電話番号
+                              type: string
+                              maxLength: 40
+                              example: 080-0000-0000
+                            CMAP_MyCommufaID__c:
+                              title: マイコミュファID
+                              type: string
+                              maxLength: 80
+                              example: chubu.tarou@commufa.jp
+                        AccountAddition:
+                          type: object
+                          description: 顧客補足情報
+                          properties:
+                            IsNewAccount:
+                              title: 新規顧客
+                              type: boolean
+                              example: false
+                            leadId:
+                              title: リードID
+                              type: string
+                              maxLength: 255
+                              example: XXXXX
+                    OrderInfo:
+                      type: object
+                      description: 申込情報
+                      properties:
+                        Order:
+                          type: object
+                          description: 申込
+                          properties:
+                            Id:
+                              title: 申込ID
+                              type: string
+                              maxLength: 18
+                              example: XXXXX
+                            OrderNumber:
+                              title: 申込番号
+                              type: string
+                              maxLength: 80
+                              example: XXXXX
+                            CMAP_OrderCategory__c:
+                              title: 申込区分
+                              type: string
+                              maxLength: 255
+                              example: PlanChange
+                            CMAP_OrderReceiptNumber__c:
+                              title: 申込受付番号
+                              type: string
+                              maxLength: 80
+                              example: XXXXX
+                            CMAP_OrderBeforeChange__c:
+                              title: 変更前の申込ID
+                              type: string
+                              maxLength: 255
+                              example: XXXXX
+                            CMAP_OrderState_c:
+                              title: 申込状態
+                              type: string
+                              maxLength: 255
+                              example: Valid
+                            CMAP_IsCompleted__c:
+                              title: 完了
+                              type: boolean
+                              example: false
+                            OpportunityId:
+                              title: 商談ID
+                              type: string
+                              maxLength: 18
+                              example: XXXXX
+                            EffectiveDate:
+                              title: 申込日
+                              type: string
+                              format: date
+                              example: '2023-09-22'
+                            CMAP_OrderChannelName__c:
+                              title: 申込チャネル名
+                              type: string
+                              maxLength: 255
+                              example: Web
+                            CMAP_OrderChannelDetail__c:
+                              title: 申込チャネル詳細
+                              type: string
+                              maxLength: 255
+                              example: Web
+                            AccountId:
+                              title: 顧客ID
+                              type: string
+                              maxLength: 18
+                              example: XXXXX
+                            CMAP_ContractName__c:
+                              title: 契約名義
+                              type: string
+                              maxLength: 255
+                              example: Individual
+                            CMAP_ResidenceType__c:
+                              title: 住戸形態
+                              type: string
+                              maxLength: 255
+                              example: Home
+                            CMAP_BuildingCategory__c:
+                              title: 建物区分
+                              type: string
+                              maxLength: 255
+                              example: OwnHouse
+                            CMAP_OfferPlan__c:
+                              title: 提供プランID
+                              type: string
+                              maxLength: 18
+                              example: XXXXX
+                            CMAP_OfferPlanName__c:
+                              title: 提供プラン名
+                              type: string
+                              maxLength: 255
+                              example: XXXXX
+                            CMAP_OfferPackageId__c:
+                              title: 提供パッケージID
+                              type: string
+                              maxLength: 255
+                              example: XXXXX
+                            CMAP_IsTypeCircuit__c:
+                              title: タイプ：回線
+                              type: boolean
+                              example: false
+                            CMAP_IsTypeNotCircuit__c:
+                              title: タイプ：非回線
+                              type: boolean
+                              example: false
+                            CMAP_IsTypeGoodsServiceSales__c:
+                              title: タイプ：物品・サービス販売
+                              type: boolean
+                              example: false
+                            CMAP_InstallationLocationOfferArea__c:
+                              title: 設置場所提供エリアID
+                              type: string
+                              maxLength: 18
+                              example: XXXXX
+                            CMAP_InstallLocLayerDeliveryDuration__c:
+                              title: 設置場所レイヤ納期ID
+                              type: string
+                              maxLength: 18
+                              example: XXXXX
+                            CMAP_StandardOpeningDays__c:
+                              title: 標準開通日数
+                              type: integer
+                              format: int32
+                              example: 30
+                            CMAP_StandardOpeningMonths__c:
+                              title: 標準開通月数
+                              type: integer
+                              format: int32
+                              example: 1
+                            CMAP_OfferMethod__c:
+                              title: 提供方式名
+                              type: string
+                              maxLength: 255
+                              example: XXXXX
+                            CMAP_OfferMethodNameForDisplay__c:
+                              title: 提供方式名（画面表示用）
+                              type: string
+                              maxLength: 255
+                              example: XXXXX
+                            CMAP_Property__c:
+                              title: 物件（集合）ID
+                              type: string
+                              maxLength: 18
+                              example: XXXXX
+                            CMAP_ApartmentPropertyName__c:
+                              title: 集合物件名
+                              type: string
+                              maxLength: 255
+                              example: XXXXX
+                            CMAP_PropertyOfferMethod__c:
+                              title: 物件提供方式ID
+                              type: string
+                              maxLength: 18
+                              example: XXXXX
+                            CMAP_PropertyOfferMethodName__c:
+                              title: 物件提供方式名
+                              type: string
+                              maxLength: 255
+                              example: XXXXX
+                            CMAP_Case__c:
+                              title: 問合せID
+                              type: string
+                              maxLength: 18
+                              example: XXXXX
+                            CMAP_Billing__c:
+                              title: 請求先ID
+                              type: string
+                              maxLength: 18
+                              example: XXXXX
+                            CMAP_BillingPaymentMethodAgent__c:
+                              title: 請求先の支払方法（代行）
+                              type: string
+                              maxLength: 255
+                              example: CreditCard
+                            CMAP_BillingPaymentMethodRegistered__c:
+                              title: 請求先の支払方法（登録済）
+                              type: string
+                              maxLength: 255
+                              example: XXXXX
+                            CMAP_NeedsSendingDocumentOfBilling__c:
+                              title: 請求先の書類送付あり
+                              type: boolean
+                              example: true
+                            CMAP_AcquisitionAgency__c:
+                              title: 獲得代理店ID
+                              type: string
+                              maxLength: 18
+                              example: XXXXX
+                            CMAP_AcquisitionShop__c:
+                              title: 獲得店舗ID
+                              type: string
+                              maxLength: 18
+                              example: XXXXX
+                            CMAP_IndividualContractPlan__c:
+                              title: 個別契約ID
+                              type: string
+                              maxLength: 18
+                              example: XXXXX
+                            CMAP_CancelDate__c:
+                              title: キャンセル日
+                              type: string
+                              format: date
+                              example: '2023-09-23'
+                            CMAP_CancelReason__c:
+                              title: キャンセル理由
+                              type: string
+                              maxLength: 255
+                              example: XXXXX
+                            CMAP_CancelReasonOther__c:
+                              title: キャンセル理由（その他）
+                              type: string
+                              maxLength: 1000
+                              example: XXXXX
+                            CMAP_StartRequestDate__c:
+                              title: 開始希望日
+                              type: string
+                              format: date
+                              example: '2023-09-21'
+                            CMAP_TerminationRequestDate__c:
+                              title: 解約希望日
+                              type: string
+                              format: date
+                              example: '2023-09-24'
+                            CMAP_TerminationReason__c:
+                              title: 解約理由
+                              type: string
+                              maxLength: 255
+                              example: XXXXX
+                            CMAP_TerminationReasonOther__c:
+                              title: 解約理由（その他）
+                              type: string
+                              maxLength: 1000
+                              example: XXXXX
+                            CMAP_SuspendRequestDate__c:
+                              title: 休止希望日
+                              type: string
+                              format: date
+                              example: '2023-09-25'
+                            CMAP_ResumeRequestDate__c:
+                              title: 再開希望日
+                              type: string
+                              format: date
+                              example: '2023-09-26'
+                            ShippingLatitude:
+                              title: 設置場所住所 （緯度）
+                              type: number
+                              format: float
+                              example: 139.2432
+                            ShippingLongitude:
+                              title: 設置場所住所 （経度）
+                              type: number
+                              format: float
+                              example: 40.9461
+                            CMAP_InstallLocBlockNumberGroupUnit__c:
+                              title: 設置場所：ブロック番号／GC局
+                              type: string
+                              maxLength: 255
+                              example: XXXXX
+                            CMAP_InstallationLocationPrefectureCode__c:
+                              title: 設置場所：都道府県コード
+                              type: string
+                              maxLength: 255
+                              example: XXXXX
+                            CMAP_InstallationLocationCityCode__c:
+                              title: 設置場所：市区町村コード
+                              type: string
+                              maxLength: 255
+                              example: XXXXX
+                            CMAP_InstallationLocationAddressCode__c:
+                              title: 設置場所：住所コードID
+                              type: string
+                              maxLength: 18
+                              example: XXXXX
+                            CMAP_InstallationLocationHouseNumber__c:
+                              title: 設置場所：番地以降
+                              type: string
+                              maxLength: 255
+                              example: XXXXX
+                            CMAP_InstallationLocationRoomNumber__c:
+                              title: 設置場所：部屋番号
+                              type: string
+                              maxLength: 80
+                              example: XXXXX
+                            CMAP_InstallationLocationExcludeRoom__c:
+                              title: 設置場所：住所（部屋番号除く）
+                              type: string
+                              maxLength: 255
+                              example: XXXXX
+                            CMAP_InstallationLocationAddress__c:
+                              title: 設置場所：住所
+                              type: string
+                              maxLength: 255
+                              example: XXXXX
+                            CMAP_EffectiveTime__c:
+                              title: 申込時間
+                              type: string
+                              format: partial-time
+                              example: '17:32:28'
+                            CMAP_ClientId__c:
+                              title: client_id
+                              type: string
+                              maxLength: 80
+                              example: XXXXX
+                            CMAP_ContractStatus__c:
+                              title: 契約ステータス
+                              type: string
+                              maxLength: 255
+                              example: XXXXX
+                            CMAP_DeliveryServiceAddress__PostalCode__s:
+                              title: 配送先／サービス提供先住所 （郵便番号）
+                              type: string
+                              maxLength: 20
+                              example: XXXXX
+                            CMAP_DeliveryServiceAddress__StateCode__s:
+                              title: 配送先／サービス提供先住所 （都道府県）
+                              type: string
+                              maxLength: 255
+                              example: 23
+                            CMAP_DeliveryServiceAddress__City__s:
+                              title: 配送先／サービス提供先住所 （市区郡）
+                              type: string
+                              maxLength: 40
+                              example: XXXXX
+                            CMAP_DeliveryServiceAddress__Street__s:
+                              title: 配送先／サービス提供先住所 （町名・番地）
+                              type: string
+                              maxLength: 255
+                              example: XXXXX
+                            CMAP_DeliveryServiceAddressBuildingName__c:
+                              title: 配送先／サービス提供先住所：建物名
+                              type: string
+                              maxLength: 80
+                              example: XXXXX
+                            CMAP_DeliveryServiceAddressRoomNumber__c:
+                              title: 配送先／サービス提供先住所：部屋番号
+                              type: string
+                              maxLength: 80
+                              example: XXXXX
+                            CMAP_DeliveryServiceAddressForDisplay__c:
+                              title: 配送先／サービス提供先住所（画面表示用）
+                              type: string
+                              maxLength: 255
+                              example: XXXXX
+                            CMAP_ExistsMyCommufaId__c:
+                              title: MyコミュファID登録有無
+                              type: boolean
+                              example: false
+                            CMAP_CampaignBenefitAddition__c:
+                              title: キャンペーン特典補足情報
+                              type: string
+                              maxLength: 255
+                              example: XXXXX
+                            CMAP_NeedsConstructionScheduleAdjustment__c:
+                              title: 工事日程調整要否
+                              type: string
+                              maxLength: 255
+                              example: Necessary
+                            CMAP_NeedsApproval__c:
+                              title: 承認要否
+                              type: boolean
+                              example: false
+                            CMAP_ChangeSourceOfferPlan__c:
+                              title: 【移転/プラン変更元】提供プランID
+                              type: string
+                              maxLength: 18
+                              example: XXXXX
+                            CMAP_ChangeSourceOpportunity__c:
+                              title: 【移転/プラン変更元】商談ID
+                              type: string
+                              maxLength: 18
+                              example: XXXXX
+                            CMAP_ChangeSourceIndividualContractPur__c:
+                              title: 【移転/プラン変更元】個別契約／購入ID
+                              type: string
+                              maxLength: 18
+                              example: XXXXX
+                            CMAP_ChangeSourceOfferPlanName__c:
+                              title: 【移転/プラン変更元】提供プラン名
+                              type: string
+                              maxLength: 255
+                              example: XXXXX
+                            CMAP_ChangeSourceTypeCircuit__c:
+                              title: 【移転/プラン変更元】タイプ：回線
+                              type: boolean
+                              example: false
+                            CMAP_ChangeSourceTypeNotCircuit__c:
+                              title: 【移転/プラン変更元】タイプ：非回線
+                              type: boolean
+                              example: false
+                            CMAP_CancelOrderChannelDetail__c:
+                              title: キャンセル申込チャネル詳細
+                              type: string
+                              maxLength: 255
+                              example: Web
+                            LastModifiedDate:
+                              title: 最終更新日
+                              type: string
+                              format: date-time
+                              example: '2023-09-22 09:22:22'
+                            CMAP_ChangeSourceIsCompleted__c:
+                              title: 【移転/プラン変更元】完了
+                              type: boolean
+                              example: false
+                            CMAP_CityId__c:
+                              title: 市区町村ID
+                              type: string
+                              maxLength: 255
+                              example: XXXXX
+                            CMAP_Rebuilding__c:
+                              title: 建替え
+                              type: boolean
+                              example: false
+                            CMAP_PrefectureCityCode__c:
+                              title: 都道府県／市区町村コード
+                              type: string
+                              maxLength: 255
+                              example: XXXXX
+                            CMAP_BeforeOffer__c:
+                              title: 提供開始前
+                              type: boolean
+                              example: false
+                        OrderAddition:
+                          type: object
+                          description: 申込補足情報
+                          properties:
+                            orderCategoryCurrentlySelected:
+                              title: 申込区分（選択中/単一）
+                              type: string
+                              maxLength: 255
+                              example: PlanChange
+                            orderCategoryPreviouslySelected:
+                              title: 申込区分（変更前/複数）
+                              type: string
+                              maxLength: 255
+                              example: NewContractPurchace
+                            orderChannelCategory:
+                              title: 申込チャネル区分
+                              type: string
+                              maxLength: 255
+                              example: Web
+                            orderCompletionMail:
+                              title: 申込完了メール
+                              type: string
+                              maxLength: 255
+                              example: Send
+                            passwordSettingMail:
+                              title: パスワード設定メール
+                              type: string
+                              maxLength: 255
+                              example: Send
+                            planType:
+                              title: プラン種類
+                              type: string
+                              maxLength: 255
+                              example: Circuit
+                        OrderImportantMatterDescriptions:
+                          type: array
+                          description: 申込重要事項説明リスト
+                          items:
+                            type: object
+                            properties:
+                              Id:
+                                title: 申込重要事項説明ID
+                                type: string
+                                maxLength: 18
+                                example: XXXXX
+                              CMAP_ImportantMatterDescription__c:
+                                title: 重要事項説明ID
+                                type: string
+                                maxLength: 18
+                                example: XXXXX
+                              CMAP_ProductGroup__c:
+                                title: 商品グループID
+                                type: string
+                                maxLength: 18
+                                example: XXXXX
+                              CMAP_SetParentProduct__c:
+                                title: セット親商品ID
+                                type: string
+                                maxLength: 18
+                                example: XXXXX
+                              CMAP_ConsentDateTime__c:
+                                title: 同意日時
+                                type: string
+                                format: date-time
+                                example: '2023-09-22 09:22:22'
+                              CMAP_ImportantMatterDescriptionConsent__c:
+                                title: 重要事項説明同意ID
+                                type: string
+                                maxLength: 18
+                                example: XXXXX
+                        OrderItemInfos:
+                          type: array
+                          description: 申込商品情報リスト
+                          items:
+                            type: object
+                            properties:
+                              OrderItem:
+                                type: object
+                                description: 申込商品
+                                properties:
+                                  Id:
+                                    title: 申込商品ID
+                                    type: string
+                                    maxLength: 18
+                                    example: XXXXX
+                                  CMAP_OfferPlanProduct__c:
+                                    title: 提供プラン商品ID
+                                    type: string
+                                    maxLength: 18
+                                    example: XXXXX
+                                  CMAP_MainSubProductGroupId__c:
+                                    title: メイン/サブ商品グループID
+                                    type: string
+                                    maxLength: 255
+                                    example: XXXXX
+                                  CMAP_MainSubProductGroupCategory__c:
+                                    title: メイン/サブ商品グループ区分
+                                    type: string
+                                    maxLength: 255
+                                    example: MainProduct
+                                  CMAP_MainSubProductGroupName__c:
+                                    title: メイン/サブ商品グループ名
+                                    type: string
+                                    maxLength: 255
+                                    example: XXXXX
+                                  CMAP_ProductCategoryId__c:
+                                    title: 商品カテゴリID
+                                    type: string
+                                    maxLength: 255
+                                    example: XXXXX
+                                  CMAP_ProductCategoryName__c:
+                                    title: 商品カテゴリ名
+                                    type: string
+                                    maxLength: 255
+                                    example: XXXXX
+                                  Product2Id:
+                                    title: 商品ID
+                                    type: string
+                                    maxLength: 18
+                                    example: XXXXX
+                                  CMAP_ProductName__c:
+                                    title: 商品名
+                                    type: string
+                                    maxLength: 255
+                                    example: XXXXX
+                                  UnitPrice:
+                                    title: 単価
+                                    type: integer
+                                    format: int32
+                                    example: 30000
+                                  CMAP_UnitPriceTaxIncluded__c:
+                                    title: 単価(税込)
+                                    type: integer
+                                    format: int32
+                                    example: 33000
+                                  TotalPrice:
+                                    title: 合計金額
+                                    type: integer
+                                    format: int32
+                                    example: 33000
+                                  CMAP_ComsumptionTaxRate__c:
+                                    title: 消費税率
+                                    type: number
+                                    format: float
+                                    example: 10
+                                  Quantity:
+                                    title: 数量
+                                    type: integer
+                                    format: int32
+                                    example: 1
+                                  CMAP_PriceCategory__c:
+                                    title: 価格区分
+                                    type: string
+                                    maxLength: 255
+                                    example: MonthlyPayment
+                                  CMAP_InstallmentPaymentMonthly__c:
+                                    title: 分割払い/月
+                                    type: boolean
+                                    example: true
+                                  CMAP_InstallmentPayMonthlyPriceTaxExc__c:
+                                    title: 分割払い価格/月(税抜)
+                                    type: integer
+                                    format: int32
+                                    example: 3000
+                                  CMAP_InstallmentPayMonthlyPriceTaxInc__c:
+                                    title: 分割払い価格/月(税込)
+                                    type: integer
+                                    format: int32
+                                    example: 3300
+                                  CMAP_NumberOfInstallments__c:
+                                    title: 分割回数
+                                    type: integer
+                                    format: int32
+                                    example: 10
+                                  CMAP_InstallmentPayFirstMonthPriceTaxExc__c:
+                                    title: 分割払い初月価格/月(税抜)
+                                    type: integer
+                                    format: int32
+                                    example: 3000
+                                  CMAP_InstallmentPayFirstMonthPriceTaxInc__c:
+                                    title: 分割払い初月価格/月(税込)
+                                    type: integer
+                                    format: int32
+                                    example: 3300
+                                  CMAP_InstallmentPaymentCurrently__c:
+                                    title: 分割払い中
+                                    type: boolean
+                                    example: false
+                                  CMAP_SelectionAnnualPayment__c:
+                                    title: 【月額払い／年額払い】年額払いを選択
+                                    type: boolean
+                                    example: false
+                                  CMAP_AnnualPaymentPriceTaxExcluded__c:
+                                    title: 年額払い価格(税抜)
+                                    type: integer
+                                    format: int32
+                                    example: 30000
+                                  CMAP_AnnualPaymentPriceTaxIncluded__c:
+                                    title: 年額払い価格(税込)
+                                    type: integer
+                                    format: int32
+                                    example: 33000
+                                  CMAP_SetParentProductId__c:
+                                    title: セット親商品ID
+                                    type: string
+                                    maxLength: 18
+                                    example: XXXXX
+                                  CMAP_Unchargeable__c:
+                                    title: 請求対象外
+                                    type: boolean
+                                    example: false
+                                  CMAP_Asset__c:
+                                    title: 納入商品ID
+                                    type: string
+                                    maxLength: 18
+                                    example: XXXXX
+                                  CMAP_ProductSelectionState__c:
+                                    title: 商品選択状態
+                                    type: string
+                                    maxLength: 255
+                                    example: Selected
+                                  CMAP_LastTimeChangeCategory__c:
+                                    title: 前回変更区分
+                                    type: string
+                                    maxLength: 255
+                                    example: Added
+                                  CMAP_HasOrderItemAttribute:
+                                    title: 申込商品属性あり
+                                    type: boolean
+                                    example: true
+                                  CMAP_AvailableDailyPricing__c:
+                                    title: 価格日割あり
+                                    type: boolean
+                                    example: false
+                                  CMAP_UnchangeableContract__c:
+                                    title: 契約変更不可
+                                    type: boolean
+                                    example: false
+                                  CMAP_SetProduct__c:
+                                    title: セット商品ID
+                                    type: string
+                                    maxLength: 18
+                                    example: XXXXX
+                                  CMAP_BenefitProduct__c:
+                                    title: 特典商品ID
+                                    type: string
+                                    maxLength: 18
+                                    example: XXXXX
+                                  CMAP_BenefitId__c:
+                                    title: 特典ID
+                                    type: string
+                                    maxLength: 255
+                                    example: XXXXX
+                                  CMAP_BenefitName__c:
+                                    title: 特典名
+                                    type: string
+                                    maxLength: 255
+                                    example: XXXXX
+                                  CMAP_BenefitCampaignId__c:
+                                    title: 特典キャンペーンID
+                                    type: string
+                                    maxLength: 255
+                                    example: XXXXX
+                                  CMAP_BenefitCampaignName__c:
+                                    title: 特典キャンペーン名
+                                    type: string
+                                    maxLength: 255
+                                    example: XXXXX
+                                  CMAP_GrantUnitPrice__c:
+                                    title: 供与単価
+                                    type: integer
+                                    format: int32
+                                    example: 3000
+                                  CMAP_GrantPoint__c:
+                                    title: 供与ポイント
+                                    type: number
+                                    format: float
+                                    example: 10
+                                  CMAP_ChangeableBenefit__c:
+                                    title: 特典変更可
+                                    type: boolean
+                                    example: false
+                                  CMAP_HasPriceChanged__c:
+                                    title: 金額変更
+                                    type: boolean
+                                    example: false
+                                  CMAP_OrderAutomaticSelectionProduct__c:
+                                    title: 申込自動選択商品
+                                    type: string
+                                    maxLength: 18
+                                    example: XXXXX
+                                  CMAP_TaxationCategory__c:
+                                    title: 課税区分
+                                    type: string
+                                    maxLength: 255
+                                    example: Taxation
+                                  CMAP_NumberOfTimesPaid__c:
+                                    title: 支払い済回数
+                                    type: number
+                                    format: float
+                                    example: 1.5
+                                  CMAP_RemainingDebtTaxExcluded__c:
+                                    title: 残債(税抜)
+                                    type: integer
+                                    format: int32
+                                    example: 3000
+                                  CMAP_RemainingDebtLumpSumPayment__c:
+                                    title: 残債一括払い
+                                    type: boolean
+                                    example: false
+                                  CMAP_OfferStartDate__c:
+                                    title: 提供開始日
+                                    type: string
+                                    format: date
+                                    example: '2023-09-22'
+                                  CMAP_ChangeSourceDestinationCategory__c:
+                                    title: 移転/プラン変更元先区分
+                                    type: string
+                                    maxLength: 255
+                                    example: ChangeSource
+                                  CMAP_InheritsMovementAssetAttribute__c:
+                                    title: 移転時納入商品属性引継
+                                    type: boolean
+                                    example: true
+                                  CMAP_ChangeSourceOrderItem__c:
+                                    title: 【移転/プラン変更元】申込商品ID
+                                    type: string
+                                    maxLength: 18
+                                    example: XXXXX
+                                  CMAP_OrderItemBeforeChange__c:
+                                    title: 変更前の申込商品ID
+                                    type: string
+                                    maxLength: 18
+                                    example: XXXXX
+                                  CMAP_OrderItemTypeSelection__c:
+                                    title: 申込商品種別：選択商品
+                                    type: boolean
+                                    example: true
+                                  CMAP_OrderItemTypeBenefit__c:
+                                    title: 申込商品種別：特典商品
+                                    type: boolean
+                                    example: true
+                                  CMAP_OrderItemTypeAutomaticSelection__c:
+                                    title: 申込商品種別：自動選択商品
+                                    type: boolean
+                                    example: true
+                                  LastModifiedDate:
+                                    title: 最終更新日
+                                    type: string
+                                    format: date-time
+                                    example: '2023-09-22 09:22:22'
+                                  CMAP_BeforeOffer__c:
+                                    title: 提供開始前
+                                    type: boolean
+                                    example: true
+                                  CMAP_MainSubProGroupBenefitCampaignSortOrder__c:
+                                    title: メイン商品/サブ商品グループ・特典キャンペーン並び順
+                                    type: integer
+                                    format: int32
+                                    example: 1
+                                  CMAP_ProductCategoryBenefitSortOrder__c:
+                                    title: 商品カテゴリ・特典並び順
+                                    type: integer
+                                    format: int32
+                                    example: 1
+                                  CMAP_ProductSortOrder__c:
+                                    title: 商品並び順
+                                    type: integer
+                                    format: int32
+                                    example: 1
+                              OrderItemAddition:
+                                type: object
+                                description: 申込商品補足情報
+                                properties:
+                                  precaution:
+                                    title: 注意事項
+                                    type: string
+                                    maxLength: 4000
+                                    example: XXXXX
+                                  cancellationPrecaution:
+                                    title: キャンセル時の注意事項
+                                    type: string
+                                    maxLength: 4000
+                                    example: XXXXX
+                                  terminationPrecaution:
+                                    title: 解約時の注意事項
+                                    type: string
+                                    maxLength: 4000
+                                    example: XXXXX
+                                  otherCompanyScreenTransitionLinkDescription:
+                                    title: 他社画面遷移リンク（説明）
+                                    type: string
+                                    maxLength: 4000
+                                    example: XXXXX
+                                  otherCompanyScreenTransitionLinkURL:
+                                    title: 他社画面遷移リンク（URL）
+                                    type: string
+                                    maxLength: 255
+                                    example: XXXXX
+                                  quantityCategory:
+                                    title: 数量区分
+                                    type: string
+                                    maxLength: 255
+                                    example: FixedQuantity
+                              OrderItemAttributes:
+                                type: array
+                                description: 申込商品属性リスト
+                                items:
+                                  type: object
+                                  properties:
+                                    Id:
+                                      title: 申込商品属性ID
+                                      type: string
+                                      maxLength: 18
+                                      example: XXXXX
+                                    CMAP_OrderItemAttributeDefenition__c:
+                                      title: 申込商品属性定義ID
+                                      type: string
+                                      maxLength: 18
+                                      example: XXXXX
+                                    CMAP_Value__c:
+                                      title: 値
+                                      type: string
+                                      maxLength: 255
+                                      example: XXXXX
+                                    CMAP_ValueLongTextArea__c:
+                                      title: 値（ロングテキスト）
+                                      type: string
+                                      maxLength: 4000
+                                      example: XXXXX
+                                    CMAP_ValueChanged__c:
+                                      title: 値変更
+                                      type: boolean
+                                      example: false
+                                    CMAP_AssetAttribute__c:
+                                      title: 納入商品属性ID
+                                      type: string
+                                      maxLength: 18
+                                      example: XXXXX
+                    Billing:
+                      type: object
+                      description: 請求先
+                      properties:
+                        Id:
+                          title: 請求先ID
+                          type: string
+                          maxLength: 18
+                          example: XXXXX
+                        CMAP_PaymentMethod__c:
+                          title: 支払方法
+                          type: string
+                          maxLength: 255
+                          example: CreditCard
+                        CMAP_CreditCardNumberLastFourDigits__c:
+                          title: クレジットカード番号（末尾4桁）
+                          type: string
+                          maxLength: 4
+                          example: XXXXX
+                        CMAP_YamaguchiInfoId__c:
+                          title: 山口情報管理ID
+                          type: string
+                          maxLength: 255
+                          example: XXXXX
+                        CMAP_AccountNumber__c:
+                          title: 口座番号
+                          type: string
+                          maxLength: 7
+                          example: XXXXX
+                        CMAP_BankName__c:
+                          title: 銀行名
+                          type: string
+                          maxLength: 255
+                          example: XXXXX
+                        CMAP_AccountTransferBillingNumber__c:
+                          title: 口座振替請求先番号
+                          type: string
+                          maxLength: 255
+                          example: XXXXX
+      responses:
+        '200':
+          description: 成功時
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  OrderRelatedInfo:
+                    type: object
+                    description: 申込関連情報
+                    properties:
+                      AccountInfo:
+                        type: object
+                        description: 顧客情報
+                        properties:
+                          Account:
+                            type: object
+                            description: 顧客
+                            properties:
+                              Id:
+                                title: 顧客ID
+                                type: string
+                                maxLength: 18
+                                example: XXXXX
+                              CMAP_ContractName__c:
+                                title: 契約名義
+                                type: string
+                                maxLength: 255
+                                example: Individual
+                              LastName:
+                                title: 顧客名（姓）・企業／団体名
+                                type: string
+                                maxLength: 80
+                                example: 中部
+                              FirstName:
+                                title: 顧客名（名）
+                                type: string
+                                maxLength: 40
+                                example: 太郎
+                              CMAP_LastNameKana__c:
+                                title: 顧客名（セイ）
+                                type: string
+                                maxLength: 80
+                                example: チュウブ
+                              CMAP_FirstNameKana__c:
+                                title: 顧客名（メイ）
+                                type: string
+                                maxLength: 40
+                                example: タロウ
+                              CMAP_Gender__c:
+                                title: 性別
+                                type: string
+                                maxLength: 255
+                                example: Male
+                              CMAP_Birthday__c:
+                                title: 生年月日
+                                type: string
+                                format: date
+                                example: '1990-01-01'
+                              CMAP_CompanyName__c:
+                                title: 企業／団体名（フリガナ）
+                                type: string
+                                maxLength: 255
+                                example: null
+                              CMAP_DepartmentName__c:
+                                title: 部署名
+                                type: string
+                                maxLength: 255
+                                example: null
+                              CMAP_EmployeeName__c:
+                                title: 担当者名
+                                type: string
+                                maxLength: 255
+                                example: null
+                              CMAP_EmployeeNameKana__c:
+                                title: 担当者名（フリガナ）
+                                type: string
+                                maxLength: 255
+                                example: null
+                              BillingPostalCode:
+                                title: 連絡先住所 郵便番号
+                                type: string
+                                maxLength: 20
+                                example: 450-0001
+                              BillingState:
+                                title: 連絡先住所 都道府県
+                                type: string
+                                maxLength: 255
+                                example: 13
+                              BillingCity:
+                                title: 連絡先住所 市区郡
+                                type: string
+                                maxLength: 40
+                                example: 名古屋市中村区
+                              BillingStreet:
+                                title: 連絡先住所 町名・番地
+                                type: string
+                                maxLength: 255
+                                example: 那古野1-1
+                              MansionName__c:
+                                title: 連絡先住所 建物名
+                                type: string
+                                maxLength: 255
+                                example: 第一マンション
+                              RoomNo__c:
+                                title: 連絡先住所 部屋番号
+                                type: string
+                                maxLength: 255
+                                example: 101
+                              Phone:
+                                title: 連絡先電話番号
+                                type: string
+                                maxLength: 40
+                                example: 080-0000-0000
+                              CMAP_MyCommufaID__c:
+                                title: マイコミュファID
+                                type: string
+                                maxLength: 80
+                                example: chubu.tarou@commufa.jp
+                          AccountAddition:
+                            type: object
+                            description: 顧客補足情報
+                            properties:
+                              IsNewAccount:
+                                title: 新規顧客
+                                type: boolean
+                                example: false
+                              leadId:
+                                title: リードID
+                                type: string
+                                maxLength: 255
+                                example: XXXXX
+                      OrderInfo:
+                        type: object
+                        description: 申込情報
+                        properties:
+                          Order:
+                            type: object
+                            description: 申込
+                            properties:
+                              Id:
+                                title: 申込ID
+                                type: string
+                                maxLength: 18
+                                example: XXXXX
+                              OrderNumber:
+                                title: 申込番号
+                                type: string
+                                maxLength: 80
+                                example: XXXXX
+                              CMAP_OrderCategory__c:
+                                title: 申込区分
+                                type: string
+                                maxLength: 255
+                                example: PlanChange
+                              CMAP_OrderReceiptNumber__c:
+                                title: 申込受付番号
+                                type: string
+                                maxLength: 80
+                                example: XXXXX
+                              CMAP_OrderBeforeChange__c:
+                                title: 変更前の申込ID
+                                type: string
+                                maxLength: 255
+                                example: XXXXX
+                              CMAP_OrderState_c:
+                                title: 申込状態
+                                type: string
+                                maxLength: 255
+                                example: Valid
+                              CMAP_IsCompleted__c:
+                                title: 完了
+                                type: boolean
+                                example: false
+                              OpportunityId:
+                                title: 商談ID
+                                type: string
+                                maxLength: 18
+                                example: XXXXX
+                              EffectiveDate:
+                                title: 申込日
+                                type: string
+                                format: date
+                                example: '2023-09-22'
+                              CMAP_OrderChannelName__c:
+                                title: 申込チャネル名
+                                type: string
+                                maxLength: 255
+                                example: Web
+                              CMAP_OrderChannelDetail__c:
+                                title: 申込チャネル詳細
+                                type: string
+                                maxLength: 255
+                                example: Web
+                              AccountId:
+                                title: 顧客ID
+                                type: string
+                                maxLength: 18
+                                example: XXXXX
+                              CMAP_ContractName__c:
+                                title: 契約名義
+                                type: string
+                                maxLength: 255
+                                example: Individual
+                              CMAP_ResidenceType__c:
+                                title: 住戸形態
+                                type: string
+                                maxLength: 255
+                                example: Home
+                              CMAP_BuildingCategory__c:
+                                title: 建物区分
+                                type: string
+                                maxLength: 255
+                                example: OwnHouse
+                              CMAP_OfferPlan__c:
+                                title: 提供プランID
+                                type: string
+                                maxLength: 18
+                                example: XXXXX
+                              CMAP_OfferPlanName__c:
+                                title: 提供プラン名
+                                type: string
+                                maxLength: 255
+                                example: XXXXX
+                              CMAP_OfferPackageId__c:
+                                title: 提供パッケージID
+                                type: string
+                                maxLength: 255
+                                example: XXXXX
+                              CMAP_IsTypeCircuit__c:
+                                title: タイプ：回線
+                                type: boolean
+                                example: false
+                              CMAP_IsTypeNotCircuit__c:
+                                title: タイプ：非回線
+                                type: boolean
+                                example: false
+                              CMAP_IsTypeGoodsServiceSales__c:
+                                title: タイプ：物品・サービス販売
+                                type: boolean
+                                example: false
+                              CMAP_InstallationLocationOfferArea__c:
+                                title: 設置場所提供エリアID
+                                type: string
+                                maxLength: 18
+                                example: XXXXX
+                              CMAP_InstallLocLayerDeliveryDuration__c:
+                                title: 設置場所レイヤ納期ID
+                                type: string
+                                maxLength: 18
+                                example: XXXXX
+                              CMAP_StandardOpeningDays__c:
+                                title: 標準開通日数
+                                type: integer
+                                format: int32
+                                example: 30
+                              CMAP_StandardOpeningMonths__c:
+                                title: 標準開通月数
+                                type: integer
+                                format: int32
+                                example: 1
+                              CMAP_OfferMethod__c:
+                                title: 提供方式名
+                                type: string
+                                maxLength: 255
+                                example: XXXXX
+                              CMAP_OfferMethodNameForDisplay__c:
+                                title: 提供方式名（画面表示用）
+                                type: string
+                                maxLength: 255
+                                example: XXXXX
+                              CMAP_Property__c:
+                                title: 物件（集合）ID
+                                type: string
+                                maxLength: 18
+                                example: XXXXX
+                              CMAP_ApartmentPropertyName__c:
+                                title: 集合物件名
+                                type: string
+                                maxLength: 255
+                                example: XXXXX
+                              CMAP_PropertyOfferMethod__c:
+                                title: 物件提供方式ID
+                                type: string
+                                maxLength: 18
+                                example: XXXXX
+                              CMAP_PropertyOfferMethodName__c:
+                                title: 物件提供方式名
+                                type: string
+                                maxLength: 255
+                                example: XXXXX
+                              CMAP_Case__c:
+                                title: 問合せID
+                                type: string
+                                maxLength: 18
+                                example: XXXXX
+                              CMAP_Billing__c:
+                                title: 請求先ID
+                                type: string
+                                maxLength: 18
+                                example: XXXXX
+                              CMAP_BillingPaymentMethodAgent__c:
+                                title: 請求先の支払方法（代行）
+                                type: string
+                                maxLength: 255
+                                example: CreditCard
+                              CMAP_BillingPaymentMethodRegistered__c:
+                                title: 請求先の支払方法（登録済）
+                                type: string
+                                maxLength: 255
+                                example: XXXXX
+                              CMAP_NeedsSendingDocumentOfBilling__c:
+                                title: 請求先の書類送付あり
+                                type: boolean
+                                example: true
+                              CMAP_AcquisitionAgency__c:
+                                title: 獲得代理店ID
+                                type: string
+                                maxLength: 18
+                                example: XXXXX
+                              CMAP_AcquisitionShop__c:
+                                title: 獲得店舗ID
+                                type: string
+                                maxLength: 18
+                                example: XXXXX
+                              CMAP_IndividualContractPlan__c:
+                                title: 個別契約ID
+                                type: string
+                                maxLength: 18
+                                example: XXXXX
+                              CMAP_CancelDate__c:
+                                title: キャンセル日
+                                type: string
+                                format: date
+                                example: '2023-09-23'
+                              CMAP_CancelReason__c:
+                                title: キャンセル理由
+                                type: string
+                                maxLength: 255
+                                example: XXXXX
+                              CMAP_CancelReasonOther__c:
+                                title: キャンセル理由（その他）
+                                type: string
+                                maxLength: 1000
+                                example: XXXXX
+                              CMAP_StartRequestDate__c:
+                                title: 開始希望日
+                                type: string
+                                format: date
+                                example: '2023-09-21'
+                              CMAP_TerminationRequestDate__c:
+                                title: 解約希望日
+                                type: string
+                                format: date
+                                example: '2023-09-24'
+                              CMAP_TerminationReason__c:
+                                title: 解約理由
+                                type: string
+                                maxLength: 255
+                                example: XXXXX
+                              CMAP_TerminationReasonOther__c:
+                                title: 解約理由（その他）
+                                type: string
+                                maxLength: 1000
+                                example: XXXXX
+                              CMAP_SuspendRequestDate__c:
+                                title: 休止希望日
+                                type: string
+                                format: date
+                                example: '2023-09-25'
+                              CMAP_ResumeRequestDate__c:
+                                title: 再開希望日
+                                type: string
+                                format: date
+                                example: '2023-09-26'
+                              ShippingLatitude:
+                                title: 設置場所住所 （緯度）
+                                type: number
+                                format: float
+                                example: 139.2432
+                              ShippingLongitude:
+                                title: 設置場所住所 （経度）
+                                type: number
+                                format: float
+                                example: 40.9461
+                              CMAP_InstallLocBlockNumberGroupUnit__c:
+                                title: 設置場所：ブロック番号／GC局
+                                type: string
+                                maxLength: 255
+                                example: XXXXX
+                              CMAP_InstallationLocationPrefectureCode__c:
+                                title: 設置場所：都道府県コード
+                                type: string
+                                maxLength: 255
+                                example: XXXXX
+                              CMAP_InstallationLocationCityCode__c:
+                                title: 設置場所：市区町村コード
+                                type: string
+                                maxLength: 255
+                                example: XXXXX
+                              CMAP_InstallationLocationAddressCode__c:
+                                title: 設置場所：住所コードID
+                                type: string
+                                maxLength: 18
+                                example: XXXXX
+                              CMAP_InstallationLocationHouseNumber__c:
+                                title: 設置場所：番地以降
+                                type: string
+                                maxLength: 255
+                                example: XXXXX
+                              CMAP_InstallationLocationRoomNumber__c:
+                                title: 設置場所：部屋番号
+                                type: string
+                                maxLength: 80
+                                example: XXXXX
+                              CMAP_InstallationLocationExcludeRoom__c:
+                                title: 設置場所：住所（部屋番号除く）
+                                type: string
+                                maxLength: 255
+                                example: XXXXX
+                              CMAP_InstallationLocationAddress__c:
+                                title: 設置場所：住所
+                                type: string
+                                maxLength: 255
+                                example: XXXXX
+                              CMAP_EffectiveTime__c:
+                                title: 申込時間
+                                type: string
+                                format: partial-time
+                                example: '17:32:28'
+                              CMAP_ClientId__c:
+                                title: client_id
+                                type: string
+                                maxLength: 80
+                                example: XXXXX
+                              CMAP_ContractStatus__c:
+                                title: 契約ステータス
+                                type: string
+                                maxLength: 255
+                                example: XXXXX
+                              CMAP_DeliveryServiceAddress__PostalCode__s:
+                                title: 配送先／サービス提供先住所 （郵便番号）
+                                type: string
+                                maxLength: 20
+                                example: XXXXX
+                              CMAP_DeliveryServiceAddress__StateCode__s:
+                                title: 配送先／サービス提供先住所 （都道府県）
+                                type: string
+                                maxLength: 255
+                                example: 23
+                              CMAP_DeliveryServiceAddress__City__s:
+                                title: 配送先／サービス提供先住所 （市区郡）
+                                type: string
+                                maxLength: 40
+                                example: XXXXX
+                              CMAP_DeliveryServiceAddress__Street__s:
+                                title: 配送先／サービス提供先住所 （町名・番地）
+                                type: string
+                                maxLength: 255
+                                example: XXXXX
+                              CMAP_DeliveryServiceAddressBuildingName__c:
+                                title: 配送先／サービス提供先住所：建物名
+                                type: string
+                                maxLength: 80
+                                example: XXXXX
+                              CMAP_DeliveryServiceAddressRoomNumber__c:
+                                title: 配送先／サービス提供先住所：部屋番号
+                                type: string
+                                maxLength: 80
+                                example: XXXXX
+                              CMAP_DeliveryServiceAddressForDisplay__c:
+                                title: 配送先／サービス提供先住所（画面表示用）
+                                type: string
+                                maxLength: 255
+                                example: XXXXX
+                              CMAP_ExistsMyCommufaId__c:
+                                title: MyコミュファID登録有無
+                                type: boolean
+                                example: false
+                              CMAP_CampaignBenefitAddition__c:
+                                title: キャンペーン特典補足情報
+                                type: string
+                                maxLength: 255
+                                example: XXXXX
+                              CMAP_NeedsConstructionScheduleAdjustment__c:
+                                title: 工事日程調整要否
+                                type: string
+                                maxLength: 255
+                                example: Necessary
+                              CMAP_NeedsApproval__c:
+                                title: 承認要否
+                                type: boolean
+                                example: false
+                              CMAP_ChangeSourceOfferPlan__c:
+                                title: 【移転/プラン変更元】提供プランID
+                                type: string
+                                maxLength: 18
+                                example: XXXXX
+                              CMAP_ChangeSourceOpportunity__c:
+                                title: 【移転/プラン変更元】商談ID
+                                type: string
+                                maxLength: 18
+                                example: XXXXX
+                              CMAP_ChangeSourceIndividualContractPur__c:
+                                title: 【移転/プラン変更元】個別契約／購入ID
+                                type: string
+                                maxLength: 18
+                                example: XXXXX
+                              CMAP_ChangeSourceOfferPlanName__c:
+                                title: 【移転/プラン変更元】提供プラン名
+                                type: string
+                                maxLength: 255
+                                example: XXXXX
+                              CMAP_ChangeSourceTypeCircuit__c:
+                                title: 【移転/プラン変更元】タイプ：回線
+                                type: boolean
+                                example: false
+                              CMAP_ChangeSourceTypeNotCircuit__c:
+                                title: 【移転/プラン変更元】タイプ：非回線
+                                type: boolean
+                                example: false
+                              CMAP_CancelOrderChannelDetail__c:
+                                title: キャンセル申込チャネル詳細
+                                type: string
+                                maxLength: 255
+                                example: Web
+                              LastModifiedDate:
+                                title: 最終更新日
+                                type: string
+                                format: date-time
+                                example: '2023-09-22 09:22:22'
+                              CMAP_ChangeSourceIsCompleted__c:
+                                title: 【移転/プラン変更元】完了
+                                type: boolean
+                                example: false
+                              CMAP_CityId__c:
+                                title: 市区町村ID
+                                type: string
+                                maxLength: 255
+                                example: XXXXX
+                              CMAP_Rebuilding__c:
+                                title: 建替え
+                                type: boolean
+                                example: false
+                              CMAP_PrefectureCityCode__c:
+                                title: 都道府県／市区町村コード
+                                type: string
+                                maxLength: 255
+                                example: XXXXX
+                              CMAP_BeforeOffer__c:
+                                title: 提供開始前
+                                type: boolean
+                                example: false
+                          OrderAddition:
+                            type: object
+                            description: 申込補足情報
+                            properties:
+                              orderCategoryCurrentlySelected:
+                                title: 申込区分（選択中/単一）
+                                type: string
+                                maxLength: 255
+                                example: PlanChange
+                              orderCategoryPreviouslySelected:
+                                title: 申込区分（変更前/複数）
+                                type: string
+                                maxLength: 255
+                                example: NewContractPurchace
+                              orderChannelCategory:
+                                title: 申込チャネル区分
+                                type: string
+                                maxLength: 255
+                                example: Web
+                              orderCompletionMail:
+                                title: 申込完了メール
+                                type: string
+                                maxLength: 255
+                                example: Send
+                              passwordSettingMail:
+                                title: パスワード設定メール
+                                type: string
+                                maxLength: 255
+                                example: Send
+                              planType:
+                                title: プラン種類
+                                type: string
+                                maxLength: 255
+                                example: Circuit
+                          OrderImportantMatterDescriptions:
+                            type: array
+                            description: 申込重要事項説明リスト
+                            items:
+                              type: object
+                              properties:
+                                Id:
+                                  title: 申込重要事項説明ID
+                                  type: string
+                                  maxLength: 18
+                                  example: XXXXX
+                                CMAP_ImportantMatterDescription__c:
+                                  title: 重要事項説明ID
+                                  type: string
+                                  maxLength: 18
+                                  example: XXXXX
+                                CMAP_ProductGroup__c:
+                                  title: 商品グループID
+                                  type: string
+                                  maxLength: 18
+                                  example: XXXXX
+                                CMAP_SetParentProduct__c:
+                                  title: セット親商品ID
+                                  type: string
+                                  maxLength: 18
+                                  example: XXXXX
+                                CMAP_ConsentDateTime__c:
+                                  title: 同意日時
+                                  type: string
+                                  format: date-time
+                                  example: '2023-09-22 09:22:22'
+                                CMAP_ImportantMatterDescriptionConsent__c:
+                                  title: 重要事項説明同意ID
+                                  type: string
+                                  maxLength: 18
+                                  example: XXXXX
+                          OrderItemInfos:
+                            type: array
+                            description: 申込商品情報リスト
+                            items:
+                              type: object
+                              properties:
+                                OrderItem:
+                                  type: object
+                                  description: 申込商品
+                                  properties:
+                                    Id:
+                                      title: 申込商品ID
+                                      type: string
+                                      maxLength: 18
+                                      example: XXXXX
+                                    CMAP_OfferPlanProduct__c:
+                                      title: 提供プラン商品ID
+                                      type: string
+                                      maxLength: 18
+                                      example: XXXXX
+                                    CMAP_MainSubProductGroupId__c:
+                                      title: メイン/サブ商品グループID
+                                      type: string
+                                      maxLength: 255
+                                      example: XXXXX
+                                    CMAP_MainSubProductGroupCategory__c:
+                                      title: メイン/サブ商品グループ区分
+                                      type: string
+                                      maxLength: 255
+                                      example: MainProduct
+                                    CMAP_MainSubProductGroupName__c:
+                                      title: メイン/サブ商品グループ名
+                                      type: string
+                                      maxLength: 255
+                                      example: XXXXX
+                                    CMAP_ProductCategoryId__c:
+                                      title: 商品カテゴリID
+                                      type: string
+                                      maxLength: 255
+                                      example: XXXXX
+                                    CMAP_ProductCategoryName__c:
+                                      title: 商品カテゴリ名
+                                      type: string
+                                      maxLength: 255
+                                      example: XXXXX
+                                    Product2Id:
+                                      title: 商品ID
+                                      type: string
+                                      maxLength: 18
+                                      example: XXXXX
+                                    CMAP_ProductName__c:
+                                      title: 商品名
+                                      type: string
+                                      maxLength: 255
+                                      example: XXXXX
+                                    UnitPrice:
+                                      title: 単価
+                                      type: integer
+                                      format: int32
+                                      example: 30000
+                                    CMAP_UnitPriceTaxIncluded__c:
+                                      title: 単価(税込)
+                                      type: integer
+                                      format: int32
+                                      example: 33000
+                                    TotalPrice:
+                                      title: 合計金額
+                                      type: integer
+                                      format: int32
+                                      example: 33000
+                                    CMAP_ComsumptionTaxRate__c:
+                                      title: 消費税率
+                                      type: number
+                                      format: float
+                                      example: 10
+                                    Quantity:
+                                      title: 数量
+                                      type: integer
+                                      format: int32
+                                      example: 1
+                                    CMAP_PriceCategory__c:
+                                      title: 価格区分
+                                      type: string
+                                      maxLength: 255
+                                      example: MonthlyPayment
+                                    CMAP_InstallmentPaymentMonthly__c:
+                                      title: 分割払い/月
+                                      type: boolean
+                                      example: true
+                                    CMAP_InstallmentPayMonthlyPriceTaxExc__c:
+                                      title: 分割払い価格/月(税抜)
+                                      type: integer
+                                      format: int32
+                                      example: 3000
+                                    CMAP_InstallmentPayMonthlyPriceTaxInc__c:
+                                      title: 分割払い価格/月(税込)
+                                      type: integer
+                                      format: int32
+                                      example: 3300
+                                    CMAP_NumberOfInstallments__c:
+                                      title: 分割回数
+                                      type: integer
+                                      format: int32
+                                      example: 10
+                                    CMAP_InstallmentPayFirstMonthPriceTaxExc__c:
+                                      title: 分割払い初月価格/月(税抜)
+                                      type: integer
+                                      format: int32
+                                      example: 3000
+                                    CMAP_InstallmentPayFirstMonthPriceTaxInc__c:
+                                      title: 分割払い初月価格/月(税込)
+                                      type: integer
+                                      format: int32
+                                      example: 3300
+                                    CMAP_InstallmentPaymentCurrently__c:
+                                      title: 分割払い中
+                                      type: boolean
+                                      example: false
+                                    CMAP_SelectionAnnualPayment__c:
+                                      title: 【月額払い／年額払い】年額払いを選択
+                                      type: boolean
+                                      example: false
+                                    CMAP_AnnualPaymentPriceTaxExcluded__c:
+                                      title: 年額払い価格(税抜)
+                                      type: integer
+                                      format: int32
+                                      example: 30000
+                                    CMAP_AnnualPaymentPriceTaxIncluded__c:
+                                      title: 年額払い価格(税込)
+                                      type: integer
+                                      format: int32
+                                      example: 33000
+                                    CMAP_SetParentProductId__c:
+                                      title: セット親商品ID
+                                      type: string
+                                      maxLength: 18
+                                      example: XXXXX
+                                    CMAP_Unchargeable__c:
+                                      title: 請求対象外
+                                      type: boolean
+                                      example: false
+                                    CMAP_Asset__c:
+                                      title: 納入商品ID
+                                      type: string
+                                      maxLength: 18
+                                      example: XXXXX
+                                    CMAP_ProductSelectionState__c:
+                                      title: 商品選択状態
+                                      type: string
+                                      maxLength: 255
+                                      example: Selected
+                                    CMAP_LastTimeChangeCategory__c:
+                                      title: 前回変更区分
+                                      type: string
+                                      maxLength: 255
+                                      example: Added
+                                    CMAP_HasOrderItemAttribute:
+                                      title: 申込商品属性あり
+                                      type: boolean
+                                      example: true
+                                    CMAP_AvailableDailyPricing__c:
+                                      title: 価格日割あり
+                                      type: boolean
+                                      example: false
+                                    CMAP_UnchangeableContract__c:
+                                      title: 契約変更不可
+                                      type: boolean
+                                      example: false
+                                    CMAP_SetProduct__c:
+                                      title: セット商品ID
+                                      type: string
+                                      maxLength: 18
+                                      example: XXXXX
+                                    CMAP_BenefitProduct__c:
+                                      title: 特典商品ID
+                                      type: string
+                                      maxLength: 18
+                                      example: XXXXX
+                                    CMAP_BenefitId__c:
+                                      title: 特典ID
+                                      type: string
+                                      maxLength: 255
+                                      example: XXXXX
+                                    CMAP_BenefitName__c:
+                                      title: 特典名
+                                      type: string
+                                      maxLength: 255
+                                      example: XXXXX
+                                    CMAP_BenefitCampaignId__c:
+                                      title: 特典キャンペーンID
+                                      type: string
+                                      maxLength: 255
+                                      example: XXXXX
+                                    CMAP_BenefitCampaignName__c:
+                                      title: 特典キャンペーン名
+                                      type: string
+                                      maxLength: 255
+                                      example: XXXXX
+                                    CMAP_GrantUnitPrice__c:
+                                      title: 供与単価
+                                      type: integer
+                                      format: int32
+                                      example: 3000
+                                    CMAP_GrantPoint__c:
+                                      title: 供与ポイント
+                                      type: number
+                                      format: float
+                                      example: 10
+                                    CMAP_ChangeableBenefit__c:
+                                      title: 特典変更可
+                                      type: boolean
+                                      example: false
+                                    CMAP_HasPriceChanged__c:
+                                      title: 金額変更
+                                      type: boolean
+                                      example: false
+                                    CMAP_OrderAutomaticSelectionProduct__c:
+                                      title: 申込自動選択商品
+                                      type: string
+                                      maxLength: 18
+                                      example: XXXXX
+                                    CMAP_TaxationCategory__c:
+                                      title: 課税区分
+                                      type: string
+                                      maxLength: 255
+                                      example: Taxation
+                                    CMAP_NumberOfTimesPaid__c:
+                                      title: 支払い済回数
+                                      type: number
+                                      format: float
+                                      example: 1.5
+                                    CMAP_RemainingDebtTaxExcluded__c:
+                                      title: 残債(税抜)
+                                      type: integer
+                                      format: int32
+                                      example: 3000
+                                    CMAP_RemainingDebtLumpSumPayment__c:
+                                      title: 残債一括払い
+                                      type: boolean
+                                      example: false
+                                    CMAP_OfferStartDate__c:
+                                      title: 提供開始日
+                                      type: string
+                                      format: date
+                                      example: '2023-09-22'
+                                    CMAP_ChangeSourceDestinationCategory__c:
+                                      title: 移転/プラン変更元先区分
+                                      type: string
+                                      maxLength: 255
+                                      example: ChangeSource
+                                    CMAP_InheritsMovementAssetAttribute__c:
+                                      title: 移転時納入商品属性引継
+                                      type: boolean
+                                      example: true
+                                    CMAP_ChangeSourceOrderItem__c:
+                                      title: 【移転/プラン変更元】申込商品ID
+                                      type: string
+                                      maxLength: 18
+                                      example: XXXXX
+                                    CMAP_OrderItemBeforeChange__c:
+                                      title: 変更前の申込商品ID
+                                      type: string
+                                      maxLength: 18
+                                      example: XXXXX
+                                    CMAP_OrderItemTypeSelection__c:
+                                      title: 申込商品種別：選択商品
+                                      type: boolean
+                                      example: true
+                                    CMAP_OrderItemTypeBenefit__c:
+                                      title: 申込商品種別：特典商品
+                                      type: boolean
+                                      example: true
+                                    CMAP_OrderItemTypeAutomaticSelection__c:
+                                      title: 申込商品種別：自動選択商品
+                                      type: boolean
+                                      example: true
+                                    LastModifiedDate:
+                                      title: 最終更新日
+                                      type: string
+                                      format: date-time
+                                      example: '2023-09-22 09:22:22'
+                                    CMAP_BeforeOffer__c:
+                                      title: 提供開始前
+                                      type: boolean
+                                      example: true
+                                    CMAP_MainSubProGroupBenefitCampaignSortOrder__c:
+                                      title: メイン商品/サブ商品グループ・特典キャンペーン並び順
+                                      type: integer
+                                      format: int32
+                                      example: 1
+                                    CMAP_ProductCategoryBenefitSortOrder__c:
+                                      title: 商品カテゴリ・特典並び順
+                                      type: integer
+                                      format: int32
+                                      example: 1
+                                    CMAP_ProductSortOrder__c:
+                                      title: 商品並び順
+                                      type: integer
+                                      format: int32
+                                      example: 1
+                                OrderItemAddition:
+                                  type: object
+                                  description: 申込商品補足情報
+                                  properties:
+                                    precaution:
+                                      title: 注意事項
+                                      type: string
+                                      maxLength: 4000
+                                      example: XXXXX
+                                    cancellationPrecaution:
+                                      title: キャンセル時の注意事項
+                                      type: string
+                                      maxLength: 4000
+                                      example: XXXXX
+                                    terminationPrecaution:
+                                      title: 解約時の注意事項
+                                      type: string
+                                      maxLength: 4000
+                                      example: XXXXX
+                                    otherCompanyScreenTransitionLinkDescription:
+                                      title: 他社画面遷移リンク（説明）
+                                      type: string
+                                      maxLength: 4000
+                                      example: XXXXX
+                                    otherCompanyScreenTransitionLinkURL:
+                                      title: 他社画面遷移リンク（URL）
+                                      type: string
+                                      maxLength: 255
+                                      example: XXXXX
+                                    quantityCategory:
+                                      title: 数量区分
+                                      type: string
+                                      maxLength: 255
+                                      example: FixedQuantity
+                                OrderItemAttributes:
+                                  type: array
+                                  description: 申込商品属性リスト
+                                  items:
+                                    type: object
+                                    properties:
+                                      Id:
+                                        title: 申込商品属性ID
+                                        type: string
+                                        maxLength: 18
+                                        example: XXXXX
+                                      CMAP_OrderItemAttributeDefenition__c:
+                                        title: 申込商品属性定義ID
+                                        type: string
+                                        maxLength: 18
+                                        example: XXXXX
+                                      CMAP_Value__c:
+                                        title: 値
+                                        type: string
+                                        maxLength: 255
+                                        example: XXXXX
+                                      CMAP_ValueLongTextArea__c:
+                                        title: 値（ロングテキスト）
+                                        type: string
+                                        maxLength: 4000
+                                        example: XXXXX
+                                      CMAP_ValueChanged__c:
+                                        title: 値変更
+                                        type: boolean
+                                        example: false
+                                      CMAP_AssetAttribute__c:
+                                        title: 納入商品属性ID
+                                        type: string
+                                        maxLength: 18
+                                        example: XXXXX
+                      Billing:
+                        type: object
+                        description: 請求先
+                        properties:
+                          Id:
+                            title: 請求先ID
+                            type: string
+                            maxLength: 18
+                            example: XXXXX
+                          CMAP_PaymentMethod__c:
+                            title: 支払方法
+                            type: string
+                            maxLength: 255
+                            example: CreditCard
+                          CMAP_CreditCardNumberLastFourDigits__c:
+                            title: クレジットカード番号（末尾4桁）
+                            type: string
+                            maxLength: 4
+                            example: XXXXX
+                          CMAP_YamaguchiInfoId__c:
+                            title: 山口情報管理ID
+                            type: string
+                            maxLength: 255
+                            example: XXXXX
+                          CMAP_AccountNumber__c:
+                            title: 口座番号
+                            type: string
+                            maxLength: 7
+                            example: XXXXX
+                          CMAP_BankName__c:
+                            title: 銀行名
+                            type: string
+                            maxLength: 255
+                            example: XXXXX
+                          CMAP_AccountTransferBillingNumber__c:
+                            title: 口座振替請求先番号
+                            type: string
+                            maxLength: 255
+                            example: XXXXX
+                  ProcessResult:
+                    $ref: '#/components/schemas/ProcessResultModel'
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
   /order/RetrieveResidentialTypeMaster:
     get:
       tags:
