@@ -12628,6 +12628,7 @@ components:
       description: 申込関連情報
       required:
         - AccountInfo
+        - OrderInfo
       properties:
         AccountInfo:
           type: object
@@ -13049,9 +13050,9 @@ components:
                   example: Web
             OrderImportantMatterDescriptions:
               type: array
+              description: 申込重要事項説明リスト
               items:
                 type: object
-                description: 申込重要事項説明リスト
                 properties:
                   CMAP_ImportantMatterDescription__c:
                     title: 重要事項説明ID
@@ -13080,9 +13081,9 @@ components:
                     example: XXXXX
             OrderItemInfos:
               type: array
+              description: 申込商品情報リスト
               items:
                 type: object
-                description: 申込商品情報リスト
                 properties:
                   OrderItem:
                     type: object
@@ -13102,7 +13103,7 @@ components:
                         title: 単価
                         type: integer
                         format: int32
-                        example: 33000
+                        example: 30000
                       CMAP_ComsumptionTaxRate__c:
                         title: 消費税率
                         type: number
@@ -13137,15 +13138,15 @@ components:
                         type: integer
                         format: int32
                         example: 3000
-                      CMAP_AnnualPayment__c:
-                        title: 年額払い
+                      CMAP_SelectionAnnualPayment__c:
+                        title: 【月額払い／年額払い】年額払いを選択
                         type: boolean
                         example: false
                       CMAP_AnnualPaymentPriceTaxExcluded__c:
                         title: 年額払い価格(税抜)
                         type: integer
                         format: int32
-                        example: 33000
+                        example: 30000
                       CMAP_Unchargeable__c:
                         title: 請求対象外
                         type: boolean
@@ -13240,7 +13241,7 @@ components:
                         CMAP_ValueLongTextArea__c:
                           title: 値（ロングテキスト）
                           type: string
-                          maxLength: 1000
+                          maxLength: 4000
                           example: XXXXX
                         CMAP_ValueChanged__c:
                           title: 値変更
@@ -13264,7 +13265,7 @@ components:
               title: クレジットカード番号（末尾4桁）
               type: string
               maxLength: 4
-              example: 2123
+              example: XXXXX
             CMAP_YamaguchiInfoId__c:
               title: 山口情報管理ID
               type: string
@@ -13274,7 +13275,7 @@ components:
               title: 口座振替請求先番号
               type: string
               maxLength: 255
-              example: 2162378151
+              example: XXXXX
     InputAccountInfoModel:
       type: object
       description: 顧客情報
