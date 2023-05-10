@@ -220,6 +220,8 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
+        '412':
+          $ref: '#/components/responses/PreconditionFailedResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /common/StoreSession:
@@ -302,6 +304,8 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
+        '412':
+          $ref: '#/components/responses/PreconditionFailedResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /common/RetrieveSession:
@@ -4059,6 +4063,8 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
+        '412':
+          $ref: '#/components/responses/PreconditionFailedResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/RetrieveResidentialTypeMaster:
@@ -5207,6 +5213,8 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
+        '412':
+          $ref: '#/components/responses/PreconditionFailedResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/RegisterOrder:
@@ -6185,12 +6193,16 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
+        '412':
+          $ref: '#/components/responses/PreconditionFailedResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/RetrieveCustomerInfo:
     get:
       tags:
         - Order
+      security:
+        - bearer: []
       summary: 顧客詳細取得API
       description: >-
         [Overview]
@@ -7456,6 +7468,8 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
+        '412':
+          $ref: '#/components/responses/PreconditionFailedResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/UpdateCustomerInfo:
@@ -7545,6 +7559,8 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
+        '412':
+          $ref: '#/components/responses/PreconditionFailedResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/SendAuthenticationCode:
@@ -7631,6 +7647,8 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
+        '412':
+          $ref: '#/components/responses/PreconditionFailedResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/CheckAuthenticationCode:
@@ -7724,6 +7742,8 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
+        '412':
+          $ref: '#/components/responses/PreconditionFailedResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/RetrieveAddressInfo:
@@ -10244,6 +10264,8 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
+        '412':
+          $ref: '#/components/responses/PreconditionFailedResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/AfterProcessOrderProductAttribute:
@@ -10399,6 +10421,8 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
+        '412':
+          $ref: '#/components/responses/PreconditionFailedResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/CheckProductIntegrity:
@@ -11153,6 +11177,8 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
+        '412':
+          $ref: '#/components/responses/PreconditionFailedResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/AutoSelectProducts:
@@ -12173,6 +12199,8 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
+        '412':
+          $ref: '#/components/responses/PreconditionFailedResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /etc/LinkageCancelAuID:
@@ -12252,6 +12280,8 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
         '404':
           $ref: '#/components/responses/NotFoundResponse'
+        '412':
+          $ref: '#/components/responses/PreconditionFailedResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
 components:
@@ -13449,22 +13479,41 @@ components:
     ErrorModel:
       description: Response Error Model.
       required:
-        - code
+        - statucCode
         - message
       type: object
       properties:
-        code:
-          title: error code
-          type: string
+        statucCode:
+          title: statucCode
+          type: integer
+          format: int32
           example: 500
         message:
-          title: error message
+          title: statuscode of name
           type: string
           example: Internal Server Error.
         exception:
           title: error message
           type: string
           example: Example An error occured while processing your request.
+        resultInfos:
+          type: array
+          description: infolist
+          items:
+            type: object
+            properties:
+              code:
+                title: メッセージコード
+                type: string
+                example: null
+              message:
+                title: メッセージ
+                type: string
+                example: null
+              attribute:
+                title: 項目
+                type: string
+                example: null
   parameters:
     SampleUserIdParameter:
       name: id
@@ -13590,59 +13639,79 @@ components:
             allOf:
               - $ref: '#/components/schemas/ErrorModel'
             properties:
-              code:
+              statucCode:
                 example: 400
               message:
                 example: Bad Request.
     UnauthorizedResponse:
-      description: |
-        Unauthorized.
+      description: Unauthorized.
       content:
         application/json:
           schema:
             allOf:
               - $ref: '#/components/schemas/ErrorModel'
             properties:
-              code:
+              statucCode:
                 example: 401
               message:
                 example: Unauthorized.
     ForbiddenResponse:
-      description: |
-        Forbidden.
+      description: Forbidden.
       content:
         application/json:
           schema:
             allOf:
               - $ref: '#/components/schemas/ErrorModel'
             properties:
-              code:
+              statucCode:
                 example: 403
               message:
                 example: Forbidden.
     NotFoundResponse:
-      description: |
-        Not Found.
+      description: Not Found.
       content:
         application/json:
           schema:
             allOf:
               - $ref: '#/components/schemas/ErrorModel'
             properties:
-              code:
+              statucCode:
                 example: 404
               message:
                 example: Not Found.
-    ConflictErrorResponse:
-      description: |
-        Conflict.
+    PreconditionFailedResponse:
+      description: Precondition Failed.
       content:
         application/json:
           schema:
             allOf:
               - $ref: '#/components/schemas/ErrorModel'
             properties:
-              code:
+              statucCode:
+                example: 412
+              message:
+                example: Precondition Failed.
+              resultInfos:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    code:
+                      example: VE0005
+                    message:
+                      example: '[顧客ID]の文字数が不正です'
+                    attribute:
+                      example: >-
+                        Ctc.Foundation.MyCommufa.API.Models.Order.RegisterOrderParameterValdator+Account.Id
+    ConflictErrorResponse:
+      description: Conflict.
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/ErrorModel'
+            properties:
+              statucCode:
                 example: 409
               message:
                 example: Conflict.
@@ -13651,7 +13720,13 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ErrorModel'
+            allOf:
+              - $ref: '#/components/schemas/ErrorModel'
+            properties:
+              statucCode:
+                example: 500
+              message:
+                example: Internal Server Error.
   securitySchemes:
     bearer:
       type: http
