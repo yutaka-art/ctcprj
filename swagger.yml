@@ -138,12 +138,6 @@ paths:
                             join/common/img/cmn/imgwifi012x.png
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /common/Logout:
@@ -214,14 +208,6 @@ paths:
                     example: XXXXX
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '412':
-          $ref: '#/components/responses/PreconditionFailedResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /common/StoreSession:
@@ -298,14 +284,6 @@ paths:
                     example: XXXXX
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '412':
-          $ref: '#/components/responses/PreconditionFailedResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /common/RetrieveSession:
@@ -382,12 +360,6 @@ paths:
                           example: 3
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /common/RetrieveMessageList:
@@ -450,12 +422,6 @@ paths:
                           example: 物件情報が見つかりませんでした。
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /common/RetrievePostalCodeList:
@@ -557,12 +523,6 @@ paths:
                           example: 名古屋市千種区
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /contract/RetrieveContractList:
@@ -743,12 +703,6 @@ paths:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /contract/RetrieveContractDetail:
@@ -1967,12 +1921,6 @@ paths:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/SampleInfo:
@@ -4057,14 +4005,6 @@ paths:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '412':
-          $ref: '#/components/responses/PreconditionFailedResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/RetrieveResidentialTypeMaster:
@@ -4139,12 +4079,6 @@ paths:
                           example: 戸建て
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/RetrievePlanTypeMaster:
@@ -4203,12 +4137,6 @@ paths:
                           example: true
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/RetrievePrefectureMunicipalityList:
@@ -4292,12 +4220,6 @@ paths:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/RetrieveApartmentList:
@@ -4405,12 +4327,6 @@ paths:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/RetrieveImportantMattersDescription:
@@ -4502,12 +4418,6 @@ paths:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/CheckOrder:
@@ -5207,14 +5117,6 @@ paths:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '412':
-          $ref: '#/components/responses/PreconditionFailedResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/RegisterOrder:
@@ -6187,14 +6089,6 @@ paths:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '412':
-          $ref: '#/components/responses/PreconditionFailedResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/RetrieveCustomerInfo:
@@ -6354,12 +6248,6 @@ paths:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/RetrieveOfferPlanList:
@@ -6704,12 +6592,6 @@ paths:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/RetrieveOfferPlanProductList:
@@ -7373,12 +7255,6 @@ paths:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/RegisterCustomerInfo:
@@ -7462,14 +7338,6 @@ paths:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '412':
-          $ref: '#/components/responses/PreconditionFailedResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/UpdateCustomerInfo:
@@ -7641,14 +7509,6 @@ paths:
                     example: XXXXX
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '412':
-          $ref: '#/components/responses/PreconditionFailedResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/CheckAuthenticationCode:
@@ -7736,14 +7596,6 @@ paths:
                     example: XXXXX
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '412':
-          $ref: '#/components/responses/PreconditionFailedResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/RetrieveAddressInfo:
@@ -7855,12 +7707,6 @@ paths:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/RetrieveBillToInfoList:
@@ -7966,12 +7812,6 @@ paths:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/RetrieveOrderInfoList:
@@ -8422,12 +8262,6 @@ paths:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/RetrieveOrderDetail:
@@ -9225,12 +9059,6 @@ paths:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/RetrieveCustomerBillingAmount:
@@ -9313,12 +9141,6 @@ paths:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/RetrieveHashValueForAuthorization:
@@ -9372,17 +9194,9 @@ paths:
                     description: ハッシュ値
                     example: XXXXXXXXXXXXXXXXXXX
         '400':
-          description: |-
-            [Bad Request]
-
-            処理結果に応じたエラーメッセージを格納し返却する。
-
-             詳しくは[Details]参照
+          $ref: '#/components/responses/BadRequestResponse'
         '500':
-          description: |-
-            [Internal Server Error]
-
-            ExceptionのStackTraceを格納して返却する。
+          $ref: '#/components/responses/InternalServerErrorResponse'
   /order/AuthorizeCraditCard:
     post:
       tags:
@@ -9584,12 +9398,6 @@ paths:
                     example: XXXXX
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/RetrieveOfferMethodList:
@@ -9817,12 +9625,6 @@ paths:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/RetrieveChannelList:
@@ -9926,12 +9728,6 @@ paths:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/RetrieveBenefitList:
@@ -10258,14 +10054,6 @@ paths:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '412':
-          $ref: '#/components/responses/PreconditionFailedResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/AfterProcessOrderProductAttribute:
@@ -10415,14 +10203,6 @@ paths:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '412':
-          $ref: '#/components/responses/PreconditionFailedResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/CheckProductIntegrity:
@@ -11171,14 +10951,6 @@ paths:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '412':
-          $ref: '#/components/responses/PreconditionFailedResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/AutoSelectProducts:
@@ -12193,14 +11965,6 @@ paths:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '412':
-          $ref: '#/components/responses/PreconditionFailedResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /etc/LinkageCancelAuID:
@@ -12274,14 +12038,6 @@ paths:
                     example: XXXXX
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '412':
-          $ref: '#/components/responses/PreconditionFailedResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
 components:
@@ -13479,38 +13235,52 @@ components:
     ErrorModel:
       description: Response Error Model.
       required:
-        - statucCode
-        - message
+        - StatusCode
+        - Message
       type: object
       properties:
-        statucCode:
-          title: statucCode
+        StatusCode:
+          title: StatucCode
           type: integer
           format: int32
           example: 500
-        message:
+        Message:
           title: statuscode of name
           type: string
           example: Internal Server Error.
-        exception:
-          title: error message
-          type: string
-          example: Example An error occured while processing your request.
-        resultInfos:
+        ValidationErrors:
           type: array
-          description: infolist
+          description: ValidationErrors
           items:
             type: object
             properties:
-              code:
+              Code:
                 title: メッセージコード
                 type: string
                 example: null
-              message:
+              Message:
                 title: メッセージ
                 type: string
                 example: null
-              attribute:
+              Attribute:
+                title: 項目
+                type: string
+                example: null
+        BusinessErrors:
+          type: array
+          description: BusinessErrors
+          items:
+            type: object
+            properties:
+              Code:
+                title: メッセージコード
+                type: string
+                example: null
+              Message:
+                title: メッセージ
+                type: string
+                example: null
+              Attribute:
                 title: 項目
                 type: string
                 example: null
@@ -13639,10 +13409,32 @@ components:
             allOf:
               - $ref: '#/components/schemas/ErrorModel'
             properties:
-              statucCode:
+              StatusCode:
                 example: 400
-              message:
+              Message:
                 example: Bad Request.
+              ValidationErrors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    Code:
+                      example: E0005
+                    Message:
+                      example: '[顧客ID]の文字数が不正です'
+                    Attribute:
+                      example: Account.Id
+              BusinessErrors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    Code:
+                      example: E0301
+                    Message:
+                      example: '[契約名義]が個人の場合は入力必須です'
+                    Attribute:
+                      example: Account.FirstName
     UnauthorizedResponse:
       description: Unauthorized.
       content:
@@ -13651,9 +13443,9 @@ components:
             allOf:
               - $ref: '#/components/schemas/ErrorModel'
             properties:
-              statucCode:
+              StatusCode:
                 example: 401
-              message:
+              Message:
                 example: Unauthorized.
     ForbiddenResponse:
       description: Forbidden.
@@ -13663,9 +13455,9 @@ components:
             allOf:
               - $ref: '#/components/schemas/ErrorModel'
             properties:
-              statucCode:
+              StatusCode:
                 example: 403
-              message:
+              Message:
                 example: Forbidden.
     NotFoundResponse:
       description: Not Found.
@@ -13675,9 +13467,9 @@ components:
             allOf:
               - $ref: '#/components/schemas/ErrorModel'
             properties:
-              statucCode:
+              StatusCode:
                 example: 404
-              message:
+              Message:
                 example: Not Found.
     PreconditionFailedResponse:
       description: Precondition Failed.
@@ -13687,22 +13479,32 @@ components:
             allOf:
               - $ref: '#/components/schemas/ErrorModel'
             properties:
-              statucCode:
+              StatusCode:
                 example: 412
-              message:
+              Message:
                 example: Precondition Failed.
-              resultInfos:
+              ValidationErrors:
                 type: array
                 items:
                   type: object
                   properties:
-                    code:
-                      example: VE0005
-                    message:
+                    Code:
+                      example: E0005
+                    Message:
                       example: '[顧客ID]の文字数が不正です'
-                    attribute:
-                      example: >-
-                        Ctc.Foundation.MyCommufa.API.Models.Order.RegisterOrderParameterValdator+Account.Id
+                    Attribute:
+                      example: Account.Id
+              BusinessErrors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    Code:
+                      example: E0301
+                    Message:
+                      example: '[契約名義]が個人の場合は入力必須です'
+                    Attribute:
+                      example: Account.FirstName
     ConflictErrorResponse:
       description: Conflict.
       content:
@@ -13711,9 +13513,9 @@ components:
             allOf:
               - $ref: '#/components/schemas/ErrorModel'
             properties:
-              statucCode:
+              StatusCode:
                 example: 409
-              message:
+              Message:
                 example: Conflict.
     InternalServerErrorResponse:
       description: Internal Server Error.
@@ -13723,9 +13525,9 @@ components:
             allOf:
               - $ref: '#/components/schemas/ErrorModel'
             properties:
-              statucCode:
+              StatusCode:
                 example: 500
-              message:
+              Message:
                 example: Internal Server Error.
   securitySchemes:
     bearer:
