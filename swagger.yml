@@ -4605,7 +4605,7 @@ paths:
                               RoomNo__c:
                                 type: string
                                 description: 連絡先住所 部屋番号
-                                example: 101
+                                example: '101'
                               Phone:
                                 type: string
                                 description: 連絡先電話番号
@@ -4680,15 +4680,15 @@ paths:
                                 description: 設置場所レイヤ納期ID
                                 example: XXXXX
                               CMAP_StandardOpeningDays__c:
-                                type: integer
+                                type: number
                                 description: 標準開通日数
-                                example: 30
-                                format: int32
+                                example: 30.5
+                                format: float
                               CMAP_StandardOpeningMonths__c:
-                                type: integer
+                                type: number
                                 description: 標準開通月数
-                                example: 1
-                                format: int32
+                                example: 1.5
+                                format: float
                               CMAP_PropertyOfferMethod__c:
                                 type: string
                                 description: 物件提供方式ID
@@ -4804,7 +4804,7 @@ paths:
                               CMAP_DeliveryServiceAddress__StateCode__s:
                                 type: string
                                 description: 配送先／サービス提供先住所 （都道府県）
-                                example: 23
+                                example: '23'
                               CMAP_DeliveryServiceAddress__City__s:
                                 type: string
                                 description: 配送先／サービス提供先住所 （市区郡）
@@ -4951,13 +4951,13 @@ paths:
                                     CMAP_ComsumptionTaxRate__c:
                                       type: number
                                       description: 消費税率
-                                      example: 10
+                                      example: 10.5
                                       format: float
                                     Quantity:
-                                      type: integer
+                                      type: number
                                       description: 数量
-                                      example: 1
-                                      format: int32
+                                      example: 1.5
+                                      format: float
                                     CMAP_PriceCategory__c:
                                       type: string
                                       description: 価格区分
@@ -4972,10 +4972,10 @@ paths:
                                       example: 3000
                                       format: int32
                                     CMAP_NumberOfInstallments__c:
-                                      type: integer
+                                      type: number
                                       description: 分割回数
-                                      example: 10
-                                      format: int32
+                                      example: 10.5
+                                      format: float
                                     CMAP_InstallmentPayFirstMonthPriceTaxExc__c:
                                       type: integer
                                       description: 分割払い初月価格/月(税抜)
@@ -5281,7 +5281,7 @@ paths:
                               BillingState:
                                 type: string
                                 description: 連絡先住所 都道府県
-                                example: 13
+                                example: '13'
                               BillingCity:
                                 type: string
                                 description: 連絡先住所 市区郡
@@ -5297,7 +5297,7 @@ paths:
                               RoomNo__c:
                                 type: string
                                 description: 連絡先住所 部屋番号
-                                example: 101
+                                example: '101'
                               Phone:
                                 type: string
                                 description: 連絡先電話番号
@@ -5416,15 +5416,15 @@ paths:
                                 description: 設置場所レイヤ納期ID
                                 example: XXXXX
                               CMAP_StandardOpeningDays__c:
-                                type: integer
+                                type: number
                                 description: 標準開通日数
-                                example: 30
-                                format: int32
+                                example: 30.5
+                                format: float
                               CMAP_StandardOpeningMonths__c:
-                                type: integer
+                                type: number
                                 description: 標準開通月数
-                                example: 1
-                                format: int32
+                                example: 1.5
+                                format: float
                               CMAP_OfferMethod__c:
                                 type: string
                                 description: 提供方式名
@@ -5584,7 +5584,7 @@ paths:
                               CMAP_DeliveryServiceAddress__StateCode__s:
                                 type: string
                                 description: 配送先／サービス提供先住所 （都道府県）
-                                example: 23
+                                example: '23'
                               CMAP_DeliveryServiceAddress__City__s:
                                 type: string
                                 description: 配送先／サービス提供先住所 （市区郡）
@@ -5792,13 +5792,13 @@ paths:
                                     CMAP_ComsumptionTaxRate__c:
                                       type: number
                                       description: 消費税率
-                                      example: 10
+                                      example: 10.5
                                       format: float
                                     Quantity:
-                                      type: integer
+                                      type: number
                                       description: 数量
-                                      example: 1
-                                      format: int32
+                                      example: 1.5
+                                      format: float
                                     CMAP_PriceCategory__c:
                                       type: string
                                       description: 価格区分
@@ -5818,10 +5818,10 @@ paths:
                                       example: 3300
                                       format: int32
                                     CMAP_NumberOfInstallments__c:
-                                      type: integer
+                                      type: number
                                       description: 分割回数
-                                      example: 10
-                                      format: int32
+                                      example: 10.5
+                                      format: float
                                     CMAP_InstallmentPayFirstMonthPriceTaxExc__c:
                                       type: integer
                                       description: 分割払い初月価格/月(税抜)
@@ -5912,10 +5912,10 @@ paths:
                                       example: 3300
                                       format: int32
                                     CMAP_GrantPoint__c:
-                                      type: integer
+                                      type: number
                                       description: 供与ポイント
-                                      example: 330
-                                      format: int32
+                                      example: 330.5
+                                      format: float
                                     CMAP_ChangeableBenefit__c:
                                       type: boolean
                                       description: 特典変更可
@@ -5933,10 +5933,10 @@ paths:
                                       description: 課税区分
                                       example: Taxation
                                     CMAP_NumberOfTimesPaid__c:
-                                      type: integer
+                                      type: number
                                       description: 支払い済回数
-                                      example: 1
-                                      format: int32
+                                      example: 1.5
+                                      format: float
                                     CMAP_RemainingDebtTaxExcluded__c:
                                       type: integer
                                       description: 残債(税抜)
@@ -5989,20 +5989,20 @@ paths:
                                       description: 提供開始前
                                       example: false
                                     CMAP_MainSubProGroupBenefitCampaignSortOrder__c:
-                                      type: integer
+                                      type: number
                                       description: メイン商品/サブ商品グループ・特典キャンペーン並び順
-                                      example: 1
-                                      format: int32
+                                      example: 1.5
+                                      format: float
                                     CMAP_ProductCategoryBenefitSortOrder__c:
-                                      type: integer
+                                      type: number
                                       description: 商品カテゴリ・特典並び順
-                                      example: 1
-                                      format: int32
+                                      example: 1.5
+                                      format: float
                                     CMAP_ProductSortOrder__c:
-                                      type: integer
+                                      type: number
                                       description: 商品並び順
-                                      example: 1
-                                      format: int32
+                                      example: 1.5
+                                      format: float
                                 OrderItemAddition:
                                   type: object
                                   description: 申込商品補足情報
@@ -10347,22 +10347,22 @@ paths:
                               title: 企業／団体名（フリガナ）
                               type: string
                               maxLength: 255
-                              example: 0
+                              example: null
                             CMAP_DepartmentName__c:
                               title: 部署名
                               type: string
                               maxLength: 255
-                              example: 0
+                              example: null
                             CMAP_EmployeeName__c:
                               title: 担当者名
                               type: string
                               maxLength: 255
-                              example: 0
+                              example: null
                             CMAP_EmployeeNameKana__c:
                               title: 担当者名（フリガナ）
                               type: string
                               maxLength: 255
-                              example: 0
+                              example: null
                             BillingPostalCode:
                               title: 連絡先住所 郵便番号
                               type: string
@@ -10372,7 +10372,7 @@ paths:
                               title: 連絡先住所 都道府県
                               type: string
                               maxLength: 255
-                              example: 13
+                              example: '13'
                             BillingCity:
                               title: 連絡先住所 市区郡
                               type: string
@@ -10392,7 +10392,7 @@ paths:
                               title: 連絡先住所 部屋番号
                               type: string
                               maxLength: 255
-                              example: 101
+                              example: '101'
                             Phone:
                               title: 連絡先電話番号
                               type: string
@@ -10482,14 +10482,14 @@ paths:
                               example: XXXXX
                             CMAP_StandardOpeningDays__c:
                               title: 標準開通日数
-                              type: integer
-                              format: int32
-                              example: 30
+                              type: number
+                              format: float
+                              example: 30.5
                             CMAP_StandardOpeningMonths__c:
                               title: 標準開通月数
-                              type: integer
-                              format: int32
-                              example: 1
+                              type: number
+                              format: float
+                              example: 1.5
                             CMAP_PropertyOfferMethod__c:
                               title: 物件提供方式ID
                               type: string
@@ -10633,7 +10633,7 @@ paths:
                               title: 配送先／サービス提供先住所 （都道府県）
                               type: string
                               maxLength: 255
-                              example: 23
+                              example: '23'
                             CMAP_DeliveryServiceAddress__City__s:
                               title: 配送先／サービス提供先住所 （市区郡）
                               type: string
@@ -10780,12 +10780,12 @@ paths:
                                     title: 消費税率
                                     type: number
                                     format: float
-                                    example: 10
+                                    example: 10.5
                                   Quantity:
                                     title: 数量
-                                    type: integer
-                                    format: int32
-                                    example: 1
+                                    type: number
+                                    format: float
+                                    example: 1.5
                                   CMAP_PriceCategory__c:
                                     title: 価格区分
                                     type: string
@@ -10802,9 +10802,9 @@ paths:
                                     example: 3000
                                   CMAP_NumberOfInstallments__c:
                                     title: 分割回数
-                                    type: integer
-                                    format: int32
-                                    example: 10
+                                    type: number
+                                    format: float
+                                    example: 10.5
                                   CMAP_InstallmentPayFirstMonthPriceTaxExc__c:
                                     title: 分割払い初月価格/月(税抜)
                                     type: integer
@@ -11062,22 +11062,22 @@ paths:
                               title: 企業／団体名（フリガナ）
                               type: string
                               maxLength: 255
-                              example: 0
+                              example: null
                             CMAP_DepartmentName__c:
                               title: 部署名
                               type: string
                               maxLength: 255
-                              example: 0
+                              example: null
                             CMAP_EmployeeName__c:
                               title: 担当者名
                               type: string
                               maxLength: 255
-                              example: 0
+                              example: null
                             CMAP_EmployeeNameKana__c:
                               title: 担当者名（フリガナ）
                               type: string
                               maxLength: 255
-                              example: 0
+                              example: null
                             BillingPostalCode:
                               title: 連絡先住所 郵便番号
                               type: string
@@ -11107,7 +11107,7 @@ paths:
                               title: 連絡先住所 部屋番号
                               type: string
                               maxLength: 255
-                              example: 101
+                              example: '101'
                             Phone:
                               title: 連絡先電話番号
                               type: string
@@ -11208,14 +11208,14 @@ paths:
                               example: XXXXX
                             CMAP_StandardOpeningDays__c:
                               title: 標準開通日数
-                              type: integer
-                              format: int32
-                              example: 30
+                              type: number
+                              format: float
+                              example: 30.5
                             CMAP_StandardOpeningMonths__c:
                               title: 標準開通月数
-                              type: integer
-                              format: int32
-                              example: 1
+                              type: number
+                              format: float
+                              example: 1.5
                             CMAP_Property__c:
                               title: 物件（集合）ID
                               type: string
@@ -11354,7 +11354,7 @@ paths:
                               title: 配送先／サービス提供先住所 （都道府県）
                               type: string
                               maxLength: 255
-                              example: 23
+                              example: '23'
                             CMAP_DeliveryServiceAddress__City__s:
                               title: 配送先／サービス提供先住所 （市区郡）
                               type: string
@@ -11493,12 +11493,12 @@ paths:
                                     title: 消費税率
                                     type: number
                                     format: float
-                                    example: 10
+                                    example: 10.5
                                   Quantity:
                                     title: 数量
-                                    type: integer
-                                    format: int32
-                                    example: 1
+                                    type: number
+                                    format: float
+                                    example: 55.5
                                   CMAP_PriceCategory__c:
                                     title: 価格区分
                                     type: string
@@ -11515,9 +11515,9 @@ paths:
                                     example: 3000
                                   CMAP_NumberOfInstallments__c:
                                     title: 分割回数
-                                    type: integer
-                                    format: int32
-                                    example: 10
+                                    type: number
+                                    format: float
+                                    example: 10.5
                                   CMAP_InstallmentPayFirstMonthPriceTaxExc__c:
                                     title: 分割払い初月価格/月(税抜)
                                     type: integer
@@ -11812,10 +11812,10 @@ paths:
                               example: 3300
                               format: int32
                             CMAP_GrantPoint__c:
-                              type: integer
+                              type: number
+                              format: float
                               description: 供与ポイント
-                              example: 330
-                              format: int32
+                              example: 330.5
                             CMAP_ChangeableBenefit__c:
                               type: boolean
                               description: 特典変更可
@@ -11833,10 +11833,10 @@ paths:
                               description: 課税区分
                               example: Taxation
                             CMAP_NumberOfTimesPaid__c:
-                              type: integer
+                              type: number
                               description: 支払い済回数
-                              example: 1
-                              format: int32
+                              example: 1.5
+                              format: float
                             CMAP_RemainingDebtTaxExcluded__c:
                               type: integer
                               description: 残債(税抜)
@@ -11889,20 +11889,20 @@ paths:
                               description: 提供開始前
                               example: false
                             CMAP_MainSubProGroupBenefitCampaignSortOrder__c:
-                              type: integer
+                              type: number
                               description: メイン商品/サブ商品グループ・特典キャンペーン並び順
-                              example: 1
-                              format: int32
+                              example: 1.5
+                              format: float
                             CMAP_ProductCategoryBenefitSortOrder__c:
-                              type: integer
+                              type: number
                               description: 商品カテゴリ・特典並び順
-                              example: 1
-                              format: int32
+                              example: 1.5
+                              format: float
                             CMAP_ProductSortOrder__c:
-                              type: integer
+                              type: number
                               description: 商品並び順
-                              example: 1
-                              format: int32
+                              example: 1.5
+                              format: float
                         OrderItemAddition:
                           type: object
                           description: 申込商品補足情報
@@ -12259,7 +12259,7 @@ components:
                               BillingState:
                                 type: string
                                 description: 連絡先住所 都道府県
-                                example: 13
+                                example: '13'
                               BillingCity:
                                 type: string
                                 description: 連絡先住所 市区郡
@@ -12275,7 +12275,7 @@ components:
                               RoomNo__c:
                                 type: string
                                 description: 連絡先住所 部屋番号
-                                example: 101
+                                example: '101'
                               Phone:
                                 type: string
                                 description: 連絡先電話番号
@@ -12372,7 +12372,7 @@ components:
                         BillingState:
                           type: string
                           description: 連絡先住所 都道府県
-                          example: 13
+                          example: '13'
                         BillingCity:
                           type: string
                           description: 連絡先住所 市区郡
@@ -12388,7 +12388,7 @@ components:
                         RoomNo__c:
                           type: string
                           description: 連絡先住所 部屋番号
-                          example: 102
+                          example: '102'
                         Phone:
                           type: string
                           description: 連絡先電話番号
@@ -12505,7 +12505,7 @@ components:
                   title: 連絡先住所 都道府県
                   type: string
                   maxLength: 255
-                  example: 13
+                  example: '13'
                 BillingCity:
                   title: 連絡先住所 市区郡
                   type: string
@@ -12525,7 +12525,7 @@ components:
                   title: 連絡先住所 部屋番号
                   type: string
                   maxLength: 255
-                  example: 101
+                  example: '101'
                 Phone:
                   title: 連絡先電話番号
                   type: string
@@ -12616,14 +12616,14 @@ components:
                   example: XXXXX
                 CMAP_StandardOpeningDays__c:
                   title: 標準開通日数
-                  type: integer
-                  format: int32
-                  example: 30
+                  type: number
+                  format: float
+                  example: 20.5
                 CMAP_StandardOpeningMonths__c:
                   title: 標準開通月数
-                  type: integer
-                  format: int32
-                  example: 1
+                  type: number
+                  format: float
+                  example: 1.5
                 CMAP_PropertyOfferMethod__c:
                   title: 物件提供方式ID
                   type: string
@@ -12757,7 +12757,7 @@ components:
                   title: 配送先／サービス提供先住所 （都道府県）
                   type: string
                   maxLength: 255
-                  example: 23
+                  example: '23'
                 CMAP_DeliveryServiceAddress__City__s:
                   title: 配送先／サービス提供先住所 （市区郡）
                   type: string
@@ -12894,12 +12894,12 @@ components:
                         title: 消費税率
                         type: number
                         format: float
-                        example: 10
+                        example: 10.5
                       Quantity:
                         title: 数量
-                        type: integer
-                        format: int32
-                        example: 1
+                        type: number
+                        format: float
+                        example: 99.5
                       CMAP_PriceCategory__c:
                         title: 価格区分
                         type: string
@@ -12916,9 +12916,9 @@ components:
                         example: 3000
                       CMAP_NumberOfInstallments__c:
                         title: 分割回数
-                        type: integer
-                        format: int32
-                        example: 10
+                        type: number
+                        format: float
+                        example: 10.5
                       CMAP_InstallmentPayFirstMonthPriceTaxExc__c:
                         title: 分割払い初月価格/月(税抜)
                         type: integer
