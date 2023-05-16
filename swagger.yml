@@ -4589,7 +4589,7 @@ paths:
                               BillingState:
                                 type: string
                                 description: 連絡先住所 都道府県
-                                example: 13
+                                example: '13'
                               BillingCity:
                                 type: string
                                 description: 連絡先住所 市区郡
@@ -9154,12 +9154,6 @@ paths:
                         example: https://hogehoge
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/RetrieveHashValueForAuthorization:
@@ -11106,7 +11100,7 @@ paths:
                               title: 連絡先住所 都道府県
                               type: string
                               maxLength: 255
-                              example: 13
+                              example: '13'
                             BillingCity:
                               title: 連絡先住所 市区郡
                               type: string
@@ -11517,7 +11511,7 @@ paths:
                                     title: 数量
                                     type: number
                                     format: float
-                                    example: 55.5
+                                    example: 1.5
                                   CMAP_PriceCategory__c:
                                     title: 価格区分
                                     type: string
@@ -11832,9 +11826,9 @@ paths:
                               format: int32
                             CMAP_GrantPoint__c:
                               type: number
-                              format: float
                               description: 供与ポイント
                               example: 330.5
+                              format: float
                             CMAP_ChangeableBenefit__c:
                               type: boolean
                               description: 特典変更可
@@ -11980,6 +11974,73 @@ paths:
                                 type: string
                                 description: 納入商品属性ID
                                 example: XXXXX
+                  ProcessResult:
+                    $ref: '#/components/schemas/ProcessResultModel'
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+  /order/RetrieveStoreList:
+    get:
+      tags:
+        - Order
+      security:
+        - bearer: []
+      summary: 店舗リスト取得API
+      description: >-
+        [Overview]
+
+
+        指定されたユーザーIDに紐づく店舗リストを取得する。
+
+
+        [Details]
+
+
+        1.Queryパラメータ定義に従いバリデーションを行う
+
+
+        2.Queryパラメータリクエスト項目として、c-mapの「店舗リスト取得API（c-map側検討中）」をコールする
+
+        - 2-1. httpステータスが400番代の場合、エラーメッセージを格納しhttpステータス400を返し処理を終了する。
+
+        - 2.2. httpステータスが500番代の場合、エラーメッセージを格納しhttpステータス500を返し処理を終了する。
+
+        - 2.3.
+        httpステータスが200でAPIから取得したレスポンスが0件の場合、エラーメッセージを格納しhttpステータス400を返し処理を終了する。
+
+        - 2.4. httpステータスが200でAPIから取得したレスポンスが0件でない場合、下記レスポンス項目に値を設定する。
+      operationId: RetrieveStoreList
+      parameters:
+        - in: query
+          name: UserId
+          description: ユーザーID
+          required: true
+          schema:
+            type: string
+            maxLength: 18
+            example: 12345678987
+      responses:
+        '200':
+          description: 成功時
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  StoreList:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        StoreName:
+                          type: string
+                          description: 店舗名
+                          example: XXXXX
+                        StoreCode:
+                          type: string
+                          description: 店舗コード
+                          example: XXXXX
                   ProcessResult:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
@@ -12637,7 +12698,7 @@ components:
                   title: 標準開通日数
                   type: number
                   format: float
-                  example: 20.5
+                  example: 30.5
                 CMAP_StandardOpeningMonths__c:
                   title: 標準開通月数
                   type: number
@@ -12918,7 +12979,7 @@ components:
                         title: 数量
                         type: number
                         format: float
-                        example: 99.5
+                        example: 1.5
                       CMAP_PriceCategory__c:
                         title: 価格区分
                         type: string
@@ -13181,7 +13242,7 @@ components:
                       title: 連絡先住所 都道府県
                       type: string
                       maxLength: 255
-                      example: 13
+                      example: '13'
                     BillingCity:
                       title: 連絡先住所 市区郡
                       type: string
@@ -13201,7 +13262,7 @@ components:
                       title: 連絡先住所 部屋番号
                       type: string
                       maxLength: 255
-                      example: 101
+                      example: '101'
                     Phone:
                       title: 連絡先電話番号
                       type: string
