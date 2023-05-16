@@ -9113,34 +9113,53 @@ paths:
               schema:
                 type: object
                 properties:
-                  CustomerId:
+                  resultcode:
+                    type: integer
+                    description: 結果コード
+                    example: 11
+                    format: int32
+                  message:
                     type: string
-                    description: 顧客ID
-                    example: XXXXXXX
-                  BillingAmount:
-                    type: number
-                    format: int32
-                    description: 請求額
-                    example: 10000
-                  DiscountAmount:
-                    type: number
-                    format: int32
-                    description: 割引額
-                    example: 1000
-                  BillingYM:
-                    type: number
-                    format: int32
-                    description: 請求年月
-                    example: 202303
-                  UseYM:
-                    type: number
-                    format: int32
-                    description: 利用年月
-                    example: 202302
-                  ProcessResult:
-                    $ref: '#/components/schemas/ProcessResultModel'
+                    description: メッセージ
+                    example: test
+                  result:
+                    type: object
+                    description: 請求先
+                    properties:
+                      CustomerId:
+                        type: string
+                        description: 顧客ID
+                        example: XXXX
+                      BillingAmount:
+                        type: integer
+                        description: 請求額
+                        example: 3000
+                        format: int32
+                      DiscountAmount:
+                        type: integer
+                        description: 割引額
+                        example: 1000
+                        format: int32
+                      BillingYM:
+                        type: string
+                        description: 請求年月
+                        example: '202309'
+                      UseYM:
+                        type: string
+                        description: 利用年月
+                        example: '202309'
+                      BillingPageURLParameter:
+                        type: string
+                        description: 請求額詳細URLパラメータ
+                        example: https://hogehoge
         '400':
           $ref: '#/components/responses/BadRequestResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/RetrieveHashValueForAuthorization:
