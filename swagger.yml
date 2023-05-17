@@ -9622,14 +9622,12 @@ paths:
                                 description: サービスグループ
                                 example: XXXXX
                               offerableServiceNames:
-                                type: array
+                                type: string
                                 description: 提供可能サービス名リスト
-                                items:
-                                  type: string
-                                  example:
-                                    - 10G
-                                    - 1G
-                                    - 30M
+                                example:
+                                  - 10G
+                                  - 1G
+                                  - 30M
                               hasChannelInfo:
                                 type: boolean
                                 description: チャンネル情報あり
