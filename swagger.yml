@@ -4330,7 +4330,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/RetrieveImportantMattersDescription:
-    get:
+    post:
       tags:
         - Order
       security:
@@ -4354,15 +4354,21 @@ paths:
           - 2-3. httpステータスが200の場合、APIから取得したレスポンスを下記レスポンス項目に設定する。
             
       operationId: RetrieveImportantMattersDescription
-      parameters:
-        - in: query
-          name: ImportantMatterDescriptionId
-          description: 重要事項説明ID
-          required: true
-          schema:
-            type: string
-            maxLength: 18
-            example: A0000000000000001
+      requestBody:
+        description: リクエスト項目を指定
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - importantMatterDescriptionId
+              properties:
+                importantMatterDescriptionId:
+                  title: 重要事項説明ID
+                  type: string
+                  maxLength: 18
+                  example: XXXXX
       responses:
         '200':
           description: 成功時
@@ -7599,7 +7605,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/RetrieveAddressInfo:
-    get:
+    post:
       tags:
         - Order
       security:
@@ -7632,19 +7638,24 @@ paths:
 
             -  streets：streets（字・丁目リスト）
       operationId: RetrieveAddressInfo
-      parameters:
-        - in: query
-          name: adressCodes
-          description: 住所コードリスト
-          required: true
-          schema:
-            type: array
-            items:
-              type: string
-              description: 住所コード
-            example:
-              - 23223001001
-              - 23223001002
+      requestBody:
+        description: リクエスト項目を指定
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - adressCodes
+              properties:
+                adressCodes:
+                  title: 住所コードリスト
+                  type: string
+                  maxLength: 11
+                  example:
+                    - '101'
+                    - '102'
+                    - '103'
       responses:
         '200':
           description: 成功時
@@ -9414,7 +9425,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/RetrieveOfferMethodList:
-    get:
+    post:
       tags:
         - Order
       security:
@@ -9443,104 +9454,73 @@ paths:
 
           - 3.4. httpステータスが200でレスポンスが空のリストの場合、空のリストを返却する。
       operationId: RetrieveOfferMethodList
-      parameters:
-        - in: query
-          name: PrefectureCode
-          description: 都道府県コード
-          required: true
-          schema:
-            type: string
-            maxLength: 2
-            example: 12
-        - in: query
-          name: CityCode
-          description: 市区町村コード
-          required: true
-          schema:
-            type: string
-            maxLength: 3
-            example: 1
-        - in: query
-          name: PriorityOfferMethod
-          description: 優先提供方式
-          required: false
-          schema:
-            type: string
-            maxLength: 255
-            example: タイプC
-        - in: query
-          name: BlockNumberTypeC
-          description: ブロック番号（タイプC）
-          required: false
-          schema:
-            type: string
-            maxLength: 20
-            example: 033-14
-        - in: query
-          name: LayerCodeTypeC
-          description: レイヤコード（タイプC）
-          required: false
-          schema:
-            type: string
-            maxLength: 20
-            example: CQ
-        - in: query
-          name: GroupUnitCenterTypeK
-          description: GC局（タイプK）
-          required: false
-          schema:
-            type: string
-            maxLength: 20
-            example: 5555
-        - in: query
-          name: LayerCodeTypeK
-          description: レイヤコード（タイプK）
-          required: false
-          schema:
-            type: string
-            maxLength: 20
-            example: CQ
-        - in: query
-          name: GroupUnitCenterTypeS
-          description: GC局（タイプS）
-          required: false
-          schema:
-            type: string
-            maxLength: 20
-            example: 5555
-        - in: query
-          name: LayerCodeTypeS
-          description: レイヤコード（タイプS）
-          required: false
-          schema:
-            type: string
-            maxLength: 20
-            example: CQ
-        - in: query
-          name: OrderChannelCategory
-          description: 申込チャネル区分
-          required: true
-          schema:
-            type: string
-            maxLength: 255
-            example: Web
-            enum:
-              - Web
-              - CallCenter
-              - Agency
-              - ApplianceStore
-              - AuShop
-        - in: query
-          name: ResidenceType
-          description: 住宅形態
-          required: false
-          schema:
-            type: string
-            maxLength: 255
-            example: Home
-            enum:
-              - Home
-              - Apartment
+      requestBody:
+        description: リクエスト項目を指定
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - prefectureCode
+                - cityCode
+                - orderChannelCategory
+              properties:
+                prefectureCode:
+                  title: 都道府県コード
+                  type: string
+                  maxLength: 2
+                  example: '01'
+                cityCode:
+                  title: 市区町村コード
+                  type: string
+                  maxLength: 3
+                  example: '101'
+                priorityOfferMethod:
+                  title: 優先提供方式
+                  type: string
+                  maxLength: 80
+                  example: タイプC
+                blockNumberTypeC:
+                  title: ブロック番号（タイプC）
+                  type: string
+                  maxLength: 20
+                  example: 033-14
+                layerCodeTypeC:
+                  title: レイヤコード（タイプC）
+                  type: string
+                  maxLength: 20
+                  example: CQ
+                groupUnitCenterTypeK:
+                  title: GC局（タイプK）
+                  type: string
+                  maxLength: 20
+                  example: XXXX
+                layerCodeTypeK:
+                  title: レイヤコード（タイプK）
+                  type: string
+                  maxLength: 20
+                  example: CQ
+                groupUnitCenterTypeS:
+                  title: GC局（タイプS）
+                  type: string
+                  maxLength: 20
+                  example: XXXX
+                layerCodeTypeS:
+                  title: レイヤコード（タイプS）
+                  type: string
+                  maxLength: 20
+                  example: CQ
+                orderChannelCategory:
+                  title: 申込チャネル区分
+                  type: string
+                  maxLength: 255
+                  example: Web
+                residenceType:
+                  title: 住戸形態
+                  type: string
+                  maxLength: 255
+                  example: Home
       responses:
         '200':
           description: 成功時
@@ -9639,7 +9619,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/RetrieveChannelList:
-    get:
+    post:
       tags:
         - Order
       security:
@@ -9668,39 +9648,39 @@ paths:
 
           - 3.4. httpステータスが200でレスポンスが空のリストの場合、空のリストを返却する。
       operationId: RetrieveChannelList
-      parameters:
-        - in: query
-          name: BlockNumberGroupUnitCenter
-          description: ブロック番号／GC局
-          required: true
-          schema:
-            type: string
-            maxLength: 20
-            example: 033-14
-        - in: query
-          name: PrefectureCode
-          description: 都道府県コード
-          required: true
-          schema:
-            type: string
-            maxLength: 2
-            example: 12
-        - in: query
-          name: CityCode
-          description: 市区町村コード
-          required: true
-          schema:
-            type: string
-            maxLength: 3
-            example: 123
-        - in: query
-          name: AccessCircuit
-          description: アクセス回線
-          required: true
-          schema:
-            type: string
-            maxLength: 80
-            example: タイプC
+      requestBody:
+        description: リクエスト項目を指定
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - blockNumberGroupUnitCenter
+                - prefectureCode
+                - cityCode
+                - accessCircuit
+              properties:
+                blockNumberGroupUnitCenter:
+                  title: ブロック番号／GC局
+                  type: string
+                  maxLength: 20
+                  example: 033-14
+                prefectureCode:
+                  title: 都道府県コード
+                  type: string
+                  maxLength: 2
+                  example: '12'
+                cityCode:
+                  title: 市区町村コード
+                  type: string
+                  maxLength: 3
+                  example: '123'
+                accessCircuit:
+                  title: アクセス回線
+                  type: string
+                  maxLength: 80
+                  example: タイプC
       responses:
         '200':
           description: 成功時
@@ -9730,7 +9710,7 @@ paths:
                         SpecialNotes:
                           type: string
                           description: 特記
-                          example: ※1
+                          example: XXXXXX
                         SpecialNotesContent:
                           type: string
                           description: 特記内容
