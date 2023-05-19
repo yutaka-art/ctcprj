@@ -4667,6 +4667,10 @@ paths:
                                 type: string
                                 description: 提供プランID
                                 example: XXXXX
+                              CMAP_OfferPlanName__c:
+                                type: string
+                                description: 提供プランID
+                                example: XXXXX
                               CMAP_OfferPackageId__c:
                                 type: string
                                 description: 提供パッケージID
@@ -4675,6 +4679,18 @@ paths:
                                 type: string
                                 description: 設置場所提供エリアID
                                 example: XXXXX
+                              CMAP_IsTypeCircuit__c:
+                                type: boolean
+                                description: タイプ：回線
+                                example: false
+                              CMAP_IsTypeNotCircuit__c:
+                                type: boolean
+                                description: タイプ：非回線
+                                example: false
+                              CMAP_IsTypeGoodsServiceSales__c:
+                                type: boolean
+                                description: タイプ：物品・サービス販売
+                                example: false
                               CMAP_InstallLocLayerDeliveryDuration__c:
                                 type: string
                                 description: 設置場所レイヤ納期ID
@@ -4689,9 +4705,25 @@ paths:
                                 description: 標準開通月数
                                 example: 1.5
                                 format: float
+                              CMAP_ApartmentPropertyName__c:
+                                type: string
+                                description: 集合物件名
+                                example: XXXXX
                               CMAP_PropertyOfferMethod__c:
                                 type: string
                                 description: 物件提供方式ID
+                                example: XXXXX
+                              CMAP_PropertyAddress__c:
+                                type: string
+                                description: 物件（集合）：住所
+                                example: XXXXX
+                              CMAP_PropertyAddressCode11__c:
+                                type: string
+                                description: 物件（集合）：住所コード11桁
+                                example: XXXXX
+                              CMAP_PropertyCity__c:
+                                type: string
+                                description: 物件（集合）：市区町村
                                 example: XXXXX
                               CMAP_Case__c:
                                 type: string
@@ -4766,6 +4798,22 @@ paths:
                                 description: 再開希望日
                                 example: '2023-09-26'
                                 format: date
+                              ShippingStreet:
+                                type: string
+                                description: 設置場所住所（町名・番地）
+                                example: XXXXX
+                              ShippingCity:
+                                type: string
+                                description: 設置場所住所（市区郡）
+                                example: XXXXX
+                              ShippingState:
+                                type: string
+                                description: 設置場所住所（都道府県）
+                                example: XXXXX
+                              ShippingPostalCode:
+                                type: string
+                                description: 設置場所住所（郵便番号）
+                                example: XXXXX
                               ShippingLatitude:
                                 type: number
                                 description: 設置場所住所 （緯度）
@@ -4776,9 +4824,17 @@ paths:
                                 description: 設置場所住所 （経度）
                                 example: 40.9461
                                 format: float
+                              CMAP_InstallationLocationAddressCode11__c:
+                                type: string
+                                description: 設置場所：住所コード11桁
+                                example: XXXXX
                               CMAP_InstallationLocationAddressCode__c:
                                 type: string
                                 description: 設置場所：住所コードID
+                                example: XXXXX
+                              CMAP_InstallationLocationCity__c:
+                                type: string
+                                description: 設置場所：市区町村ID
                                 example: XXXXX
                               CMAP_InstallationLocationHouseNumber__c:
                                 type: string
@@ -5441,6 +5497,18 @@ paths:
                                 type: string
                                 description: 集合物件名
                                 example: XXXXX
+                              CMAP_PropertyAddress__c:
+                                type: string
+                                description: 物件（集合）：住所
+                                example: XXXXX
+                              CMAP_PropertyAddressCode11__c:
+                                type: string
+                                description: 物件（集合）：住所コード11桁
+                                example: XXXXX
+                              CMAP_PropertyCity__c:
+                                type: string
+                                description: 物件（集合）：市区町村
+                                example: XXXXX
                               CMAP_PropertyOfferMethod__c:
                                 type: string
                                 description: 物件提供方式ID
@@ -5522,6 +5590,22 @@ paths:
                                 description: 再開希望日
                                 example: '2023-09-26'
                                 format: date
+                              ShippingStreet:
+                                type: string
+                                description: 設置場所住所（町名・番地）
+                                example: XXXXX
+                              ShippingCity:
+                                type: string
+                                description: 設置場所住所（市区郡）
+                                example: XXXXX
+                              ShippingState:
+                                type: string
+                                description: 設置場所住所（都道府県）
+                                example: XXXXX
+                              ShippingPostalCode:
+                                type: string
+                                description: 設置場所住所（郵便番号）
+                                example: XXXXX
                               ShippingLatitude:
                                 type: number
                                 description: 設置場所住所 （緯度）
@@ -5544,9 +5628,17 @@ paths:
                                 type: string
                                 description: 設置場所：市区町村コード
                                 example: XXXXX
+                              CMAP_InstallationLocationAddressCode11__c:
+                                type: string
+                                description: 設置場所：住所コード11桁
+                                example: XXXXX
                               CMAP_InstallationLocationAddressCode__c:
                                 type: string
                                 description: 設置場所：住所コードID
+                                example: XXXXX
+                              CMAP_InstallationLocationCity__c:
+                                type: string
+                                description: 設置場所：市区町村ID
                                 example: XXXXX
                               CMAP_InstallationLocationHouseNumber__c:
                                 type: string
@@ -8013,6 +8105,18 @@ paths:
                               type: string
                               description: 集合物件名
                               example: XXXXX
+                            CMAP_PropertyAddress__c:
+                              type: string
+                              description: 物件（集合）：住所
+                              example: XXXXX
+                            CMAP_PropertyAddressCode11__c:
+                              type: string
+                              description: 物件（集合）：住所コード11桁
+                              example: XXXXX
+                            CMAP_PropertyCity__c:
+                              type: string
+                              description: 物件（集合）：市区町村
+                              example: XXXXX
                             CMAP_PropertyOfferMethod__c:
                               type: string
                               description: 物件提供方式ID
@@ -8094,6 +8198,22 @@ paths:
                               description: 再開希望日
                               example: '2023-09-26'
                               format: date
+                            ShippingStreet:
+                              type: string
+                              description: 設置場所住所（町名・番地）
+                              example: XXXXX
+                            ShippingCity:
+                              type: string
+                              description: 設置場所住所（市区郡）
+                              example: XXXXX
+                            ShippingState:
+                              type: string
+                              description: 設置場所住所（都道府県）
+                              example: XXXXX
+                            ShippingPostalCode:
+                              type: string
+                              description: 設置場所住所（郵便番号）
+                              example: XXXXX
                             ShippingLatitude:
                               type: number
                               description: 設置場所住所 （緯度）
@@ -8116,9 +8236,17 @@ paths:
                               type: string
                               description: 設置場所：市区町村コード
                               example: XXXXX
+                            CMAP_InstallationLocationAddressCode11__c:
+                              type: string
+                              description: 設置場所：住所コード11桁
+                              example: XXXXX
                             CMAP_InstallationLocationAddressCode__c:
                               type: string
                               description: 設置場所：住所コードID
+                              example: XXXXX
+                            CMAP_InstallationLocationCity__c:
+                              type: string
+                              description: 設置場所：市区町村ID
                               example: XXXXX
                             CMAP_InstallationLocationHouseNumber__c:
                               type: string
@@ -8458,6 +8586,18 @@ paths:
                             type: string
                             description: 集合物件名
                             example: XXXXX
+                          CMAP_PropertyAddress__c:
+                            type: string
+                            description: 物件（集合）：住所
+                            example: XXXXX
+                          CMAP_PropertyAddressCode11__c:
+                            type: string
+                            description: 物件（集合）：住所コード11桁
+                            example: XXXXX
+                          CMAP_PropertyCity__c:
+                            type: string
+                            description: 物件（集合）：市区町村
+                            example: XXXXX
                           CMAP_PropertyOfferMethod__c:
                             type: string
                             description: 物件提供方式ID
@@ -8539,6 +8679,22 @@ paths:
                             description: 再開希望日
                             example: '2023-09-26'
                             format: date
+                          ShippingStreet:
+                            type: string
+                            description: 設置場所住所（町名・番地）
+                            example: XXXXX
+                          ShippingCity:
+                            type: string
+                            description: 設置場所住所（市区郡）
+                            example: XXXXX
+                          ShippingState:
+                            type: string
+                            description: 設置場所住所（都道府県）
+                            example: XXXXX
+                          ShippingPostalCode:
+                            type: string
+                            description: 設置場所住所（郵便番号）
+                            example: XXXXX
                           ShippingLatitude:
                             type: number
                             description: 設置場所住所 （緯度）
@@ -8561,9 +8717,17 @@ paths:
                             type: string
                             description: 設置場所：市区町村コード
                             example: XXXXX
+                          CMAP_InstallationLocationAddressCode11__c:
+                            type: string
+                            description: 設置場所：住所コード11桁
+                            example: XXXXX
                           CMAP_InstallationLocationAddressCode__c:
                             type: string
                             description: 設置場所：住所コードID
+                            example: XXXXX
+                          CMAP_InstallationLocationCity__c:
+                            type: string
+                            description: 設置場所：市区町村ID
                             example: XXXXX
                           CMAP_InstallationLocationHouseNumber__c:
                             type: string
@@ -10481,6 +10645,28 @@ paths:
                               type: string
                               maxLength: 18
                               example: XXXXX
+                            CMAP_OfferPlanName__c:
+                              title: 提供プラン名
+                              type: string
+                              maxLength: 255
+                              example: XXXXX
+                            CMAP_OfferPackageId__c:
+                              title: 提供パッケージID
+                              type: string
+                              maxLength: 18
+                              example: XXXXX
+                            CMAP_IsTypeCircuit__c:
+                              title: タイプ：回線
+                              type: boolean
+                              example: false
+                            CMAP_IsTypeNotCircuit__c:
+                              title: タイプ：非回線
+                              type: boolean
+                              example: false
+                            CMAP_IsTypeGoodsServiceSales__c:
+                              title: タイプ：物品・サービス販売
+                              type: boolean
+                              example: false
                             CMAP_InstallationLocationOfferArea__c:
                               title: 設置場所提供エリアID
                               type: string
@@ -10501,6 +10687,26 @@ paths:
                               type: number
                               format: float
                               example: 1.5
+                            CMAP_ApartmentPropertyName__c:
+                              title: 集合物件名
+                              type: string
+                              maxLength: 80
+                              example: XXXXX
+                            CMAP_PropertyAddress__c:
+                              title: 物件（集合）：住所
+                              type: string
+                              maxLength: 255
+                              example: XXXXX
+                            CMAP_PropertyAddressCode11__c:
+                              title: 物件（集合）：住所コード11桁
+                              type: string
+                              maxLength: 11
+                              example: XXXXX
+                            CMAP_PropertyCity__c:
+                              title: 物件（集合）：市区町村
+                              type: string
+                              maxLength: 18
+                              example: XXXXX
                             CMAP_PropertyOfferMethod__c:
                               title: 物件提供方式ID
                               type: string
@@ -10590,6 +10796,26 @@ paths:
                               type: string
                               format: date
                               example: '2023-09-26'
+                            ShippingStreet:
+                              title: 設置場所住所（町名・番地）
+                              type: string
+                              maxLength: 255
+                              example: XXXXX
+                            ShippingCity:
+                              title: 設置場所住所（市区郡）
+                              type: string
+                              maxLength: 40
+                              example: XXXXX
+                            ShippingState:
+                              title: 設置場所住所（都道府県）
+                              type: string
+                              maxLength: 80
+                              example: XXXXX
+                            ShippingPostalCode:
+                              title: 設置場所住所（郵便番号）
+                              type: string
+                              maxLength: 20
+                              example: XXXXX
                             ShippingLatitude:
                               title: 設置場所住所 （緯度）
                               type: number
@@ -10615,8 +10841,18 @@ paths:
                               type: string
                               maxLength: 255
                               example: XXXXX
+                            CMAP_InstallationLocationAddressCode11__c:
+                              title: 設置場所：住所コード11桁
+                              type: string
+                              maxLength: 11
+                              example: XXXXX
                             CMAP_InstallationLocationAddressCode__c:
                               title: 設置場所：住所コードID
+                              type: string
+                              maxLength: 18
+                              example: XXXXX
+                            CMAP_InstallationLocationCity__c:
+                              title: 設置場所：市区町村ID
                               type: string
                               maxLength: 18
                               example: XXXXX
@@ -10689,6 +10925,19 @@ paths:
                               type: string
                               maxLength: 18
                               example: XXXXX
+                            CMAP_ChangeSourceOfferPlanName__c:
+                              title: 【移転/プラン変更元】提供プラン名
+                              type: string
+                              maxLength: 255
+                              example: XXXXX
+                            CMAP_ChangeSourceTypeCircuit__c:
+                              title: 【移転/プラン変更元】タイプ：回線
+                              type: boolean
+                              example: false
+                            CMAP_ChangeSourceTypeNotCircuit__c:
+                              title: 【移転/プラン変更元】タイプ：非回線
+                              type: boolean
+                              example: false
                             CMAP_CancelOrderChannelDetail__c:
                               title: キャンセル申込チャネル詳細
                               type: string
@@ -10954,10 +11203,12 @@ paths:
                           description: 結果メッセージ
                           example: XXXXX
                         errorIds:
-                          type: array
+                          type: string
                           description: エラー対象商品ID・グループIDリスト
-                          items: {}
-                          example: null
+                          example:
+                            - E00001
+                            - E00002
+                            - E00003
                   ProcessResult:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
@@ -11207,6 +11458,28 @@ paths:
                               type: string
                               maxLength: 18
                               example: XXXXX
+                            CMAP_OfferPlanName__c:
+                              title: 提供プラン名
+                              type: string
+                              maxLength: 255
+                              example: XXXXX
+                            CMAP_OfferPackageId__c:
+                              title: 提供パッケージID
+                              type: string
+                              maxLength: 18
+                              example: XXXXX
+                            CMAP_IsTypeCircuit__c:
+                              title: タイプ：回線
+                              type: boolean
+                              example: false
+                            CMAP_IsTypeNotCircuit__c:
+                              title: タイプ：非回線
+                              type: boolean
+                              example: false
+                            CMAP_IsTypeGoodsServiceSales__c:
+                              title: タイプ：物品・サービス販売
+                              type: boolean
+                              example: false
                             CMAP_InstallationLocationOfferArea__c:
                               title: 設置場所提供エリアID
                               type: string
@@ -11229,6 +11502,26 @@ paths:
                               example: 1.5
                             CMAP_Property__c:
                               title: 物件（集合）ID
+                              type: string
+                              maxLength: 18
+                              example: XXXXX
+                            CMAP_ApartmentPropertyName__c:
+                              title: 集合物件名
+                              type: string
+                              maxLength: 80
+                              example: XXXXX
+                            CMAP_PropertyAddress__c:
+                              title: 物件（集合）：住所
+                              type: string
+                              maxLength: 255
+                              example: XXXXX
+                            CMAP_PropertyAddressCode11__c:
+                              title: 物件（集合）：住所コード11桁
+                              type: string
+                              maxLength: 11
+                              example: XXXXX
+                            CMAP_PropertyCity__c:
+                              title: 物件（集合）：市区町村
                               type: string
                               maxLength: 18
                               example: XXXXX
@@ -11321,6 +11614,26 @@ paths:
                               type: string
                               format: date
                               example: '2023-09-26'
+                            ShippingStreet:
+                              title: 設置場所住所（町名・番地）
+                              type: string
+                              maxLength: 255
+                              example: XXXXX
+                            ShippingCity:
+                              title: 設置場所住所（市区郡）
+                              type: string
+                              maxLength: 40
+                              example: XXXXX
+                            ShippingState:
+                              title: 設置場所住所（都道府県）
+                              type: string
+                              maxLength: 80
+                              example: XXXXX
+                            ShippingPostalCode:
+                              title: 設置場所住所（郵便番号）
+                              type: string
+                              maxLength: 20
+                              example: XXXXX
                             ShippingLatitude:
                               title: 設置場所住所 （緯度）
                               type: number
@@ -11331,8 +11644,18 @@ paths:
                               type: number
                               format: float
                               example: 40.9461
+                            CMAP_InstallationLocationAddressCode11__c:
+                              title: 設置場所：住所コード11桁
+                              type: string
+                              maxLength: 11
+                              example: XXXXX
                             CMAP_InstallationLocationAddressCode__c:
                               title: 設置場所：住所コードID
+                              type: string
+                              maxLength: 18
+                              example: XXXXX
+                            CMAP_InstallationLocationCity__c:
+                              title: 設置場所：市区町村ID
                               type: string
                               maxLength: 18
                               example: XXXXX
@@ -11411,6 +11734,19 @@ paths:
                               type: string
                               maxLength: 18
                               example: XXXXX
+                            CMAP_ChangeSourceOfferPlanName__c:
+                              title: 【移転/プラン変更元】提供プラン名
+                              type: string
+                              maxLength: 255
+                              example: XXXXX
+                            CMAP_ChangeSourceTypeCircuit__c:
+                              title: 【移転/プラン変更元】タイプ：回線
+                              type: boolean
+                              example: false
+                            CMAP_ChangeSourceTypeNotCircuit__c:
+                              title: 【移転/プラン変更元】タイプ：非回線
+                              type: boolean
+                              example: false
                             CMAP_CancelOrderChannelDetail__c:
                               title: キャンセル申込チャネル詳細
                               type: string
@@ -12682,6 +13018,28 @@ components:
                   type: string
                   maxLength: 18
                   example: XXXXX
+                CMAP_OfferPlanName__c:
+                  title: 提供プラン名
+                  type: string
+                  maxLength: 255
+                  example: XXXXX
+                CMAP_OfferPackageId__c:
+                  title: 提供パッケージID
+                  type: string
+                  maxLength: 18
+                  example: XXXXX
+                CMAP_IsTypeCircuit__c:
+                  title: タイプ：回線
+                  type: boolean
+                  example: false
+                CMAP_IsTypeNotCircuit__c:
+                  title: タイプ：非回線
+                  type: boolean
+                  example: false
+                CMAP_IsTypeGoodsServiceSales__c:
+                  title: タイプ：物品・サービス販売
+                  type: boolean
+                  example: false
                 CMAP_InstallationLocationOfferArea__c:
                   title: 設置場所提供エリアID
                   type: string
@@ -12702,6 +13060,26 @@ components:
                   type: number
                   format: float
                   example: 1.5
+                CMAP_ApartmentPropertyName__c:
+                  title: 集合物件名
+                  type: string
+                  maxLength: 80
+                  example: XXXXX
+                CMAP_PropertyAddress__c:
+                  title: 物件（集合）：住所
+                  type: string
+                  maxLength: 255
+                  example: XXXXX
+                CMAP_PropertyAddressCode11__c:
+                  title: 物件（集合）：住所コード11桁
+                  type: string
+                  maxLength: 255
+                  example: XXXXX
+                CMAP_PropertyCity__c:
+                  title: 物件（集合）：市区町村
+                  type: string
+                  maxLength: 18
+                  example: XXXXX
                 CMAP_PropertyOfferMethod__c:
                   title: 物件提供方式ID
                   type: string
@@ -12791,6 +13169,26 @@ components:
                   type: string
                   format: date
                   example: '2023-09-26'
+                ShippingStreet:
+                  title: 設置場所住所（町名・番地）
+                  type: string
+                  maxLength: 255
+                  example: XXXXX
+                ShippingCity:
+                  title: 設置場所住所（市区郡）
+                  type: string
+                  maxLength: 40
+                  example: XXXXX
+                ShippingState:
+                  title: 設置場所住所（都道府県）
+                  type: string
+                  maxLength: 80
+                  example: XXXXX
+                ShippingPostalCode:
+                  title: 設置場所住所（郵便番号）
+                  type: string
+                  maxLength: 20
+                  example: XXXXX
                 ShippingLatitude:
                   title: 設置場所住所 （緯度）
                   type: number
@@ -12801,8 +13199,18 @@ components:
                   type: number
                   format: float
                   example: 40.9461
+                CMAP_InstallationLocationAddressCode11__c:
+                  title: 設置場所：住所コード11桁
+                  type: string
+                  maxLength: 11
+                  example: XXXXX
                 CMAP_InstallationLocationAddressCode__c:
                   title: 設置場所：住所コードID
+                  type: string
+                  maxLength: 18
+                  example: XXXXX
+                CMAP_InstallationLocationCity__c:
+                  title: 設置場所：市区町村ID
                   type: string
                   maxLength: 18
                   example: XXXXX
@@ -12876,6 +13284,19 @@ components:
                   type: string
                   maxLength: 18
                   example: XXXXX
+                CMAP_ChangeSourceOfferPlanName__c:
+                  title: 【移転/プラン変更元】提供プラン名
+                  type: string
+                  maxLength: 255
+                  example: XXXXX
+                CMAP_ChangeSourceTypeCircuit__c:
+                  title: 【移転/プラン変更元】タイプ：回線
+                  type: boolean
+                  example: false
+                CMAP_ChangeSourceTypeNotCircuit__c:
+                  title: 【移転/プラン変更元】タイプ：非回線
+                  type: boolean
+                  example: false
                 CMAP_CancelOrderChannelDetail__c:
                   title: キャンセル申込チャネル詳細
                   type: string
