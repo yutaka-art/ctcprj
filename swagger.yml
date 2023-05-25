@@ -14296,11 +14296,11 @@ components:
                   type: object
                   properties:
                     Code:
-                      example: E0301
+                      example: E5089
                     Message:
-                      example: '[契約名義]が個人の場合は入力必須です'
+                      example: リスト内の[数量区分]の文字数が不正です
                     Attribute:
-                      example: Account.FirstName
+                      example: null
     UnauthorizedResponse:
       description: Unauthorized.
       content:
@@ -14366,11 +14366,11 @@ components:
                   type: object
                   properties:
                     Code:
-                      example: E0301
+                      example: E5089
                     Message:
-                      example: '[契約名義]が個人の場合は入力必須です'
+                      example: リスト内の[数量区分]の文字数が不正です
                     Attribute:
-                      example: Account.FirstName
+                      example: null
     ConflictErrorResponse:
       description: Conflict.
       content:
