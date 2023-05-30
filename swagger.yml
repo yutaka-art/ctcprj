@@ -4173,7 +4173,7 @@ paths:
           schema:
             type: string
             maxLength: 7
-            example: 4600003
+            example: '4600003'
       responses:
         '200':
           description: 成功時
@@ -4191,11 +4191,11 @@ paths:
                         Id:
                           type: string
                           description: 字・丁目ID
-                          example: 123456789012345680
+                          example: XXXXX
                         CMAP_PrefectureCode__c:
                           type: string
                           description: 都道府県コード
-                          example: 13
+                          example: '13'
                         CMAP_PrefectureName__c:
                           type: string
                           description: 都道府県名
@@ -4203,19 +4203,39 @@ paths:
                         CMAP_CityCode__c:
                           type: string
                           description: 市区町村コード
-                          example: 12345678901
+                          example: XXXXX
                         CMAP_CityName__c:
                           type: string
                           description: 市区町村名
                           example: 港区
+                        CMAP_AliasCode__c:
+                          type: string
+                          description: 大字・通称コード
+                          example: XXXXX
+                        CMAP_AliasName__c:
+                          type: string
+                          description: 大字・通称名
+                          example: XXXXX
+                        CMAP_StreetCode__c:
+                          type: string
+                          description: 字・丁目コード
+                          example: XXXXX
+                        CMAP_StreetName__c:
+                          type: string
+                          description: 字・丁目名
+                          example: XXXXX
                         CMAP_AliasStreetName__c:
                           type: string
                           description: 大字・通称 字・丁目名
-                          example: 六本木1丁目
+                          example: XXXXX
                         CMAP_AdressCode__c:
                           type: string
                           description: 住所コード
-                          example: 123456789012345680
+                          example: XXXXX
+                        CMAP_PostalCode__c:
+                          type: string
+                          description: 郵便番号
+                          example: '1730032'
                   ProcessResult:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
