@@ -9879,23 +9879,23 @@ paths:
                     items:
                       type: object
                       properties:
-                        ChannelName:
+                        CMAP_ChannelName__c:
                           type: string
                           description: チャンネル名
                           example: 東海テレビ
-                        ChannelNumber:
+                        CMAP_ChannelNumber__c:
                           type: integer
                           description: チャンネル番号
                           example: 1
-                        BroadcastingCodeCategory:
+                        CMAP_BroadcastingCodeCategory__c:
                           type: string
                           description: 放送コード区分
                           example: 地上デジタル:DigitalTerrestrial
-                        SpecialNotes:
+                        CMAP_SpecialNotes__c:
                           type: string
                           description: 特記
                           example: ※1
-                        SpecialNotesContent:
+                        CMAP_SpecialNotesContent__c:
                           type: string
                           description: 特記内容
                           example: XXXXXX
