@@ -3931,15 +3931,13 @@ paths:
         - in: query
           name: CustomerId
           description: 顧客ID
-          required: true
           schema:
             type: string
             maxLength: 18
-            example: 12345678987
+            example: XXXXX
         - in: query
           name: OrderChannelCategory
           description: 申込チャネル区分
-          required: true
           schema:
             type: string
             maxLength: 255
@@ -4039,7 +4037,7 @@ paths:
           required: true
           schema:
             type: string
-            example: 12345678987
+            example: XXXXX
             maxLength: 18
         - in: query
           name: MaxNumber
@@ -4114,10 +4112,6 @@ paths:
                               description: 申込日
                               example: '2023-09-22'
                               format: date
-                            CMAP_OrderChannelName__c:
-                              type: string
-                              description: 申込チャネル名
-                              example: Web
                             CMAP_OrderChannelDetail__c:
                               type: string
                               description: 申込チャネル詳細
@@ -4465,18 +4459,28 @@ paths:
                               type: boolean
                               description: 提供開始前
                               example: false
-                            CMAP_OrderItemTypeSelection__c:
-                              type: boolean
-                              description: 申込商品種別：選択商品
-                              example: true
-                            CMAP_OrderItemTypeBenefit__c:
-                              type: boolean
-                              description: 申込商品種別：特典商品
-                              example: true
-                            CMAP_OrderItemTypeAutomaticSelection__c:
-                              type: boolean
-                              description: 申込商品種別：自動選択商品
-                              example: true
+                        OrderItemInfos:
+                          type: array
+                          items:
+                            type: object
+                            description: 申込商品情報リスト
+                            properties:
+                              OrderItem:
+                                type: object
+                                description: 申込商品
+                                properties:
+                                  CMAP_OrderItemTypeSelection__c:
+                                    type: boolean
+                                    description: 申込商品種別：選択商品
+                                    example: false
+                                  CMAP_OrderItemTypeBenefit__c:
+                                    type: boolean
+                                    description: 申込商品種別：特典商品
+                                    example: false
+                                  CMAP_OrderItemTypeAutomaticSelection__c:
+                                    type: boolean
+                                    description: 申込商品種別：自動選択商品
+                                    example: false
                   ProcessResult:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
@@ -4526,7 +4530,7 @@ paths:
           schema:
             type: string
             maxLength: 18
-            example: 12345678987
+            example: XXXXX
         - in: query
           name: ContainsInvalidData
           description: 無効データ取得フラグ
@@ -4595,10 +4599,6 @@ paths:
                             description: 申込日
                             example: '2023-09-22'
                             format: date
-                          CMAP_OrderChannelName__c:
-                            type: string
-                            description: 申込チャネル名
-                            example: Web
                           CMAP_OrderChannelDetail__c:
                             type: string
                             description: 申込チャネル詳細
