@@ -3931,6 +3931,7 @@ paths:
         - in: query
           name: CustomerId
           description: 顧客ID
+          required: false
           schema:
             type: string
             maxLength: 18
@@ -3938,6 +3939,7 @@ paths:
         - in: query
           name: OrderChannelCategory
           description: 申込チャネル区分
+          required: false
           schema:
             type: string
             maxLength: 255
@@ -4057,6 +4059,9 @@ paths:
             type: string
             example: Asc
             maxLength: 255
+            enum:
+              - Asc
+              - Desc
       responses:
         '200':
           description: 成功時
@@ -4546,6 +4551,10 @@ paths:
             type: string
             maxLength: 255
             example: Both
+            enum:
+              - Both
+              - ChangeSourceOnly
+              - ChangeSourceExcept
       responses:
         '200':
           description: 成功時
