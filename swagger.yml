@@ -3942,7 +3942,6 @@ paths:
           required: false
           schema:
             type: string
-            maxLength: 255
             example: web
             enum:
               - Web
@@ -4058,7 +4057,6 @@ paths:
           schema:
             type: string
             example: Asc
-            maxLength: 255
             enum:
               - Asc
               - Desc
@@ -4549,7 +4547,6 @@ paths:
           required: true
           schema:
             type: string
-            maxLength: 255
             example: Both
             enum:
               - Both
@@ -10650,7 +10647,6 @@ components:
                 CMAP_ContractName__c:
                   title: 契約名義
                   type: string
-                  maxLength: 255
                   example: Individual
                 LastName:
                   title: 顧客名（姓）・企業／団体名
@@ -10675,7 +10671,6 @@ components:
                 CMAP_Gender__c:
                   title: 性別
                   type: string
-                  maxLength: 255
                   example: Male
                 CMAP_Birthday__c:
                   title: 生年月日
@@ -10710,7 +10705,6 @@ components:
                 BillingState:
                   title: 連絡先住所 都道府県
                   type: string
-                  maxLength: 255
                   example: '13'
                 BillingCity:
                   title: 連絡先住所 市区郡
@@ -10788,7 +10782,6 @@ components:
                 CMAP_OrderChannelDetail__c:
                   title: 申込チャネル詳細
                   type: string
-                  maxLength: 255
                   example: Web
                 AccountId:
                   title: 顧客ID
@@ -10798,12 +10791,10 @@ components:
                 CMAP_ResidenceType__c:
                   title: 住戸形態
                   type: string
-                  maxLength: 255
                   example: Home
                 CMAP_BuildingCategory__c:
                   title: 建物区分
                   type: string
-                  maxLength: 255
                   example: OwnHouse
                 CMAP_OfferPlan__c:
                   title: 提供プランID
@@ -10890,7 +10881,6 @@ components:
                 CMAP_BillingPaymentMethodAgent__c:
                   title: 請求先の支払方法（代行）
                   type: string
-                  maxLength: 255
                   example: CreditCard
                 CMAP_BillingPaymentMethodRegistered__c:
                   title: 請求先の支払方法（登録済）
@@ -10924,7 +10914,6 @@ components:
                 CMAP_CancelReason__c:
                   title: キャンセル理由
                   type: string
-                  maxLength: 255
                   example: XXXXX
                 CMAP_CancelReasonOther__c:
                   title: キャンセル理由（その他）
@@ -10944,7 +10933,6 @@ components:
                 CMAP_TerminationReason__c:
                   title: 解約理由
                   type: string
-                  maxLength: 255
                   example: XXXXX
                 CMAP_TerminationReasonOther__c:
                   title: 解約理由（その他）
@@ -11034,7 +11022,6 @@ components:
                 CMAP_DeliveryServiceAddress__StateCode__s:
                   title: 配送先／サービス提供先住所 （都道府県）
                   type: string
-                  maxLength: 255
                   example: '23'
                 CMAP_DeliveryServiceAddress__City__s:
                   title: 配送先／サービス提供先住所 （市区郡）
@@ -11092,7 +11079,6 @@ components:
                 CMAP_CancelOrderChannelDetail__c:
                   title: キャンセル申込チャネル詳細
                   type: string
-                  maxLength: 255
                   example: Web
                 LastModifiedDate:
                   title: 最終更新日
@@ -11113,17 +11099,14 @@ components:
                 orderCategoryCurrentlySelected:
                   title: 申込区分（選択中/単一）
                   type: string
-                  maxLength: 255
                   example: PlanChange
                 orderCategoryPreviouslySelected:
                   title: 申込区分（変更前/複数）
                   type: string
-                  maxLength: 255
                   example: NewContractPurchace
                 orderChannelCategory:
                   title: 申込チャネル区分
                   type: string
-                  maxLength: 255
                   example: Web
             OrderImportantMatterDescriptions:
               type: array
@@ -11194,7 +11177,6 @@ components:
                       CMAP_PriceCategory__c:
                         title: 価格区分
                         type: string
-                        maxLength: 255
                         example: MonthlyPayment
                       CMAP_InstallmentPaymentMonthly__c:
                         title: 分割払い/月
@@ -11236,12 +11218,10 @@ components:
                       CMAP_ProductSelectionState__c:
                         title: 商品選択状態
                         type: string
-                        maxLength: 255
                         example: Selected
                       CMAP_LastTimeChangeCategory__c:
                         title: 前回変更区分
                         type: string
-                        maxLength: 255
                         example: Added
                       CMAP_HasOrderItemAttribute:
                         title: 申込商品属性あり
@@ -11273,12 +11253,10 @@ components:
                       CMAP_TaxationCategory__c:
                         title: 課税区分
                         type: string
-                        maxLength: 255
                         example: Taxation
                       CMAP_ChangeSourceDestinationCategory__c:
                         title: 移転/プラン変更元先区分
                         type: string
-                        maxLength: 255
                         example: ChangeSource
                       CMAP_InheritsMovementAssetAttribute__c:
                         title: 移転時納入商品属性引継
@@ -11336,7 +11314,6 @@ components:
             CMAP_PaymentMethod__c:
               title: 支払方法
               type: string
-              maxLength: 255
               example: CreditCard
             CMAP_CreditCardNumberLastFourDigits__c:
               title: クレジットカード番号（末尾4桁）
