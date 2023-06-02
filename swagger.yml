@@ -10228,13 +10228,15 @@ paths:
                         example: 1000
                         format: int32
                       BillingYM:
-                        type: string
+                        type: integer
                         description: 請求年月
-                        example: '202309'
+                        example: 202309
+                        format: int32
                       UseYM:
-                        type: string
+                        type: integer
                         description: 利用年月
-                        example: '202309'
+                        example: 202309
+                        format: int32
                       BillingPageURLParameter:
                         type: string
                         description: 請求額詳細URLパラメータ
