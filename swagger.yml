@@ -313,7 +313,7 @@ paths:
           $ref: '#/components/responses/BadRequestResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
-  /order/RetrieveApartmentList:
+  /order/RetrieveApartmentOfferMethodList:
     get:
       tags:
         - Order
@@ -344,15 +344,13 @@ paths:
           required: true
           schema:
             type: string
-            maxLength: 11
-            example: 46000030011
+            example: '46000030011'
         - in: query
           name: OrderChannelCategory
           description: 申込チャネル区分
           required: true
           schema:
             type: string
-            maxLength: 255
             example: Web
             enum:
               - Web
@@ -381,19 +379,27 @@ paths:
                         CMAP_PropertyName__c:
                           type: string
                           description: 物件名
-                          example: グリーンヒルズ
+                          example: グリーンヒルズ南流山
                         CMAP_Address__c:
                           type: string
                           description: 住所
-                          example: 愛知県名古屋市中区錦3-1-1
+                          example: 千葉県流山市南流山4-13-1
+                        CMAP_AddressCode11__c:
+                          type: string
+                          description: 住所コード11桁
+                          example: '12519060700'
+                        CMAP_City__c:
+                          type: string
+                          description: 市区町村ID
+                          example: XXXXX
                         CMAP_Latitude__c:
                           type: string
                           description: 緯度
-                          example: 35.1715
+                          example: '35.8396'
                         CMAP_Longitude__c:
                           type: string
                           description: 経度
-                          example: 136.9021
+                          example: '139.9031'
                         CMAP_OfferMethodName__c:
                           type: string
                           description: 提供方式名
@@ -2311,8 +2317,8 @@ paths:
       operationId: RetrieveCustomerInformation
       parameters:
         - in: query
-          name: CustomerID
-          description: 顧客IDを指定
+          name: AcountId
+          description: 顧客ID
           required: true
           schema:
             type: string
@@ -2390,7 +2396,7 @@ paths:
                           BillingState:
                             type: string
                             description: 連絡先住所 都道府県
-                            example: 13
+                            example: '13'
                           BillingCity:
                             type: string
                             description: 連絡先住所 市区郡
@@ -2406,7 +2412,7 @@ paths:
                           RoomNo__c:
                             type: string
                             description: 連絡先住所 部屋番号
-                            example: 101
+                            example: '101'
                           Phone:
                             type: string
                             description: 連絡先電話番号
@@ -2415,18 +2421,36 @@ paths:
                             type: string
                             description: マイコミュファID
                             example: chubu.tarou@commufa.jp
-                          CMAP_OrderItemTypeSelection__c:
-                            type: boolean
-                            description: 申込商品種別：選択商品
-                            example: true
-                          CMAP_OrderItemTypeBenefit__c:
-                            type: boolean
-                            description: 申込商品種別：特典商品
-                            example: true
-                          CMAP_OrderItemTypeAutomaticSelection__c:
-                            type: boolean
-                            description: 申込商品種別：自動選択商品
-                            example: true
+                      OrderInfo:
+                        type: object
+                        description: 申込情報
+                        properties:
+                          Order:
+                            type: object
+                            description: 申込
+                            properties:
+                              OrderItemInfos:
+                                type: array
+                                description: 申込商品情報リスト
+                                items:
+                                  type: object
+                                  properties:
+                                    OrderItem:
+                                      type: object
+                                      description: 申込商品
+                                      properties:
+                                        CMAP_OrderItemTypeSelection__c:
+                                          type: boolean
+                                          description: 申込商品種別：選択商品
+                                          example: true
+                                        CMAP_OrderItemTypeBenefit__c:
+                                          type: boolean
+                                          description: 申込商品種別：特典商品
+                                          example: false
+                                        CMAP_OrderItemTypeAutomaticSelection__c:
+                                          type: boolean
+                                          description: 申込商品種別：自動選択商品
+                                          example: false
                   ProcessResult:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
