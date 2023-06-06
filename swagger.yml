@@ -1134,7 +1134,7 @@ paths:
                                       description: 分割払い初月価格/月(税抜)
                                       example: 3000
                                       format: int32
-                                    CMAP_AnnualPayment__c:
+                                    CMAP_SelectionAnnualPayment__c:
                                       type: boolean
                                       description: 年額払い
                                       example: false
@@ -2025,7 +2025,7 @@ paths:
                                       type: boolean
                                       description: 分割払い中
                                       example: true
-                                    CMAP_AnnualPayment__c:
+                                    CMAP_SelectionAnnualPayment__c:
                                       type: boolean
                                       description: 年額払い
                                       example: false
