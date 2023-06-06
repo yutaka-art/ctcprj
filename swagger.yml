@@ -8776,30 +8776,33 @@ paths:
       operationId: RetrieveContractList
       parameters:
         - in: query
-          name: CustomerId
+          name: CMAP_AccountId__c
           description: 顧客ID
           required: true
           schema:
             type: string
             maxLength: 18
-            example: 12345678987
+            example: XXXXX
         - in: query
-          name: GetMaxCount
-          description: 最大取得件数(検索対象の個別契約情報の最大取得件数(1〜999件)を設定する。)
-          required: false
+          name: CMAP_MaxAcquisitionNumber__c
+          description: 最大取得件数
+          required: true
           schema:
-            type: integer
-            maxLength: 3
+            type: number
+            format: float
             minimum: 1
             maximum: 999
-            example: 5
+            example: 1.1
         - in: query
-          name: Order
-          description: 並び順(検索対象の個別契約情報の並び順を設定する。(デフォルトは降順))
+          name: CMAP_SortOrder
+          description: 並び順
           required: false
           schema:
             type: string
-            example: 降順
+            example: ASC
+            enum:
+              - ASC
+              - DESC
       responses:
         '200':
           description: 成功時
@@ -8808,122 +8811,223 @@ paths:
               schema:
                 type: object
                 properties:
-                  IndividualContractInfoList:
+                  IndividualContractInfos:
                     type: array
-                    description: 個別契約情報
+                    description: 個別契約／購入情報リスト(個別契約／購入情報)
                     items:
                       type: object
                       properties:
-                        IndividualContract:
+                        CMAP_IndividualContractInfo__c:
                           type: object
-                          description: 個別契約
                           properties:
-                            IndividualContractId:
-                              type: string
-                              description: 個別契約ID
-                              example: A100000001
-                            CustomerId:
-                              type: string
-                              description: 顧客ID
-                              example: XXXXXX
-                            IndividualContractNumber:
-                              type: string
-                              description: 個別契約番号
-                              example: XXXXXXX
-                            ResidenceType:
-                              type: string
-                              description: 住戸形態
-                              example: ホーム
-                            BuildingClassification:
-                              type: string
-                              description: 建物区分
-                              example: 持家
-                            OfferPlanId:
-                              type: string
-                              description: 提供プランID
-                              example: XXXXXX
-                            OfferPlanName:
-                              type: string
-                              description: 提供プラン名
-                              example: 光インターネット標準（フルカスタム）NETFLIXパック
-                            IsTypeOfLineContain:
-                              type: boolean
-                              description: 回線を含む
-                              example: true
-                            InstallAddressBlockFormulaId:
-                              type: string
-                              description: 設置場所アドレスブロック提供方式ID
-                              example: XXXXXX
-                            BlockNoGc:
-                              type: string
-                              description: ブロック番号
-                              example: XXXXXX
-                            CityCode:
-                              type: string
-                              description: 市区町村コード
-                              example: 1100
-                            OfferMethodName:
-                              type: string
-                              description: 提供方式名
-                              example: XXXXX
-                            PropertySetId:
-                              type: string
-                              description: 物件（集合）ID
-                              example: XXXXX
-                            PropertyCollectiveName:
-                              type: string
-                              description: 集合物件名
-                              example: XXXXX
-                            InstallationLocation_Address:
-                              type: string
-                              description: 設置場所住所
-                              example: 愛知県名古屋市中区錦３丁目１-１
-                            InstallationLocation_RoomNumber:
-                              type: string
-                              description: 設置場所部屋番号
-                              example: Amenty東陽 103号室
-                            PropertyProvisionMethodId:
-                              type: string
-                              description: 物件提供方式ID
-                              example: XXXXX
-                            PropertyProvisionMethodName:
-                              type: string
-                              description: 物件提供方式名
-                              example: XXXXX
-                            BillingId:
-                              type: string
-                              description: 請求先ID
-                              example: XXXXX
-                            ContractStatus:
-                              type: string
-                              description: 契約状態
-                              example: 有効
-                            ContractStartDate:
-                              type: string
-                              format: date
-                              description: 契約開始日
-                              example: '2999-12-31T00:00:00.000Z'
-                            ContractEndDate:
-                              type: string
-                              format: date
-                              description: 契約終了日
-                              example: '2999-12-31T00:00:00.000Z'
-                            ReasonOfcancellation:
-                              type: string
-                              description: 解約理由
-                              example: XXXXX
-                            ReasonOfcancellation_Etc:
-                              type: string
-                              description: 解約理由（その他）
-                              example: XXXXX
-                            InProgressOrderID:
-                              type: string
-                              description: 進行中_申込ID
-                              example: XXXXX
-                            AddressCus:
-                              type: string
-                              description: 設置場所住所カスタム(設置場所住所+設置場所部屋番号)
-                              example: 〒460-0007 愛知県名古屋市中区錦３丁目１-１ Amenty東陽 103号室
+                            CMAP_IndividualContract__c:
+                              type: object
+                              properties:
+                                Id:
+                                  type: string
+                                  description: 個別契約／購入ID
+                                  example: XXXXX
+                                CMAP_IndividualContractNumber__c:
+                                  type: string
+                                  description: 個別契約／購入番号
+                                  example: XXXXX
+                                CMAP_AccountId__c:
+                                  type: string
+                                  description: 顧客ID
+                                  example: XXXXX
+                                CMAP_ContractName__c:
+                                  type: string
+                                  description: 契約名義
+                                  example: Corporation
+                                CMAP_ResidenceType__c:
+                                  type: string
+                                  description: 住戸形態
+                                  example: Apartment
+                                CMAP_BuildingCategory__c:
+                                  type: string
+                                  description: 建物区分
+                                  example: RentalApartment
+                                CMAP_OfferPlanId__c:
+                                  type: string
+                                  description: 提供プランID
+                                  example: XXXXX
+                                CMAP_OfferPlanName__c:
+                                  type: string
+                                  description: 提供プラン名
+                                  example: XXXXX
+                                CMAP_OfferPackageId__c:
+                                  type: string
+                                  description: 提供パッケージID
+                                  example: XXXXX
+                                CMAP_IsTypeCircuit__c:
+                                  type: boolean
+                                  description: タイプ：回線
+                                  example: false
+                                CMAP_IsTypeNotCircuit__c:
+                                  type: boolean
+                                  description: タイプ：非回線
+                                  example: false
+                                CMAP_IsTypeGoodsServiceSales__c:
+                                  type: boolean
+                                  description: タイプ：物品・サービス販売
+                                  example: false
+                                CMAP_InstallationLocationOfferAreaId__c:
+                                  type: string
+                                  description: 設置場所提供エリアID
+                                  example: XXXXX
+                                CMAP_InstallLocBlockNumberGroupUnit__c:
+                                  type: string
+                                  description: ブロック番号／GC局
+                                  example: XXXXX
+                                CMAP_PrefectureCode__c:
+                                  type: string
+                                  description: 都道府県コード
+                                  example: XXXXX
+                                CMAP_CityCode__c:
+                                  type: string
+                                  description: 市区町村コード
+                                  example: XXXXX
+                                CMAP_PrefectureCityCode__c:
+                                  type: string
+                                  description: 都道府県／市区町村コード
+                                  example: XXXXX
+                                CMAP_OfferMethodName__c:
+                                  type: string
+                                  description: 提供方式名
+                                  example: XXXXX
+                                CMAP_OfferMethodNameForDisplay__c:
+                                  type: string
+                                  description: 提供方式名（画面表示用）
+                                  example: XXXXX
+                                CMAP_B2B_Property_ApartmentId__c:
+                                  type: string
+                                  description: 物件（集合）ID
+                                  example: XXXXX
+                                CMAP_ApartmentPropertyName__c:
+                                  type: string
+                                  description: 集合物件名
+                                  example: XXXXX
+                                CMAP_ShippingLatitude__c:
+                                  type: number
+                                  description: 設置場所：住所（緯度）
+                                  example: 139.2432
+                                  format: float
+                                CMAP_ShippingLongitude__c:
+                                  type: number
+                                  description: 設置場所：住所（経度）
+                                  example: 40.9461
+                                  format: float
+                                CMAP_InstallationAddressId__c:
+                                  type: string
+                                  description: 設置場所：住所コードID
+                                  example: XXXXX
+                                CMAP_InstallationLocationHouseNumber__c:
+                                  type: string
+                                  description: 設置場所：番地以降
+                                  example: XXXXX
+                                CMAP_InstallationLocationRoomNumber__c:
+                                  type: string
+                                  description: 設置場所：部屋番号
+                                  example: XXXXX
+                                CMAP_InstallationLocationExcludeRoom__c:
+                                  type: string
+                                  description: 設置場所：住所（部屋番号除く）
+                                  example: XXXXX
+                                CMAP_InstallationAddress__c:
+                                  type: string
+                                  description: 設置場所：住所
+                                  example: XXXXX
+                                CMAP_PropertyOfferMethodId__c:
+                                  type: string
+                                  description: 物件提供方式ID
+                                  example: XXXXX
+                                CMAP_PropertyOfferMethodName__c:
+                                  type: string
+                                  description: 物件提供方式名
+                                  example: XXXXX
+                                CMAP_BillingId__c:
+                                  type: string
+                                  description: 請求先ID
+                                  example: XXXXX
+                                CMAP_BillingPaymentMethodRegistered__c:
+                                  type: string
+                                  description: 請求先の支払方法（登録済）
+                                  example: XXXXX
+                                CMAP_ContractSituation__c:
+                                  type: string
+                                  description: 契約状態
+                                  example: Cancel
+                                CMAP_ContractStartDay__c:
+                                  type: string
+                                  description: 契約開始日
+                                  example: '2023-09-22'
+                                  format: date
+                                CMAP_ContractEndDay__c:
+                                  type: string
+                                  description: 契約終了日
+                                  example: '2023-09-22'
+                                  format: date
+                                CMAP_TerminationReason__c:
+                                  type: string
+                                  description: 解約理由
+                                  example: XXXXX
+                                CMAP_TerminationReasonOther__c:
+                                  type: string
+                                  description: 解約理由（その他）
+                                  example: XXXXX
+                                CMAP_ProgressionOrderId__c:
+                                  type: string
+                                  description: 【進行中】申込ID
+                                  example: XXXXX
+                                CMAP_ContractStatus__c:
+                                  type: string
+                                  description: 契約ステータス
+                                  example: XXXXX
+                                CMAP_DeliveryServiceAddress__PostalCode__s:
+                                  type: string
+                                  description: 配送先／サービス提供先住所 （郵便番号）
+                                  example: XXXXX
+                                CMAP_DeliveryServiceAddress__StateCode__s:
+                                  type: string
+                                  description: 配送先／サービス提供先住所 （都道府県）
+                                  example: 21
+                                CMAP_DeliveryServiceAddress__City__s:
+                                  type: string
+                                  description: 配送先／サービス提供先住所 （市区郡）
+                                  example: XXXXX
+                                CMAP_DeliveryServiceAddress__Street__s:
+                                  type: string
+                                  description: 配送先／サービス提供先住所 （町名・番地）
+                                  example: XXXXX
+                                CMAP_DeliveryServiceAddressBuildingName__c:
+                                  type: string
+                                  description: 配送先／サービス提供先住所：建物名
+                                  example: XXXXX
+                                CMAP_DeliveryServiceAddressRoomNumber__c:
+                                  type: string
+                                  description: 配送先／サービス提供先住所：部屋番号
+                                  example: XXXXX
+                                CMAP_DeliveryServiceAddressForDisplay__c:
+                                  type: string
+                                  description: 配送先／サービス提供先住所（画面表示用）
+                                  example: XXXXX
+                                CMAP_ExistsMyCommufaId__c:
+                                  type: boolean
+                                  description: MyコミュファID登録有無
+                                  example: false
+                                LastModifiedDate:
+                                  type: string
+                                  description: 最終更新日
+                                  example: '2023-09-22 09:22:22'
+                                  format: date-time
+                                CMAP_CityId__c:
+                                  type: string
+                                  description: 市区町村ID
+                                  example: XXXXX
+                                CMAP_BeforeOffer__c:
+                                  type: boolean
+                                  description: 提供開始前
+                                  example: false
                   ProcessResult:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
