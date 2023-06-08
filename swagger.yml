@@ -9211,17 +9211,17 @@ paths:
         - Contract
       security:
         - bearer: []
-      summary: 個別契約リスト取得API
+      summary: 個別契約／購入リスト取得API
       description: |-
         [Overview]
 
-        指定された顧客IDの顧客に紐づく個別契約情報を一覧で取得する。
+        指定の顧客の個別契約／購入のリストを契約順に返す。※有効な個別契約／購入、無効（解約など）な個別契約／購入、休止中の個別契約／購入などを含む。
 
         [Details]
 
         1.Queryパラメータ定義に従いバリデーションを行う
 
-        2.Queryパラメータリクエスト項目として、c-mapの「個別契約リスト取得API」をコールする
+        2.Queryパラメータリクエスト項目として、c-mapの「個別契約／購入リスト取得API」をコールする
 
         - 2-1. httpステータスが400番代の場合、エラーメッセージを格納しhttpステータス400を返し処理を終了する。
 
@@ -9495,17 +9495,17 @@ paths:
         - Contract
       security:
         - bearer: []
-      summary: 個別契約詳細取得API
+      summary: 個別契約／購入詳細取得API
       description: |-
         [Overview]
 
-        指定された個別契約IDに紐づく個別契約詳細情報を取得する。
+        指定の個別契約／購入の詳細情報と、個別契約／購入に紐付く納入商品のリストを返す。進行中の申込が存在する場合は、合わせて返却する
 
         [Details]
 
         1.Queryパラメータ定義に従いバリデーションを行う
 
-        2.Queryパラメータリクエスト項目として、c-mapの「個別契約詳細取得API」をコールする
+        2.Queryパラメータリクエスト項目として、c-mapの「個別契約／購入詳細取得API」をコールする
 
         - 2-1. httpステータスが400番代の場合、エラーメッセージを格納しhttpステータス400を返し処理を終了する。
 
@@ -9516,7 +9516,7 @@ paths:
       parameters:
         - in: query
           name: Id
-          description: 個別契約ID
+          description: 個別契約／購入ID
           required: true
           schema:
             type: string
