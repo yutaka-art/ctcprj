@@ -6891,9 +6891,7 @@ paths:
                   example: false
                 offerPlanProductIds:
                   title: 提供プラン商品IDリスト
-                  type: array
-                  items:
-                    type: string
+                  type: string
                   example:
                     - XXXX1
                     - XXXX2
@@ -6922,7 +6920,6 @@ paths:
                             CMAP_ContractName__c:
                               title: 契約名義
                               type: string
-                              maxLength: 255
                               example: Individual
                             LastName:
                               title: 顧客名（姓）・企業／団体名
@@ -7025,7 +7022,6 @@ paths:
                             leadId:
                               title: リードID
                               type: string
-                              maxLength: 255
                               example: XXXXX
                     OrderInfo:
                       type: object
@@ -7059,7 +7055,6 @@ paths:
                             CMAP_OrderChannelDetail__c:
                               title: 申込チャネル詳細
                               type: string
-                              maxLength: 255
                               example: Web
                             AccountId:
                               title: 顧客ID
@@ -7069,12 +7064,10 @@ paths:
                             CMAP_ResidenceType__c:
                               title: 住戸形態
                               type: string
-                              maxLength: 255
                               example: Home
                             CMAP_BuildingCategory__c:
                               title: 建物区分
                               type: string
-                              maxLength: 255
                               example: OwnHouse
                             CMAP_OfferPlan__c:
                               title: 提供プランID
@@ -7084,12 +7077,10 @@ paths:
                             CMAP_OfferPlanName__c:
                               title: 提供プラン名
                               type: string
-                              maxLength: 255
                               example: XXXXX
                             CMAP_OfferPackageId__c:
                               title: 提供パッケージID
                               type: string
-                              maxLength: 18
                               example: XXXXX
                             CMAP_IsTypeCircuit__c:
                               title: タイプ：回線
@@ -7161,12 +7152,10 @@ paths:
                             CMAP_BillingPaymentMethodAgent__c:
                               title: 請求先の支払方法（代行）
                               type: string
-                              maxLength: 255
                               example: CreditCard
                             CMAP_BillingPaymentMethodRegistered__c:
                               title: 請求先の支払方法（登録済）
                               type: string
-                              maxLength: 255
                               example: XXXXX
                             CMAP_NeedsSendingDocumentOfBilling__c:
                               title: 請求先の書類送付あり
@@ -7195,7 +7184,6 @@ paths:
                             CMAP_CancelReason__c:
                               title: キャンセル理由
                               type: string
-                              maxLength: 255
                               example: XXXXX
                             CMAP_CancelReasonOther__c:
                               title: キャンセル理由（その他）
@@ -7215,7 +7203,6 @@ paths:
                             CMAP_TerminationReason__c:
                               title: 解約理由
                               type: string
-                              maxLength: 255
                               example: XXXXX
                             CMAP_TerminationReasonOther__c:
                               title: 解約理由（その他）
@@ -7265,17 +7252,14 @@ paths:
                             CMAP_InstallLocBlockNumberGroupUnit__c:
                               title: 設置場所：ブロック番号／GC局
                               type: string
-                              maxLength: 255
                               example: XXXXX
                             CMAP_InstallationLocationPrefectureCode__c:
                               title: 設置場所：都道府県コード
                               type: string
-                              maxLength: 255
                               example: XXXXX
                             CMAP_InstallationLocationCityCode__c:
                               title: 設置場所：市区町村コード
                               type: string
-                              maxLength: 255
                               example: XXXXX
                             CMAP_InstallationLocationAddressCode11__c:
                               title: 設置場所：住所コード11桁
@@ -7315,7 +7299,6 @@ paths:
                             CMAP_DeliveryServiceAddress__StateCode__s:
                               title: 配送先／サービス提供先住所 （都道府県）
                               type: string
-                              maxLength: 255
                               example: '23'
                             CMAP_DeliveryServiceAddress__City__s:
                               title: 配送先／サービス提供先住所 （市区郡）
@@ -7364,7 +7347,6 @@ paths:
                             CMAP_ChangeSourceOfferPlanName__c:
                               title: 【移転/プラン変更元】提供プラン名
                               type: string
-                              maxLength: 255
                               example: XXXXX
                             CMAP_ChangeSourceTypeCircuit__c:
                               title: 【移転/プラン変更元】タイプ：回線
@@ -7377,7 +7359,6 @@ paths:
                             CMAP_CancelOrderChannelDetail__c:
                               title: キャンセル申込チャネル詳細
                               type: string
-                              maxLength: 255
                               example: Web
                             CMAP_Rebuilding__c:
                               title: 建替え
@@ -7386,7 +7367,6 @@ paths:
                             CMAP_PrefectureCityCode__c:
                               title: 都道府県／市区町村コード
                               type: string
-                              maxLength: 255
                               example: XXXXX
                         OrderAddition:
                           type: object
@@ -7398,17 +7378,14 @@ paths:
                             orderCategoryCurrentlySelected:
                               title: 申込区分（選択中/単一）
                               type: string
-                              maxLength: 255
                               example: PlanChange
                             orderCategoryPreviouslySelected:
                               title: 申込区分（変更前/複数）
                               type: string
-                              maxLength: 255
                               example: NewContractPurchace
                             orderChannelCategory:
                               title: 申込チャネル区分
                               type: string
-                              maxLength: 255
                               example: Web
                         OrderImportantMatterDescriptions:
                           type: array
@@ -7527,12 +7504,10 @@ paths:
                                   CMAP_ProductSelectionState__c:
                                     title: 商品選択状態
                                     type: string
-                                    maxLength: 255
                                     example: Selected
                                   CMAP_LastTimeChangeCategory__c:
                                     title: 前回変更区分
                                     type: string
-                                    maxLength: 255
                                     example: Added
                                   CMAP_HasOrderItemAttribute:
                                     title: 申込商品属性あり
@@ -7559,7 +7534,6 @@ paths:
                                   CMAP_TaxationCategory__c:
                                     title: 課税区分
                                     type: string
-                                    maxLength: 255
                                     example: Taxation
                                   CMAP_OrderItemBeforeChange__c:
                                     title: 変更前の申込商品ID
@@ -7603,23 +7577,20 @@ paths:
                         CMAP_PaymentMethod__c:
                           title: 支払方法
                           type: string
-                          maxLength: 255
                           example: CreditCard
                         CMAP_CreditCardNumberLastFourDigits__c:
                           title: クレジットカード番号（末尾4桁）
                           type: string
                           maxLength: 4
-                          example: 2123
+                          example: '2123'
                         CMAP_YamaguchiInfoId__c:
                           title: 山口情報管理ID
                           type: string
-                          maxLength: 255
                           example: XXXXX
                         CMAP_AccountTransferBillingNumber__c:
                           title: 口座振替請求先番号
                           type: string
-                          maxLength: 255
-                          example: 2162378151
+                          example: '2162378151'
       responses:
         '200':
           description: 成功時
