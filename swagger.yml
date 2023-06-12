@@ -1257,7 +1257,7 @@ paths:
                           CMAP_CreditCardNumberLastFourDigits__c:
                             type: string
                             description: クレジットカード番号（末尾4桁）
-                            example: 2123
+                            example: '2123'
                           CMAP_YamaguchiInfoId__c:
                             type: string
                             description: 山口情報管理ID
@@ -1265,7 +1265,7 @@ paths:
                           CMAP_AccountTransferBillingNumber__c:
                             type: string
                             description: 口座振替請求先番号
-                            example: 2162378151
+                            example: '2162378151'
                   ProcessResult:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
@@ -2265,7 +2265,7 @@ paths:
                           CMAP_CreditCardNumberLastFourDigits__c:
                             type: string
                             description: クレジットカード番号（末尾4桁）
-                            example: 2123
+                            example: '2123'
                           CMAP_YamaguchiInfoId__c:
                             type: string
                             description: 山口情報管理ID
@@ -2273,7 +2273,7 @@ paths:
                           CMAP_AccountTransferBillingNumber__c:
                             type: string
                             description: 口座振替請求先番号
-                            example: 2162378151
+                            example: '2162378151'
                   ProcessResult:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
@@ -12093,7 +12093,7 @@ components:
                   title: 配送先／サービス提供先住所 （郵便番号）
                   type: string
                   maxLength: 20
-                  example: XXXXX
+                  example: 173-0032
                 CMAP_DeliveryServiceAddress__StateCode__s:
                   title: 配送先／サービス提供先住所 （都道府県）
                   type: string
@@ -12394,7 +12394,7 @@ components:
               title: クレジットカード番号（末尾4桁）
               type: string
               maxLength: 4
-              example: XXXXX
+              example: XXXX
             CMAP_YamaguchiInfoId__c:
               title: 山口情報管理ID
               type: string
