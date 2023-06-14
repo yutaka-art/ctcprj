@@ -11443,10 +11443,9 @@ components:
         orderChannelCategory:
           title: 申込チャネル区分
           type: string
-          maxLength: 255
           example: Web
         registered:
-          title: 登録(true:登録、false:更新)
+          title: 登録
           type: boolean
           example: false
         AccountInfo:
@@ -11562,6 +11561,10 @@ components:
                                 type: string
                                 description: マイコミュファID
                                 example: chubu.tarou@commufa.jp
+                          AccountAddition:
+                            type: object
+                            description: 顧客補足情報
+                            properties:
                               IsNewAccount:
                                 type: boolean
                                 description: 新規顧客
@@ -11571,9 +11574,12 @@ components:
                                 description: リードID
                                 example: XXXXX
               duplicatedFields:
-                type: array
+                type: string
                 description: 重複項目リスト
-                items: {}
+                example:
+                  - XXXX01
+                  - XXXX02
+                  - XXXX03
               duplicationMessage:
                 type: string
                 description: 重複メッセージ
@@ -12444,7 +12450,6 @@ components:
                     CMAP_ContractName__c:
                       title: 契約名義
                       type: string
-                      maxLength: 255
                       example: Individual
                     LastName:
                       title: 顧客名（姓）・企業／団体名
@@ -12469,7 +12474,6 @@ components:
                     CMAP_Gender__c:
                       title: 性別
                       type: string
-                      maxLength: 255
                       example: Male
                     CMAP_Birthday__c:
                       title: 生年月日
@@ -12504,7 +12508,6 @@ components:
                     BillingState:
                       title: 連絡先住所 都道府県
                       type: string
-                      maxLength: 255
                       example: '13'
                     BillingCity:
                       title: 連絡先住所 市区郡
@@ -12547,7 +12550,6 @@ components:
                     leadId:
                       title: リードID
                       type: string
-                      maxLength: 255
                       example: XXXXX
     ProcessResultModel:
       type: object
