@@ -11468,111 +11468,103 @@ components:
                 type: object
                 description: 顧客情報
                 properties:
-                  OrderRelatedInfo:
+                  Account:
                     type: object
-                    description: 申込関連情報
+                    description: 顧客
                     properties:
-                      AccountInfo:
-                        type: object
-                        description: 顧客情報
-                        properties:
-                          Account:
-                            type: object
-                            description: 顧客
-                            properties:
-                              Id:
-                                type: string
-                                description: 顧客ID
-                                example: XXXXX
-                              CMAP_ContractName__c:
-                                type: string
-                                description: 契約名義
-                                example: Individual
-                              LastName:
-                                type: string
-                                description: 顧客名（姓）・企業／団体名
-                                example: 中部
-                              FirstName:
-                                type: string
-                                description: 顧客名（名）
-                                example: 太郎
-                              CMAP_LastNameKana__c:
-                                type: string
-                                description: 顧客名（セイ）
-                                example: チュウブ
-                              CMAP_FirstNameKana__c:
-                                type: string
-                                description: 顧客名（メイ）
-                                example: タロウ
-                              CMAP_Gender__c:
-                                type: string
-                                description: 性別
-                                example: Male
-                              CMAP_Birthday__c:
-                                type: string
-                                description: 生年月日
-                                example: '1990-01-01'
-                                format: date
-                              CMAP_CompanyName__c:
-                                type: string
-                                description: 企業／団体名（フリガナ）
-                                example: null
-                              CMAP_DepartmentName__c:
-                                type: string
-                                description: 部署名
-                                example: null
-                              CMAP_EmployeeName__c:
-                                type: string
-                                description: 担当者名
-                                example: null
-                              CMAP_EmployeeNameKana__c:
-                                type: string
-                                description: 担当者名（フリガナ）
-                                example: null
-                              BillingPostalCode:
-                                type: string
-                                description: 連絡先住所 郵便番号
-                                example: 450-0001
-                              BillingState:
-                                type: string
-                                description: 連絡先住所 都道府県
-                                example: '13'
-                              BillingCity:
-                                type: string
-                                description: 連絡先住所 市区郡
-                                example: 名古屋市中村区
-                              BillingStreet:
-                                type: string
-                                description: 連絡先住所 町名・番地
-                                example: 那古野1-1
-                              MansionName__c:
-                                type: string
-                                description: 連絡先住所 建物名
-                                example: 第一マンション
-                              RoomNo__c:
-                                type: string
-                                description: 連絡先住所 部屋番号
-                                example: '101'
-                              Phone:
-                                type: string
-                                description: 連絡先電話番号
-                                example: 080-0000-0000
-                              CMAP_MyCommufaID__c:
-                                type: string
-                                description: マイコミュファID
-                                example: chubu.tarou@commufa.jp
-                          AccountAddition:
-                            type: object
-                            description: 顧客補足情報
-                            properties:
-                              IsNewAccount:
-                                type: boolean
-                                description: 新規顧客
-                                example: false
-                              leadId:
-                                type: string
-                                description: リードID
-                                example: XXXXX
+                      Id:
+                        type: string
+                        description: 顧客ID
+                        example: XXXXX
+                      CMAP_ContractName__c:
+                        type: string
+                        description: 契約名義
+                        example: Individual
+                      LastName:
+                        type: string
+                        description: 顧客名（姓）・企業／団体名
+                        example: 中部
+                      FirstName:
+                        type: string
+                        description: 顧客名（名）
+                        example: 太郎
+                      CMAP_LastNameKana__c:
+                        type: string
+                        description: 顧客名（セイ）
+                        example: チュウブ
+                      CMAP_FirstNameKana__c:
+                        type: string
+                        description: 顧客名（メイ）
+                        example: タロウ
+                      CMAP_Gender__c:
+                        type: string
+                        description: 性別
+                        example: Male
+                      CMAP_Birthday__c:
+                        type: string
+                        description: 生年月日
+                        example: '1990-01-01'
+                        format: date
+                      CMAP_CompanyName__c:
+                        type: string
+                        description: 企業／団体名（フリガナ）
+                        example: null
+                      CMAP_DepartmentName__c:
+                        type: string
+                        description: 部署名
+                        example: null
+                      CMAP_EmployeeName__c:
+                        type: string
+                        description: 担当者名
+                        example: null
+                      CMAP_EmployeeNameKana__c:
+                        type: string
+                        description: 担当者名（フリガナ）
+                        example: null
+                      BillingPostalCode:
+                        type: string
+                        description: 連絡先住所 郵便番号
+                        example: 450-0001
+                      BillingState:
+                        type: string
+                        description: 連絡先住所 都道府県
+                        example: '13'
+                      BillingCity:
+                        type: string
+                        description: 連絡先住所 市区郡
+                        example: 名古屋市中村区
+                      BillingStreet:
+                        type: string
+                        description: 連絡先住所 町名・番地
+                        example: 那古野1-1
+                      MansionName__c:
+                        type: string
+                        description: 連絡先住所 建物名
+                        example: 第一マンション
+                      RoomNo__c:
+                        type: string
+                        description: 連絡先住所 部屋番号
+                        example: '101'
+                      Phone:
+                        type: string
+                        description: 連絡先電話番号
+                        example: 080-0000-0000
+                      CMAP_MyCommufaID__c:
+                        type: string
+                        description: マイコミュファID
+                        example: chubu.tarou@commufa.jp
+                  AccountAddition:
+                    type: object
+                    description: 顧客補足情報
+                    properties:
+                      IsNewAccount:
+                        type: boolean
+                        description: 新規顧客
+                        example: false
+                      leadId:
+                        type: string
+                        description: リードID
+                        example: XXXXX
               duplicatedFields:
                 type: string
                 description: 重複項目リスト
@@ -11588,111 +11580,103 @@ components:
           type: object
           description: 顧客情報
           properties:
-            OrderRelatedInfo:
+            Account:
               type: object
-              description: 申込関連情報
+              description: 顧客
               properties:
-                AccountInfo:
-                  type: object
-                  description: 顧客情報
-                  properties:
-                    Account:
-                      type: object
-                      description: 顧客
-                      properties:
-                        Id:
-                          type: string
-                          description: 顧客ID
-                          example: XXXXX
-                        CMAP_ContractName__c:
-                          type: string
-                          description: 契約名義
-                          example: Individual
-                        LastName:
-                          type: string
-                          description: 顧客名（姓）・企業／団体名
-                          example: 中部
-                        FirstName:
-                          type: string
-                          description: 顧客名（名）
-                          example: 花子
-                        CMAP_LastNameKana__c:
-                          type: string
-                          description: 顧客名（セイ）
-                          example: チュウブ
-                        CMAP_FirstNameKana__c:
-                          type: string
-                          description: 顧客名（メイ）
-                          example: ハナコ
-                        CMAP_Gender__c:
-                          type: string
-                          description: 性別
-                          example: Female
-                        CMAP_Birthday__c:
-                          type: string
-                          description: 生年月日
-                          example: '1990-01-01'
-                          format: date
-                        CMAP_CompanyName__c:
-                          type: string
-                          description: 企業／団体名（フリガナ）
-                          example: null
-                        CMAP_DepartmentName__c:
-                          type: string
-                          description: 部署名
-                          example: null
-                        CMAP_EmployeeName__c:
-                          type: string
-                          description: 担当者名
-                          example: null
-                        CMAP_EmployeeNameKana__c:
-                          type: string
-                          description: 担当者名（フリガナ）
-                          example: null
-                        BillingPostalCode:
-                          type: string
-                          description: 連絡先住所 郵便番号
-                          example: 450-0001
-                        BillingState:
-                          type: string
-                          description: 連絡先住所 都道府県
-                          example: '13'
-                        BillingCity:
-                          type: string
-                          description: 連絡先住所 市区郡
-                          example: 名古屋市中村区
-                        BillingStreet:
-                          type: string
-                          description: 連絡先住所 町名・番地
-                          example: 那古野1-1
-                        MansionName__c:
-                          type: string
-                          description: 連絡先住所 建物名
-                          example: 第一マンション
-                        RoomNo__c:
-                          type: string
-                          description: 連絡先住所 部屋番号
-                          example: '102'
-                        Phone:
-                          type: string
-                          description: 連絡先電話番号
-                          example: 080-0000-0001
-                        CMAP_MyCommufaID__c:
-                          type: string
-                          description: マイコミュファID
-                          example: chubu.hanako@commufa.jp
-                    AccountAddition:
-                      type: object
-                      description: 顧客補足情報
-                      properties:
-                        IsNewAccount:
-                          type: boolean
-                          description: 新規顧客
-                          example: false
-                        leadId:
-                          type: string
-                          description: リードID
-                          example: XXXXX
+                Id:
+                  type: string
+                  description: 顧客ID
+                  example: XXXXX
+                CMAP_ContractName__c:
+                  type: string
+                  description: 契約名義
+                  example: Individual
+                LastName:
+                  type: string
+                  description: 顧客名（姓）・企業／団体名
+                  example: 中部
+                FirstName:
+                  type: string
+                  description: 顧客名（名）
+                  example: 花子
+                CMAP_LastNameKana__c:
+                  type: string
+                  description: 顧客名（セイ）
+                  example: チュウブ
+                CMAP_FirstNameKana__c:
+                  type: string
+                  description: 顧客名（メイ）
+                  example: ハナコ
+                CMAP_Gender__c:
+                  type: string
+                  description: 性別
+                  example: Female
+                CMAP_Birthday__c:
+                  type: string
+                  description: 生年月日
+                  example: '1990-01-01'
+                  format: date
+                CMAP_CompanyName__c:
+                  type: string
+                  description: 企業／団体名（フリガナ）
+                  example: null
+                CMAP_DepartmentName__c:
+                  type: string
+                  description: 部署名
+                  example: null
+                CMAP_EmployeeName__c:
+                  type: string
+                  description: 担当者名
+                  example: null
+                CMAP_EmployeeNameKana__c:
+                  type: string
+                  description: 担当者名（フリガナ）
+                  example: null
+                BillingPostalCode:
+                  type: string
+                  description: 連絡先住所 郵便番号
+                  example: 450-0001
+                BillingState:
+                  type: string
+                  description: 連絡先住所 都道府県
+                  example: '13'
+                BillingCity:
+                  type: string
+                  description: 連絡先住所 市区郡
+                  example: 名古屋市中村区
+                BillingStreet:
+                  type: string
+                  description: 連絡先住所 町名・番地
+                  example: 那古野1-1
+                MansionName__c:
+                  type: string
+                  description: 連絡先住所 建物名
+                  example: 第一マンション
+                RoomNo__c:
+                  type: string
+                  description: 連絡先住所 部屋番号
+                  example: '102'
+                Phone:
+                  type: string
+                  description: 連絡先電話番号
+                  example: 080-0000-0001
+                CMAP_MyCommufaID__c:
+                  type: string
+                  description: マイコミュファID
+                  example: chubu.hanako@commufa.jp
+            AccountAddition:
+              type: object
+              description: 顧客補足情報
+              properties:
+                IsNewAccount:
+                  type: boolean
+                  description: 新規顧客
+                  example: false
+                leadId:
+                  type: string
+                  description: リードID
+                  example: XXXXX
     InputOrderRelatedInfoModel:
       type: object
       description: 申込関連情報
@@ -12415,142 +12399,130 @@ components:
       type: object
       description: 顧客情報
       required:
-        - orderRelatedInfo
+        - account
+        - accountAddition
       properties:
-        orderRelatedInfo:
+        account:
           type: object
-          description: 申込関連情報
+          description: 顧客
           required:
-            - accountInfo
+            - CMAP_ContractName__c
+            - LastName
+            - BillingPostalCode
+            - BillingState
+            - BillingCity
+            - BillingStreet
+            - Phone
           properties:
-            accountInfo:
-              type: object
-              description: 顧客情報
-              required:
-                - account
-                - accountAddition
-              properties:
-                account:
-                  type: object
-                  description: 顧客
-                  required:
-                    - CMAP_ContractName__c
-                    - LastName
-                    - BillingPostalCode
-                    - BillingState
-                    - BillingCity
-                    - BillingStreet
-                    - Phone
-                  properties:
-                    Id:
-                      title: 顧客ID
-                      type: string
-                      maxLength: 18
-                      example: XXXXX
-                    CMAP_ContractName__c:
-                      title: 契約名義
-                      type: string
-                      example: Individual
-                    LastName:
-                      title: 顧客名（姓）・企業／団体名
-                      type: string
-                      maxLength: 80
-                      example: 中部
-                    FirstName:
-                      title: 顧客名（名）
-                      type: string
-                      maxLength: 40
-                      example: 太郎
-                    CMAP_LastNameKana__c:
-                      title: 顧客名（セイ）
-                      type: string
-                      maxLength: 80
-                      example: チュウブ
-                    CMAP_FirstNameKana__c:
-                      title: 顧客名（メイ）
-                      type: string
-                      maxLength: 40
-                      example: タロウ
-                    CMAP_Gender__c:
-                      title: 性別
-                      type: string
-                      example: Male
-                    CMAP_Birthday__c:
-                      title: 生年月日
-                      type: string
-                      format: date
-                      example: '1990-01-01'
-                    CMAP_CompanyName__c:
-                      title: 企業／団体名（フリガナ）
-                      type: string
-                      maxLength: 255
-                      example: null
-                    CMAP_DepartmentName__c:
-                      title: 部署名
-                      type: string
-                      maxLength: 255
-                      example: null
-                    CMAP_EmployeeName__c:
-                      title: 担当者名
-                      type: string
-                      maxLength: 255
-                      example: null
-                    CMAP_EmployeeNameKana__c:
-                      title: 担当者名（フリガナ）
-                      type: string
-                      maxLength: 255
-                      example: null
-                    BillingPostalCode:
-                      title: 連絡先住所 郵便番号
-                      type: string
-                      maxLength: 20
-                      example: 450-0001
-                    BillingState:
-                      title: 連絡先住所 都道府県
-                      type: string
-                      example: '13'
-                    BillingCity:
-                      title: 連絡先住所 市区郡
-                      type: string
-                      maxLength: 40
-                      example: 名古屋市中村区
-                    BillingStreet:
-                      title: 連絡先住所 町名・番地
-                      type: string
-                      maxLength: 255
-                      example: 那古野1-1
-                    MansionName__c:
-                      title: 連絡先住所 建物名
-                      type: string
-                      maxLength: 255
-                      example: 第一マンション
-                    RoomNo__c:
-                      title: 連絡先住所 部屋番号
-                      type: string
-                      maxLength: 255
-                      example: '101'
-                    Phone:
-                      title: 連絡先電話番号
-                      type: string
-                      maxLength: 40
-                      example: 080-0000-0000
-                    CMAP_MyCommufaID__c:
-                      title: マイコミュファID
-                      type: string
-                      maxLength: 80
-                      example: chubu.tarou@commufa.jp
-                accountAddition:
-                  type: object
-                  description: 顧客補足情報
-                  properties:
-                    IsNewAccount:
-                      title: 新規顧客
-                      type: boolean
-                      example: false
-                    leadId:
-                      title: リードID
-                      type: string
-                      example: XXXXX
+            Id:
+              title: 顧客ID
+              type: string
+              maxLength: 18
+              example: XXXXX
+            CMAP_ContractName__c:
+              title: 契約名義
+              type: string
+              example: Individual
+            LastName:
+              title: 顧客名（姓）・企業／団体名
+              type: string
+              maxLength: 80
+              example: 中部
+            FirstName:
+              title: 顧客名（名）
+              type: string
+              maxLength: 40
+              example: 太郎
+            CMAP_LastNameKana__c:
+              title: 顧客名（セイ）
+              type: string
+              maxLength: 80
+              example: チュウブ
+            CMAP_FirstNameKana__c:
+              title: 顧客名（メイ）
+              type: string
+              maxLength: 40
+              example: タロウ
+            CMAP_Gender__c:
+              title: 性別
+              type: string
+              example: Male
+            CMAP_Birthday__c:
+              title: 生年月日
+              type: string
+              format: date
+              example: '1990-01-01'
+            CMAP_CompanyName__c:
+              title: 企業／団体名（フリガナ）
+              type: string
+              maxLength: 255
+              example: null
+            CMAP_DepartmentName__c:
+              title: 部署名
+              type: string
+              maxLength: 255
+              example: null
+            CMAP_EmployeeName__c:
+              title: 担当者名
+              type: string
+              maxLength: 255
+              example: null
+            CMAP_EmployeeNameKana__c:
+              title: 担当者名（フリガナ）
+              type: string
+              maxLength: 255
+              example: null
+            BillingPostalCode:
+              title: 連絡先住所 郵便番号
+              type: string
+              maxLength: 20
+              example: 450-0001
+            BillingState:
+              title: 連絡先住所 都道府県
+              type: string
+              example: '13'
+            BillingCity:
+              title: 連絡先住所 市区郡
+              type: string
+              maxLength: 40
+              example: 名古屋市中村区
+            BillingStreet:
+              title: 連絡先住所 町名・番地
+              type: string
+              maxLength: 255
+              example: 那古野1-1
+            MansionName__c:
+              title: 連絡先住所 建物名
+              type: string
+              maxLength: 255
+              example: 第一マンション
+            RoomNo__c:
+              title: 連絡先住所 部屋番号
+              type: string
+              maxLength: 255
+              example: '101'
+            Phone:
+              title: 連絡先電話番号
+              type: string
+              maxLength: 40
+              example: 080-0000-0000
+            CMAP_MyCommufaID__c:
+              title: マイコミュファID
+              type: string
+              maxLength: 80
+              example: chubu.tarou@commufa.jp
+        accountAddition:
+          type: object
+          description: 顧客補足情報
+          properties:
+            IsNewAccount:
+              title: 新規顧客
+              type: boolean
+              example: false
+            leadId:
+              title: リードID
+              type: string
+              example: XXXXX
     ProcessResultModel:
       type: object
       description: c-map処理結果用モデル
