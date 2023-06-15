@@ -238,7 +238,7 @@ paths:
       operationId: RetrievePrefectureMunicipalityList
       parameters:
         - in: query
-          name: PostalCode
+          name: postalCode
           description: 郵便番号を7桁で指定
           required: true
           schema:
@@ -339,14 +339,14 @@ paths:
       operationId: RetrieveApartmentList
       parameters:
         - in: query
-          name: AddressCode
+          name: addressCode
           description: 住所コード
           required: true
           schema:
             type: string
             example: '46000030011'
         - in: query
-          name: OrderChannelCategory
+          name: orderChannelCategory
           description: 申込チャネル区分
           required: true
           schema:
@@ -453,7 +453,7 @@ paths:
       operationId: RetrieveImportantMattersDescription
       parameters:
         - in: query
-          name: ImportantMatterDescriptionId
+          name: importantMatterDescriptionId
           description: 重要事項説明ID
           required: true
           schema:
@@ -2317,7 +2317,7 @@ paths:
       operationId: RetrieveCustomerInformation
       parameters:
         - in: query
-          name: AcountId
+          name: acountId
           description: 顧客ID
           required: true
           schema:
@@ -2483,7 +2483,7 @@ paths:
       operationId: RetrieveOfferPlanList
       parameters:
         - in: query
-          name: OrderChannelCategory
+          name: orderChannelCategory
           description: 申込チャネル区分
           required: true
           schema:
@@ -2496,7 +2496,7 @@ paths:
               - ApplianceStore
               - AuShop
         - in: query
-          name: AgencyId
+          name: agencyId
           description: 代理店ID
           required: false
           schema:
@@ -2504,7 +2504,7 @@ paths:
             maxLength: 18
             example: XXXXX
         - in: query
-          name: ShopId
+          name: shopId
           description: 店舗ID
           required: false
           schema:
@@ -2512,7 +2512,7 @@ paths:
             maxLength: 18
             example: XXXXX
         - in: query
-          name: ContractName
+          name: contractName
           description: 契約名義
           required: true
           schema:
@@ -2522,7 +2522,7 @@ paths:
               - Individual
               - Corporation
         - in: query
-          name: PlanType
+          name: planType
           description: プラン種類
           required: true
           schema:
@@ -2533,7 +2533,7 @@ paths:
               - NotCircuit
               - GoodsServiceSales
         - in: query
-          name: ResidenceType
+          name: residenceType
           description: 住戸形態
           required: false
           schema:
@@ -2543,7 +2543,7 @@ paths:
               - Home
               - Apartment
         - in: query
-          name: OfferAreaId
+          name: offerAreaId
           description: 提供エリアID
           required: false
           schema:
@@ -2551,7 +2551,7 @@ paths:
             maxLength: 18
             example: XXXXX
         - in: query
-          name: PropertyOfferMethodId
+          name: propertyOfferMethodId
           description: 物件提供方式ID
           required: false
           schema:
@@ -2559,7 +2559,7 @@ paths:
             maxLength: 18
             example: XXXXX
         - in: query
-          name: EffectiveDate
+          name: effectiveDate
           description: 申込日
           required: true
           schema:
@@ -2567,7 +2567,7 @@ paths:
             format: date
             example: '2023-12-31'
         - in: query
-          name: EffectiveTime
+          name: effectiveTime
           description: 申込時間
           required: true
           schema:
@@ -2575,7 +2575,7 @@ paths:
             format: partial-time
             example: '23:59:59'
         - in: query
-          name: OrderCategoryCurrentlySelected
+          name: orderCategoryCurrentlySelected
           description: 申込区分（選択中/単一）
           required: true
           schema:
@@ -2593,7 +2593,7 @@ paths:
               - Resume
               - Cancel
         - in: query
-          name: OrderCategoryPreviouslySelected
+          name: orderCategoryPreviouslySelected
           description: 申込区分（変更前/複数）
           required: false
           schema:
@@ -2611,7 +2611,7 @@ paths:
               - Resume
               - Cancel
         - in: query
-          name: PrefectureCode
+          name: prefectureCode
           description: 都道府県コード
           required: false
           schema:
@@ -2619,7 +2619,7 @@ paths:
             maxLength: 2
             example: '12'
         - in: query
-          name: ExcludesUnchangebleContractProduct
+          name: excludesUnchangebleContractProduct
           description: 契約変更不可商品除外
           required: false
           schema:
@@ -2835,7 +2835,7 @@ paths:
       operationId: RetrieveOfferPlanProductList
       parameters:
         - in: query
-          name: OfferPlanId
+          name: offerPlanId
           description: 提供プランID
           required: true
           schema:
@@ -2843,7 +2843,7 @@ paths:
             maxLength: 18
             example: XXXXX
         - in: query
-          name: ContractName
+          name: contractName
           description: 契約名義
           required: true
           schema:
@@ -2853,7 +2853,7 @@ paths:
               - Individual
               - Corporation
         - in: query
-          name: ResidenceType
+          name: residenceType
           description: 住戸形態
           required: false
           schema:
@@ -2863,7 +2863,7 @@ paths:
               - Home
               - Apartment
         - in: query
-          name: OfferAreaId
+          name: offerAreaId
           description: 提供エリアID
           required: false
           schema:
@@ -2871,7 +2871,7 @@ paths:
             maxLength: 18
             example: XXXXX
         - in: query
-          name: PropertyOfferMethodId
+          name: propertyOfferMethodId
           description: 物件提供方式ID
           required: false
           schema:
@@ -2879,7 +2879,7 @@ paths:
             maxLength: 18
             example: XXXXX
         - in: query
-          name: OrderCategoryCurrentlySelected
+          name: orderCategoryCurrentlySelected
           description: 申込区分（選択中/単一）
           required: true
           schema:
@@ -2897,7 +2897,7 @@ paths:
               - Resume
               - Cancel
         - in: query
-          name: OrderCategoryPreviouslySelected
+          name: orderCategoryPreviouslySelected
           description: 申込区分（変更前/複数）
           required: false
           schema:
@@ -2915,7 +2915,7 @@ paths:
               - Resume
               - Cancel
         - in: query
-          name: OrderChannelCategory
+          name: orderChannelCategory
           description: 申込チャネル区分
           required: true
           schema:
@@ -2928,7 +2928,7 @@ paths:
               - ApplianceStore
               - AuShop
         - in: query
-          name: AgencyId
+          name: agencyId
           description: 代理店ID
           required: false
           schema:
@@ -2936,7 +2936,7 @@ paths:
             maxLength: 18
             example: XXXXX
         - in: query
-          name: ShopId
+          name: shopId
           description: 店舗ID
           required: false
           schema:
@@ -2944,14 +2944,14 @@ paths:
             maxLength: 18
             example: XXXXX
         - in: query
-          name: ExcludesUnchangebleContractProduct
+          name: excludesUnchangebleContractProduct
           description: 契約変更不可商品除外
           required: false
           schema:
             type: boolean
             example: true
         - in: query
-          name: PrefectureCode
+          name: prefectureCode
           description: 都道府県コード
           required: false
           schema:
@@ -3704,7 +3704,7 @@ paths:
           application/json:
             schema:
               required:
-                - EmailAddress
+                - emailAddress
               type: object
               properties:
                 EmailAddress:
@@ -3966,7 +3966,7 @@ paths:
       operationId: RetrieveBillToInformationList
       parameters:
         - in: query
-          name: CustomerId
+          name: customerId
           description: 顧客ID
           required: false
           schema:
@@ -3974,7 +3974,7 @@ paths:
             maxLength: 18
             example: XXXXX
         - in: query
-          name: OrderChannelCategory
+          name: orderChannelCategory
           description: 申込チャネル区分
           required: false
           schema:
@@ -4078,7 +4078,7 @@ paths:
             example: XXXXX
             maxLength: 18
         - in: query
-          name: MaxNumber
+          name: maxNumber
           description: 最大取得件数
           required: true
           schema:
@@ -4088,7 +4088,7 @@ paths:
             maximum: 999
             example: 1
         - in: query
-          name: Order
+          name: order
           description: 申込情報並び順 [ソート順] 1. 申込日 2. 作成日 ※デフォルトは降順
           required: false
           schema:
@@ -4572,14 +4572,14 @@ paths:
             maxLength: 18
             example: XXXXX
         - in: query
-          name: ContainsInvalidData
+          name: containsInvalidData
           description: 無効データ取得フラグ
           required: true
           schema:
             type: boolean
             example: true
         - in: query
-          name: OrderItemCategory
+          name: orderItemCategory
           description: 申込商品取得区分
           required: true
           schema:
@@ -5648,7 +5648,7 @@ paths:
       operationId: RetrieveOfferMethodList
       parameters:
         - in: query
-          name: PrefectureCode
+          name: prefectureCode
           description: 都道府県コード
           required: true
           schema:
@@ -5656,7 +5656,7 @@ paths:
             maxLength: 2
             example: '12'
         - in: query
-          name: CityCode
+          name: cityCode
           description: 市区町村コード
           required: true
           schema:
@@ -5664,7 +5664,7 @@ paths:
             maxLength: 3
             example: '001'
         - in: query
-          name: PriorityOfferMethod
+          name: priorityOfferMethod
           description: 優先提供方式
           required: false
           schema:
@@ -5672,7 +5672,7 @@ paths:
             maxLength: 255
             example: タイプC
         - in: query
-          name: BlockNumberTypeC
+          name: blockNumberTypeC
           description: ブロック番号（タイプC）
           required: false
           schema:
@@ -5680,7 +5680,7 @@ paths:
             maxLength: 20
             example: 033-14
         - in: query
-          name: LayerCodeTypeC
+          name: layerCodeTypeC
           description: レイヤコード（タイプC）
           required: false
           schema:
@@ -5688,7 +5688,7 @@ paths:
             maxLength: 20
             example: CQ
         - in: query
-          name: GroupUnitCenterTypeK
+          name: groupUnitCenterTypeK
           description: GC局（タイプK）
           required: false
           schema:
@@ -5696,7 +5696,7 @@ paths:
             maxLength: 20
             example: '5555'
         - in: query
-          name: LayerCodeTypeK
+          name: layerCodeTypeK
           description: レイヤコード（タイプK）
           required: false
           schema:
@@ -5704,7 +5704,7 @@ paths:
             maxLength: 20
             example: CQ
         - in: query
-          name: GroupUnitCenterTypeS
+          name: groupUnitCenterTypeS
           description: GC局（タイプS）
           required: false
           schema:
@@ -5712,7 +5712,7 @@ paths:
             maxLength: 20
             example: '5555'
         - in: query
-          name: LayerCodeTypeS
+          name: layerCodeTypeS
           description: レイヤコード（タイプS）
           required: false
           schema:
@@ -5720,7 +5720,7 @@ paths:
             maxLength: 20
             example: CQ
         - in: query
-          name: OrderChannelCategory
+          name: orderChannelCategory
           description: 申込チャネル区分
           required: true
           schema:
@@ -5734,7 +5734,7 @@ paths:
               - ApplianceStore
               - AuShop
         - in: query
-          name: ResidenceType
+          name: residenceType
           description: 住宅形態
           required: false
           schema:
@@ -5873,7 +5873,7 @@ paths:
       operationId: RetrieveChannelList
       parameters:
         - in: query
-          name: BlockNumberGroupUnitCenter
+          name: blockNumberGroupUnitCenter
           description: ブロック番号／GC局
           required: true
           schema:
@@ -5881,23 +5881,23 @@ paths:
             maxLength: 20
             example: 033-14
         - in: query
-          name: PrefectureCode
+          name: prefectureCode
           description: 都道府県コード
           required: true
           schema:
             type: string
             maxLength: 2
-            example: 12
+            example: '12'
         - in: query
-          name: CityCode
+          name: cityCode
           description: 市区町村コード
           required: true
           schema:
             type: string
             maxLength: 3
-            example: 123
+            example: '123'
         - in: query
-          name: AccessCircuit
+          name: accessCircuit
           description: アクセス回線
           required: true
           schema:
@@ -6002,11 +6002,11 @@ paths:
             schema:
               type: object
               properties:
-                OrderInfo:
+                orderInfo:
                   type: object
                   description: 申込情報
                   properties:
-                    Order:
+                    order:
                       type: object
                       description: 申込
                       properties:
@@ -6339,7 +6339,7 @@ paths:
                           title: 建替え
                           type: boolean
                           example: false
-                    OrderAddition:
+                    orderAddition:
                       type: object
                       description: 申込補足情報
                       properties:
@@ -6351,13 +6351,13 @@ paths:
                           title: 申込区分（変更前/複数）
                           type: string
                           example: NewContractPurchace
-                    OrderItemInfos:
+                    orderItemInfos:
                       type: array
                       description: 申込商品情報リスト
                       items:
                         type: object
                         properties:
-                          OrderItem:
+                          orderItem:
                             type: object
                             description: 申込商品
                             properties:
@@ -6736,15 +6736,15 @@ paths:
               type: object
               required:
                 - productId
-                - OrderItemAttributes
-                - OrderRelatedInfo
+                - orderItemAttributes
+                - orderRelatedInfo
               properties:
                 productId:
                   title: 商品ID
                   type: string
                   maxLength: 18
                   example: XXXXX
-                OrderItemAttributes:
+                orderItemAttributes:
                   type: array
                   description: 申込商品属性リスト
                   items:
@@ -6774,7 +6774,7 @@ paths:
                         type: string
                         maxLength: 18
                         example: XXXXX
-                OrderRelatedInfo:
+                orderRelatedInfo:
                   $ref: '#/components/schemas/InputOrderRelatedInfoModel'
       responses:
         '200':
@@ -6883,7 +6883,7 @@ paths:
               type: object
               required:
                 - offerPlanMaintenance
-                - OrderRelatedInfo
+                - orderRelatedInfo
               properties:
                 offerPlanMaintenance:
                   title: 提供プランメンテナンス
@@ -6895,20 +6895,20 @@ paths:
                   example:
                     - XXXX1
                     - XXXX2
-                OrderRelatedInfo:
+                orderRelatedInfo:
                   type: object
                   description: 申込関連情報
                   required:
-                    - AccountInfo
-                    - OrderInfo
+                    - accountInfo
+                    - orderInfo
                   properties:
-                    AccountInfo:
+                    accountInfo:
                       type: object
                       description: 顧客情報
                       required:
                         - CMAP_ContractName__c
                       properties:
-                        Account:
+                        account:
                           type: object
                           description: 顧客
                           properties:
@@ -7011,7 +7011,7 @@ paths:
                               type: string
                               maxLength: 80
                               example: chubu.tarou@commufa.jp
-                        AccountAddition:
+                        accountAddition:
                           type: object
                           description: 顧客補足情報
                           properties:
@@ -7023,15 +7023,15 @@ paths:
                               title: リードID
                               type: string
                               example: XXXXX
-                    OrderInfo:
+                    orderInfo:
                       type: object
                       description: 申込情報
                       required:
-                        - Order
-                        - OrderAddition
-                        - OrderItemInfos
+                        - order
+                        - orderAddition
+                        - orderItemInfos
                       properties:
-                        Order:
+                        order:
                           type: object
                           description: 申込
                           required:
@@ -7368,7 +7368,7 @@ paths:
                               title: 都道府県／市区町村コード
                               type: string
                               example: XXXXX
-                        OrderAddition:
+                        orderAddition:
                           type: object
                           description: 申込補足情報
                           required:
@@ -7387,7 +7387,7 @@ paths:
                               title: 申込チャネル区分
                               type: string
                               example: Web
-                        OrderImportantMatterDescriptions:
+                        orderImportantMatterDescriptions:
                           type: array
                           description: 申込重要事項説明リスト
                           items:
@@ -7418,7 +7418,7 @@ paths:
                                 type: string
                                 maxLength: 18
                                 example: XXXXX
-                        OrderItemInfos:
+                        orderItemInfos:
                           type: array
                           description: 申込商品情報リスト
                           items:
@@ -7426,7 +7426,7 @@ paths:
                             required:
                               - orderItem
                             properties:
-                              OrderItem:
+                              orderItem:
                                 description: 申込商品
                                 type: object
                                 required:
@@ -7540,7 +7540,7 @@ paths:
                                     type: string
                                     maxLength: 18
                                     example: XXXXX
-                              OrderItemAttributes:
+                              orderItemAttributes:
                                 type: array
                                 description: 申込商品属性リスト
                                 items:
@@ -7570,7 +7570,7 @@ paths:
                                       type: string
                                       maxLength: 18
                                       example: XXXXX
-                    Billing:
+                    billing:
                       type: object
                       description: 請求先
                       properties:
@@ -7671,19 +7671,19 @@ paths:
             schema:
               type: object
               required:
-                - OrderRelatedInfo
+                - orderRelatedInfo
               properties:
-                OrderRelatedInfo:
+                orderRelatedInfo:
                   type: object
                   description: 申込関連情報
                   required:
-                    - OrderInfo
+                    - orderInfo
                   properties:
-                    AccountInfo:
+                    accountInfo:
                       type: object
                       description: 顧客情報
                       properties:
-                        Account:
+                        account:
                           type: object
                           description: 顧客
                           properties:
@@ -7784,7 +7784,7 @@ paths:
                               type: string
                               maxLength: 80
                               example: chubu.tarou@commufa.jp
-                        AccountAddition:
+                        accountAddition:
                           type: object
                           description: 顧客補足情報
                           properties:
@@ -7796,13 +7796,13 @@ paths:
                               title: リードID
                               type: string
                               example: XXXXX
-                    OrderInfo:
+                    orderInfo:
                       type: object
                       description: 申込情報
                       required:
                         - Order
                       properties:
-                        Order:
+                        order:
                           type: object
                           description: 申込
                           properties:
@@ -8148,7 +8148,7 @@ paths:
                               title: 建替え
                               type: boolean
                               example: false
-                        OrderAddition:
+                        orderAddition:
                           type: object
                           description: 申込補足情報
                           properties:
@@ -8164,7 +8164,7 @@ paths:
                               title: 申込チャネル区分
                               type: string
                               example: Web
-                        OrderImportantMatterDescriptions:
+                        orderImportantMatterDescriptions:
                           type: array
                           description: 申込重要事項説明リスト
                           items:
@@ -8195,13 +8195,13 @@ paths:
                                 type: string
                                 maxLength: 18
                                 example: XXXXX
-                        OrderItemInfos:
+                        orderItemInfos:
                           type: array
                           description: 申込商品情報リスト
                           items:
                             type: object
                             properties:
-                              OrderItem:
+                              orderItem:
                                 type: object
                                 description: 申込商品
                                 properties:
@@ -8333,7 +8333,7 @@ paths:
                                     type: string
                                     format: date-time
                                     example: '2023-09-22 09:22:22'
-                              OrderItemAttributes:
+                              orderItemAttributes:
                                 type: array
                                 description: 申込商品属性リスト
                                 items:
@@ -8720,13 +8720,13 @@ paths:
       operationId: RetrieveStoreList
       parameters:
         - in: query
-          name: UserId
+          name: userId
           description: ユーザーID
           required: true
           schema:
             type: string
             maxLength: 18
-            example: 12345678987
+            example: '12345678987'
       responses:
         '200':
           description: 成功時
@@ -8776,14 +8776,14 @@ paths:
             schema:
               type: object
               properties:
-                ObjectNames:
+                objectNames:
                   title: オブジェクト名リスト
                   type: string
                   example:
                     - XXXXX
                     - XXXXX
                     - XXXXX
-                OrderChannelCategory:
+                orderChannelCategory:
                   title: 申込チャネル区分
                   type: string
                   example: Web
@@ -9158,12 +9158,12 @@ paths:
             schema:
               type: object
               properties:
-                ProductId:
+                productId:
                   title: 商品ID
                   type: string
                   maxLength: 18
                   example: XXXXX
-                OrderChannelCategory:
+                orderChannelCategory:
                   title: 申込チャネル区分
                   type: string
                   example: Web
@@ -9205,315 +9205,330 @@ paths:
                               description: 項目メタデータ定義
                               additionalProperties:
                                 type: object
-                                description: 項目名 ※このキーは可変
+                                description: オブジェクト名 ※このキーは可変
                                 properties:
-                                  FieldMetadata:
+                                  metadataBaseName:
+                                    type: string
+                                    description: メタデータ定義ベース名
+                                    example: XXXXX
+                                  metadataBaseLabel:
+                                    type: string
+                                    description: メタデータ定義ラベル
+                                    example: XXXXX
+                                  FieldMetadataDefinitions:
                                     type: object
-                                    description: 項目メタデータ
-                                    properties:
-                                      FieldMetadataExtension:
-                                        type: object
-                                        description: 項目メタデータ拡張
-                                        properties:
-                                          CMAP_FieldName__c:
-                                            type: string
-                                            description: 項目名
-                                            example: XXXXX
-                                          CMAP_FieldLabel__c:
-                                            type: string
-                                            description: 項目ラベル
-                                            example: XXXXX
-                                          CMAP_Type__c:
-                                            type: string
-                                            description: 型
-                                            example: text
-                                          CMAP_MultipleFieldType__c:
-                                            type: string
-                                            description: 複数項目型
-                                            example: text
-                                          CMAP_ContainedFieldNames__c:
-                                            type: string
-                                            description: 複数項目に含む単項目名
-                                            example: XXXXX
-                                          CMAP_MulticolumnSaveType__c:
-                                            type: string
-                                            description: 複数項目の保存方式
-                                            example: singleField
-                                          CMAP_ReferenceFieldIconName__c:
-                                            type: string
-                                            description: 参照項目アイコン名
-                                            example: XXXXX
-                                          CMAP_ReferenceFieldSearchResultFieldName__c:
-                                            type: string
-                                            description: 参照項目検索結果フィールド名
-                                            example: XXXXX
-                                          CMAP_ReferenceFieldKeyFieldName__c:
-                                            type: string
-                                            description: 参照項目キーフィールド名
-                                            example: XXXXX
-                                          CMAP_NumberOfRefFieldSearchDisplayCounts__c:
-                                            type: string
-                                            description: 参照項目検索結果表示件数
-                                            example: XXXXX
-                                          CMAP_ReferenceFieldSearchCondition__c:
-                                            type: string
-                                            description: 参照項目検索条件
-                                            example: XXXXX
-                                          CMAP_ReferenceFieldApexControllerExt__c:
-                                            type: string
-                                            description: 参照項目Apexコントローラ拡張
-                                            example: XXXXX
-                                          CMAP_NumberOfLetters__c:
-                                            type: integer
-                                            description: 文字数
-                                            example: 99
-                                            format: int32
-                                          CMAP_Required__c:
-                                            type: string
-                                            description: 必須
-                                            example: Required
-                                          CMAP_MinimumValue__c:
-                                            type: integer
-                                            description: 最小値
-                                            example: 99
-                                            format: int32
-                                          CMAP_MaximumValue__c:
-                                            type: integer
-                                            description: 最大値
-                                            example: 99
-                                            format: int32
-                                          CMAP_RequiredCondition__c:
-                                            type: string
-                                            description: 条件付き必須
-                                            example: XXXXX
-                                          CMAP_ActiveCondition__c:
-                                            type: string
-                                            description: 条件付き有効
-                                            example: XXXXX
-                                          CMAP_VisibleCondition__c:
-                                            type: string
-                                            description: 条件付き表示
-                                            example: XXXXX
-                                          CMAP_DefaultValue__c:
-                                            type: string
-                                            description: デフォルト値
-                                            example: XXXXX
-                                          CMAP_Option__c:
-                                            type: string
-                                            description: 選択肢
-                                            example: XXXXX
-                                          CMAP_OptionCondition__c:
-                                            type: string
-                                            description: 条件付き選択肢
-                                            example: XXXXX
-                                          CMAP_HelpText__c:
-                                            type: string
-                                            description: ヘルプテキスト
-                                            example: XXXXX
-                                          CMAP_HelpTextCondition__c:
-                                            type: string
-                                            description: 条件付きヘルプテキスト
-                                            example: XXXXX
-                                          CMAP_Precaution__c:
-                                            type: string
-                                            description: 注意事項
-                                            example: XXXXX
-                                          CMAP_PrecautionCondition__c:
-                                            type: string
-                                            description: 条件付き注意事項
-                                            example: XXXXX
-                                          CMAP_Placeholder__c:
-                                            type: string
-                                            description: プレースホルダ
-                                            example: XXXXX
-                                          CMAP_ValidationPattern__c:
-                                            type: string
-                                            description: バリデーションパターン
-                                            example: XXXXX
-                                          CMAP_ValidationErrorMessage__c:
-                                            type: string
-                                            description: バリデーションエラーメッセージ
-                                            example: XXXXX
-                                          CMAP_ReadOnly__c:
-                                            type: string
-                                            description: 読み取り専用
-                                            example: readonly
-                                      FieldMetadataAddition:
-                                        type: object
-                                        description: 項目メタデータ拡張補足情報
-                                        properties:
-                                          lookupObjectLabel:
-                                            type: string
-                                            description: 参照オブジェクトラベル
-                                            example: XXXXX
-                                          lookupObjectName:
-                                            type: string
-                                            description: 参照オブジェクト名
-                                            example: XXXXX
-                                          orderItemAttributeDefinitionId:
-                                            type: string
-                                            description: 申込商品属性定義ID
-                                            example: XXXXX
-                                  MultiFieldMetadata:
-                                    type: array
-                                    description: 複数項目の単項目メタデータリスト
-                                    items:
+                                    description: 項目メタデータ定義
+                                    additionalProperties:
                                       type: object
+                                      description: 項目名 ※このキーは可変
                                       properties:
-                                        FieldMetadataDefinitions:
+                                        FieldMetadata:
                                           type: object
-                                          description: 項目メタデータ定義
-                                          additionalProperties:
+                                          description: 項目メタデータ
+                                          properties:
+                                            FieldMetadataExtension:
+                                              type: object
+                                              description: 項目メタデータ拡張
+                                              properties:
+                                                CMAP_FieldName__c:
+                                                  type: string
+                                                  description: 項目名
+                                                  example: XXXXX
+                                                CMAP_FieldLabel__c:
+                                                  type: string
+                                                  description: 項目ラベル
+                                                  example: XXXXX
+                                                CMAP_Type__c:
+                                                  type: string
+                                                  description: 型
+                                                  example: text
+                                                CMAP_MultipleFieldType__c:
+                                                  type: string
+                                                  description: 複数項目型
+                                                  example: text
+                                                CMAP_ContainedFieldNames__c:
+                                                  type: string
+                                                  description: 複数項目に含む単項目名
+                                                  example: XXXXX
+                                                CMAP_MulticolumnSaveType__c:
+                                                  type: string
+                                                  description: 複数項目の保存方式
+                                                  example: singleField
+                                                CMAP_ReferenceFieldIconName__c:
+                                                  type: string
+                                                  description: 参照項目アイコン名
+                                                  example: XXXXX
+                                                CMAP_ReferenceFieldSearchResultFieldName__c:
+                                                  type: string
+                                                  description: 参照項目検索結果フィールド名
+                                                  example: XXXXX
+                                                CMAP_ReferenceFieldKeyFieldName__c:
+                                                  type: string
+                                                  description: 参照項目キーフィールド名
+                                                  example: XXXXX
+                                                CMAP_NumberOfRefFieldSearchDisplayCounts__c:
+                                                  type: string
+                                                  description: 参照項目検索結果表示件数
+                                                  example: XXXXX
+                                                CMAP_ReferenceFieldSearchCondition__c:
+                                                  type: string
+                                                  description: 参照項目検索条件
+                                                  example: XXXXX
+                                                CMAP_ReferenceFieldApexControllerExt__c:
+                                                  type: string
+                                                  description: 参照項目Apexコントローラ拡張
+                                                  example: XXXXX
+                                                CMAP_NumberOfLetters__c:
+                                                  type: integer
+                                                  description: 文字数
+                                                  example: 99
+                                                  format: int32
+                                                CMAP_Required__c:
+                                                  type: string
+                                                  description: 必須
+                                                  example: Required
+                                                CMAP_MinimumValue__c:
+                                                  type: integer
+                                                  description: 最小値
+                                                  example: 99
+                                                  format: int32
+                                                CMAP_MaximumValue__c:
+                                                  type: integer
+                                                  description: 最大値
+                                                  example: 99
+                                                  format: int32
+                                                CMAP_RequiredCondition__c:
+                                                  type: string
+                                                  description: 条件付き必須
+                                                  example: XXXXX
+                                                CMAP_ActiveCondition__c:
+                                                  type: string
+                                                  description: 条件付き有効
+                                                  example: XXXXX
+                                                CMAP_VisibleCondition__c:
+                                                  type: string
+                                                  description: 条件付き表示
+                                                  example: XXXXX
+                                                CMAP_DefaultValue__c:
+                                                  type: string
+                                                  description: デフォルト値
+                                                  example: XXXXX
+                                                CMAP_Option__c:
+                                                  type: string
+                                                  description: 選択肢
+                                                  example: XXXXX
+                                                CMAP_OptionCondition__c:
+                                                  type: string
+                                                  description: 条件付き選択肢
+                                                  example: XXXXX
+                                                CMAP_HelpText__c:
+                                                  type: string
+                                                  description: ヘルプテキスト
+                                                  example: XXXXX
+                                                CMAP_HelpTextCondition__c:
+                                                  type: string
+                                                  description: 条件付きヘルプテキスト
+                                                  example: XXXXX
+                                                CMAP_Precaution__c:
+                                                  type: string
+                                                  description: 注意事項
+                                                  example: XXXXX
+                                                CMAP_PrecautionCondition__c:
+                                                  type: string
+                                                  description: 条件付き注意事項
+                                                  example: XXXXX
+                                                CMAP_Placeholder__c:
+                                                  type: string
+                                                  description: プレースホルダ
+                                                  example: XXXXX
+                                                CMAP_ValidationPattern__c:
+                                                  type: string
+                                                  description: バリデーションパターン
+                                                  example: XXXXX
+                                                CMAP_ValidationErrorMessage__c:
+                                                  type: string
+                                                  description: バリデーションエラーメッセージ
+                                                  example: XXXXX
+                                                CMAP_ReadOnly__c:
+                                                  type: string
+                                                  description: 読み取り専用
+                                                  example: readonly
+                                            FieldMetadataAddition:
+                                              type: object
+                                              description: 項目メタデータ拡張補足情報
+                                              properties:
+                                                lookupObjectLabel:
+                                                  type: string
+                                                  description: 参照オブジェクトラベル
+                                                  example: XXXXX
+                                                lookupObjectName:
+                                                  type: string
+                                                  description: 参照オブジェクト名
+                                                  example: XXXXX
+                                                orderItemAttributeDefinitionId:
+                                                  type: string
+                                                  description: 申込商品属性定義ID
+                                                  example: XXXXX
+                                        MultiFieldMetadata:
+                                          type: array
+                                          description: 複数項目の単項目メタデータリスト
+                                          items:
                                             type: object
-                                            description: 項目名 ※このキーは可変
                                             properties:
-                                              FieldMetadata:
+                                              FieldMetadataDefinitions:
                                                 type: object
-                                                description: 項目メタデータ
-                                                properties:
-                                                  FieldMetadataExtension:
-                                                    type: object
-                                                    description: 項目メタデータ拡張
-                                                    properties:
-                                                      CMAP_FieldName__c:
-                                                        type: string
-                                                        description: 項目名
-                                                        example: XXXXX
-                                                      CMAP_FieldLabel__c:
-                                                        type: string
-                                                        description: 項目ラベル
-                                                        example: XXXXX
-                                                      CMAP_Type__c:
-                                                        type: string
-                                                        description: 型
-                                                        example: text
-                                                      CMAP_MultipleFieldType__c:
-                                                        type: string
-                                                        description: 複数項目型
-                                                        example: text
-                                                      CMAP_ContainedFieldNames__c:
-                                                        type: string
-                                                        description: 複数項目に含む単項目名
-                                                        example: XXXXX
-                                                      CMAP_MulticolumnSaveType__c:
-                                                        type: string
-                                                        description: 複数項目の保存方式
-                                                        example: singleField
-                                                      CMAP_ReferenceFieldIconName__c:
-                                                        type: string
-                                                        description: 参照項目アイコン名
-                                                        example: XXXXX
-                                                      CMAP_ReferenceFieldSearchResultFieldName__c:
-                                                        type: string
-                                                        description: 参照項目検索結果フィールド名
-                                                        example: XXXXX
-                                                      CMAP_ReferenceFieldKeyFieldName__c:
-                                                        type: string
-                                                        description: 参照項目キーフィールド名
-                                                        example: XXXXX
-                                                      CMAP_NumberOfRefFieldSearchDisplayCounts__c:
-                                                        type: string
-                                                        description: 参照項目検索結果表示件数
-                                                        example: XXXXX
-                                                      CMAP_ReferenceFieldSearchCondition__c:
-                                                        type: string
-                                                        description: 参照項目検索条件
-                                                        example: XXXXX
-                                                      CMAP_ReferenceFieldApexControllerExt__c:
-                                                        type: string
-                                                        description: 参照項目Apexコントローラ拡張
-                                                        example: XXXXX
-                                                      CMAP_NumberOfLetters__c:
-                                                        type: integer
-                                                        description: 文字数
-                                                        example: 99
-                                                        format: int32
-                                                      CMAP_Required__c:
-                                                        type: string
-                                                        description: 必須
-                                                        example: Required
-                                                      CMAP_MinimumValue__c:
-                                                        type: integer
-                                                        description: 最小値
-                                                        example: 99
-                                                        format: int32
-                                                      CMAP_MaximumValue__c:
-                                                        type: integer
-                                                        description: 最大値
-                                                        example: 99
-                                                        format: int32
-                                                      CMAP_RequiredCondition__c:
-                                                        type: string
-                                                        description: 条件付き必須
-                                                        example: XXXXX
-                                                      CMAP_ActiveCondition__c:
-                                                        type: string
-                                                        description: 条件付き有効
-                                                        example: XXXXX
-                                                      CMAP_VisibleCondition__c:
-                                                        type: string
-                                                        description: 条件付き表示
-                                                        example: XXXXX
-                                                      CMAP_DefaultValue__c:
-                                                        type: string
-                                                        description: デフォルト値
-                                                        example: XXXXX
-                                                      CMAP_Option__c:
-                                                        type: string
-                                                        description: 選択肢
-                                                        example: XXXXX
-                                                      CMAP_OptionCondition__c:
-                                                        type: string
-                                                        description: 条件付き選択肢
-                                                        example: XXXXX
-                                                      CMAP_HelpText__c:
-                                                        type: string
-                                                        description: ヘルプテキスト
-                                                        example: XXXXX
-                                                      CMAP_HelpTextCondition__c:
-                                                        type: string
-                                                        description: 条件付きヘルプテキスト
-                                                        example: XXXXX
-                                                      CMAP_Precaution__c:
-                                                        type: string
-                                                        description: 注意事項
-                                                        example: XXXXX
-                                                      CMAP_PrecautionCondition__c:
-                                                        type: string
-                                                        description: 条件付き注意事項
-                                                        example: XXXXX
-                                                      CMAP_Placeholder__c:
-                                                        type: string
-                                                        description: プレースホルダ
-                                                        example: XXXXX
-                                                      CMAP_ValidationPattern__c:
-                                                        type: string
-                                                        description: バリデーションパターン
-                                                        example: XXXXX
-                                                      CMAP_ValidationErrorMessage__c:
-                                                        type: string
-                                                        description: バリデーションエラーメッセージ
-                                                        example: XXXXX
-                                                      CMAP_ReadOnly__c:
-                                                        type: string
-                                                        description: 読み取り専用
-                                                        example: readonly
-                                                  FieldMetadataAddition:
-                                                    type: object
-                                                    description: 項目メタデータ拡張補足情報
-                                                    properties:
-                                                      lookupObjectLabel:
-                                                        type: string
-                                                        description: 参照オブジェクトラベル
-                                                        example: XXXXX
-                                                      lookupObjectName:
-                                                        type: string
-                                                        description: 参照オブジェクト名
-                                                        example: XXXXX
-                                                      orderItemAttributeDefinitionId:
-                                                        type: string
-                                                        description: 申込商品属性定義ID
-                                                        example: XXXXX
+                                                description: 項目メタデータ定義
+                                                additionalProperties:
+                                                  type: object
+                                                  description: 項目名 ※このキーは可変
+                                                  properties:
+                                                    FieldMetadata:
+                                                      type: object
+                                                      description: 項目メタデータ
+                                                      properties:
+                                                        FieldMetadataExtension:
+                                                          type: object
+                                                          description: 項目メタデータ拡張
+                                                          properties:
+                                                            CMAP_FieldName__c:
+                                                              type: string
+                                                              description: 項目名
+                                                              example: XXXXX
+                                                            CMAP_FieldLabel__c:
+                                                              type: string
+                                                              description: 項目ラベル
+                                                              example: XXXXX
+                                                            CMAP_Type__c:
+                                                              type: string
+                                                              description: 型
+                                                              example: text
+                                                            CMAP_MultipleFieldType__c:
+                                                              type: string
+                                                              description: 複数項目型
+                                                              example: text
+                                                            CMAP_ContainedFieldNames__c:
+                                                              type: string
+                                                              description: 複数項目に含む単項目名
+                                                              example: XXXXX
+                                                            CMAP_MulticolumnSaveType__c:
+                                                              type: string
+                                                              description: 複数項目の保存方式
+                                                              example: singleField
+                                                            CMAP_ReferenceFieldIconName__c:
+                                                              type: string
+                                                              description: 参照項目アイコン名
+                                                              example: XXXXX
+                                                            CMAP_ReferenceFieldSearchResultFieldName__c:
+                                                              type: string
+                                                              description: 参照項目検索結果フィールド名
+                                                              example: XXXXX
+                                                            CMAP_ReferenceFieldKeyFieldName__c:
+                                                              type: string
+                                                              description: 参照項目キーフィールド名
+                                                              example: XXXXX
+                                                            CMAP_NumberOfRefFieldSearchDisplayCounts__c:
+                                                              type: string
+                                                              description: 参照項目検索結果表示件数
+                                                              example: XXXXX
+                                                            CMAP_ReferenceFieldSearchCondition__c:
+                                                              type: string
+                                                              description: 参照項目検索条件
+                                                              example: XXXXX
+                                                            CMAP_ReferenceFieldApexControllerExt__c:
+                                                              type: string
+                                                              description: 参照項目Apexコントローラ拡張
+                                                              example: XXXXX
+                                                            CMAP_NumberOfLetters__c:
+                                                              type: integer
+                                                              description: 文字数
+                                                              example: 99
+                                                              format: int32
+                                                            CMAP_Required__c:
+                                                              type: string
+                                                              description: 必須
+                                                              example: Required
+                                                            CMAP_MinimumValue__c:
+                                                              type: integer
+                                                              description: 最小値
+                                                              example: 99
+                                                              format: int32
+                                                            CMAP_MaximumValue__c:
+                                                              type: integer
+                                                              description: 最大値
+                                                              example: 99
+                                                              format: int32
+                                                            CMAP_RequiredCondition__c:
+                                                              type: string
+                                                              description: 条件付き必須
+                                                              example: XXXXX
+                                                            CMAP_ActiveCondition__c:
+                                                              type: string
+                                                              description: 条件付き有効
+                                                              example: XXXXX
+                                                            CMAP_VisibleCondition__c:
+                                                              type: string
+                                                              description: 条件付き表示
+                                                              example: XXXXX
+                                                            CMAP_DefaultValue__c:
+                                                              type: string
+                                                              description: デフォルト値
+                                                              example: XXXXX
+                                                            CMAP_Option__c:
+                                                              type: string
+                                                              description: 選択肢
+                                                              example: XXXXX
+                                                            CMAP_OptionCondition__c:
+                                                              type: string
+                                                              description: 条件付き選択肢
+                                                              example: XXXXX
+                                                            CMAP_HelpText__c:
+                                                              type: string
+                                                              description: ヘルプテキスト
+                                                              example: XXXXX
+                                                            CMAP_HelpTextCondition__c:
+                                                              type: string
+                                                              description: 条件付きヘルプテキスト
+                                                              example: XXXXX
+                                                            CMAP_Precaution__c:
+                                                              type: string
+                                                              description: 注意事項
+                                                              example: XXXXX
+                                                            CMAP_PrecautionCondition__c:
+                                                              type: string
+                                                              description: 条件付き注意事項
+                                                              example: XXXXX
+                                                            CMAP_Placeholder__c:
+                                                              type: string
+                                                              description: プレースホルダ
+                                                              example: XXXXX
+                                                            CMAP_ValidationPattern__c:
+                                                              type: string
+                                                              description: バリデーションパターン
+                                                              example: XXXXX
+                                                            CMAP_ValidationErrorMessage__c:
+                                                              type: string
+                                                              description: バリデーションエラーメッセージ
+                                                              example: XXXXX
+                                                            CMAP_ReadOnly__c:
+                                                              type: string
+                                                              description: 読み取り専用
+                                                              example: readonly
+                                                        FieldMetadataAddition:
+                                                          type: object
+                                                          description: 項目メタデータ拡張補足情報
+                                                          properties:
+                                                            lookupObjectLabel:
+                                                              type: string
+                                                              description: 参照オブジェクトラベル
+                                                              example: XXXXX
+                                                            lookupObjectName:
+                                                              type: string
+                                                              description: 参照オブジェクト名
+                                                              example: XXXXX
+                                                            orderItemAttributeDefinitionId:
+                                                              type: string
+                                                              description: 申込商品属性定義ID
+                                                              example: XXXXX
                       hasPostProcess:
                         type: boolean
                         description: 後処理有無
@@ -9842,7 +9857,7 @@ paths:
             maxLength: 18
             example: XXXXX
         - in: query
-          name: ContainsInvalidData
+          name: containsInvalidData
           description: 無効データ取得
           required: true
           schema:
@@ -11408,9 +11423,9 @@ components:
       type: object
       description: 申込チェック/申込作成用RequestBodyモデル
       required:
-        - OrderRelatedInfo
+        - orderRelatedInfo
       properties:
-        OrderRelatedInfo:
+        orderRelatedInfo:
           $ref: '#/components/schemas/InputOrderRelatedInfoModel'
     AccountInfoRequestBodyModel:
       type: object
@@ -11419,7 +11434,7 @@ components:
         - duplicateAlertSkipped
         - orderChannelCategory
         - registered
-        - AccountInfo
+        - accountInfo
       properties:
         duplicateAlertSkipped:
           title: 重複（警告）スキップ
@@ -11433,7 +11448,7 @@ components:
           title: 登録
           type: boolean
           example: false
-        AccountInfo:
+        accountInfo:
           $ref: '#/components/schemas/InputAccountInfoModel'
     AccountRegistrationUpdateResultInfoModel:
       type: object
@@ -11682,17 +11697,17 @@ components:
       type: object
       description: 申込関連情報
       required:
-        - AccountInfo
-        - OrderInfo
+        - accountInfo
+        - orderInfo
       properties:
-        AccountInfo:
+        accountInfo:
           type: object
           description: 顧客情報
           required:
-            - Account
-            - AccountAddition
+            - account
+            - accountAddition
           properties:
-            Account:
+            account:
               type: object
               description: 顧客
               required:
@@ -11802,7 +11817,7 @@ components:
                   type: string
                   maxLength: 80
                   example: chubu.tarou@commufa.jp
-            AccountAddition:
+            accountAddition:
               type: object
               description: 顧客補足情報
               required:
@@ -11817,14 +11832,14 @@ components:
                   type: string
                   maxLength: 255
                   example: XXXXX
-        OrderInfo:
+        orderInfo:
           type: object
           description: 申込情報
           required:
-            - Order
-            - OrderAddition
+            - order
+            - orderAddition
           properties:
-            Order:
+            order:
               type: object
               description: 申込
               required:
@@ -12155,7 +12170,7 @@ components:
                   title: 建替え
                   type: boolean
                   example: false
-            OrderAddition:
+            orderAddition:
               type: object
               description: 申込補足情報
               required:
@@ -12174,7 +12189,7 @@ components:
                   title: 申込チャネル区分
                   type: string
                   example: Web
-            OrderImportantMatterDescriptions:
+            orderImportantMatterDescriptions:
               type: array
               description: 申込重要事項説明リスト
               items:
@@ -12205,13 +12220,13 @@ components:
                     type: string
                     maxLength: 18
                     example: XXXXX
-            OrderItemInfos:
+            orderItemInfos:
               type: array
               description: 申込商品情報リスト
               items:
                 type: object
                 properties:
-                  OrderItem:
+                  orderItem:
                     type: object
                     description: 申込商品
                     properties:
@@ -12343,7 +12358,7 @@ components:
                         type: string
                         format: date-time
                         example: '2023-09-22 09:22:22'
-                  OrderItemAttributes:
+                  orderItemAttributes:
                     type: array
                     items:
                       type: object
@@ -12373,7 +12388,7 @@ components:
                           type: string
                           maxLength: 18
                           example: XXXXX
-        Billing:
+        billing:
           type: object
           description: 請求先
           properties:
@@ -12402,20 +12417,20 @@ components:
       required:
         - orderRelatedInfo
       properties:
-        OrderRelatedInfo:
+        orderRelatedInfo:
           type: object
           description: 申込関連情報
           required:
-            - AccountInfo
+            - accountInfo
           properties:
-            AccountInfo:
+            accountInfo:
               type: object
               description: 顧客情報
               required:
-                - Account
-                - AccountAddition
+                - account
+                - accountAddition
               properties:
-                Account:
+                account:
                   type: object
                   description: 顧客
                   required:
@@ -12524,7 +12539,7 @@ components:
                       type: string
                       maxLength: 80
                       example: chubu.tarou@commufa.jp
-                AccountAddition:
+                accountAddition:
                   type: object
                   description: 顧客補足情報
                   properties:
