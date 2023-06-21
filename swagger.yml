@@ -141,9 +141,13 @@ paths:
           description: 郵便番号
           required: false
           schema:
-            type: string
-            maxLength: 7
-            example: 2700163
+            type: array
+            items:
+              type: string
+            example:
+              - '2700163'
+              - '1730032'
+              - '2313123'
       responses:
         '200':
           description: 成功時
