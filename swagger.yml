@@ -144,6 +144,7 @@ paths:
             type: array
             items:
               type: string
+              maxLength: 7
             example:
               - '2700163'
               - '1730032'
