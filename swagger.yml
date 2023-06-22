@@ -9210,334 +9210,415 @@ paths:
                               description: 項目メタデータ定義
                               additionalProperties:
                                 type: object
-                                description: オブジェクト名 ※このキーは可変
+                                description: 項目名 ※このキーは可変
                                 properties:
-                                  metadataBaseName:
-                                    type: string
-                                    description: メタデータ定義ベース名
-                                    example: XXXXX
-                                  metadataBaseLabel:
-                                    type: string
-                                    description: メタデータ定義ラベル
-                                    example: XXXXX
-                                  FieldMetadataDefinitions:
+                                  FieldMetadata:
                                     type: object
-                                    description: 項目メタデータ定義
-                                    additionalProperties:
+                                    description: 項目メタデータ
+                                    properties:
+                                      FieldMetadataExtension:
+                                        type: object
+                                        description: 項目メタデータ拡張
+                                        properties:
+                                          CMAP_FieldName__c:
+                                            type: string
+                                            description: 項目名
+                                            example: XXXXX
+                                          CMAP_FieldLabel__c:
+                                            type: string
+                                            description: 項目ラベル
+                                            example: XXXXX
+                                          CMAP_Type__c:
+                                            type: string
+                                            description: 型
+                                            example: text
+                                          CMAP_MultipleFieldType__c:
+                                            type: string
+                                            description: 複数項目型
+                                            example: text
+                                          CMAP_ContainedFieldNames__c:
+                                            type: string
+                                            description: 複数項目に含む単項目名
+                                            example: XXXXX
+                                          CMAP_MulticolumnSaveType__c:
+                                            type: string
+                                            description: 複数項目の保存方式
+                                            example: singleField
+                                          CMAP_ReferenceFieldIconName__c:
+                                            type: string
+                                            description: 参照項目アイコン名
+                                            example: XXXXX
+                                          CMAP_ReferenceFieldSearchResultFieldName__c:
+                                            type: string
+                                            description: 参照項目検索結果フィールド名
+                                            example: XXXXX
+                                          CMAP_ReferenceFieldKeyFieldName__c:
+                                            type: string
+                                            description: 参照項目キーフィールド名
+                                            example: XXXXX
+                                          CMAP_NumberOfRefFieldSearchDisplayCounts__c:
+                                            type: string
+                                            description: 参照項目検索結果表示件数
+                                            example: XXXXX
+                                          CMAP_ReferenceFieldSearchCondition__c:
+                                            type: string
+                                            description: 参照項目検索条件
+                                            example: XXXXX
+                                          CMAP_ReferenceFieldApexControllerExt__c:
+                                            type: string
+                                            description: 参照項目Apexコントローラ拡張
+                                            example: XXXXX
+                                          CMAP_NumberOfLetters__c:
+                                            type: integer
+                                            description: 文字数
+                                            example: 99
+                                            format: int32
+                                          CMAP_Required__c:
+                                            type: string
+                                            description: 必須
+                                            example: Required
+                                          CMAP_MinimumValue__c:
+                                            type: integer
+                                            description: 最小値
+                                            example: 99
+                                            format: int32
+                                          CMAP_MaximumValue__c:
+                                            type: integer
+                                            description: 最大値
+                                            example: 99
+                                            format: int32
+                                          CMAP_RequiredCondition__c:
+                                            type: string
+                                            description: 条件付き必須
+                                            example: XXXXX
+                                          CMAP_ActiveCondition__c:
+                                            type: string
+                                            description: 条件付き有効
+                                            example: XXXXX
+                                          CMAP_VisibleCondition__c:
+                                            type: string
+                                            description: 条件付き表示
+                                            example: XXXXX
+                                          CMAP_DefaultValue__c:
+                                            type: string
+                                            description: デフォルト値
+                                            example: XXXXX
+                                          CMAP_Option__c:
+                                            type: string
+                                            description: 選択肢
+                                            example: XXXXX
+                                          CMAP_OptionCondition__c:
+                                            type: string
+                                            description: 条件付き選択肢
+                                            example: XXXXX
+                                          CMAP_HelpText__c:
+                                            type: string
+                                            description: ヘルプテキスト
+                                            example: XXXXX
+                                          CMAP_HelpTextCondition__c:
+                                            type: string
+                                            description: 条件付きヘルプテキスト
+                                            example: XXXXX
+                                          CMAP_Precaution__c:
+                                            type: string
+                                            description: 注意事項
+                                            example: XXXXX
+                                          CMAP_PrecautionCondition__c:
+                                            type: string
+                                            description: 条件付き注意事項
+                                            example: XXXXX
+                                          CMAP_Placeholder__c:
+                                            type: string
+                                            description: プレースホルダ
+                                            example: XXXXX
+                                          CMAP_ValidationPattern__c:
+                                            type: string
+                                            description: バリデーションパターン
+                                            example: XXXXX
+                                          CMAP_ValidationErrorMessage__c:
+                                            type: string
+                                            description: バリデーションエラーメッセージ
+                                            example: XXXXX
+                                          CMAP_ReadOnly__c:
+                                            type: string
+                                            description: 読み取り専用
+                                            example: readonly
+                                      FieldMetadataAddition:
+                                        type: object
+                                        description: 項目メタデータ拡張補足情報
+                                        properties:
+                                          lookupObjectLabel:
+                                            type: string
+                                            description: 参照オブジェクトラベル
+                                            example: XXXXX
+                                          lookupObjectName:
+                                            type: string
+                                            description: 参照オブジェクト名
+                                            example: XXXXX
+                                          orderItemAttributeDefinitionId:
+                                            type: string
+                                            description: 申込商品属性定義ID
+                                            example: XXXXX
+                                  MultiFieldMetadata:
+                                    type: array
+                                    description: 複数項目の単項目メタデータリスト
+                                    items:
                                       type: object
-                                      description: 項目名 ※このキーは可変
                                       properties:
-                                        FieldMetadata:
+                                        FieldMetadataDefinitions:
                                           type: object
-                                          description: 項目メタデータ
-                                          properties:
-                                            FieldMetadataExtension:
-                                              type: object
-                                              description: 項目メタデータ拡張
-                                              properties:
-                                                CMAP_FieldName__c:
-                                                  type: string
-                                                  description: 項目名
-                                                  example: XXXXX
-                                                CMAP_FieldLabel__c:
-                                                  type: string
-                                                  description: 項目ラベル
-                                                  example: XXXXX
-                                                CMAP_Type__c:
-                                                  type: string
-                                                  description: 型
-                                                  example: text
-                                                CMAP_MultipleFieldType__c:
-                                                  type: string
-                                                  description: 複数項目型
-                                                  example: text
-                                                CMAP_ContainedFieldNames__c:
-                                                  type: string
-                                                  description: 複数項目に含む単項目名
-                                                  example: XXXXX
-                                                CMAP_MulticolumnSaveType__c:
-                                                  type: string
-                                                  description: 複数項目の保存方式
-                                                  example: singleField
-                                                CMAP_ReferenceFieldIconName__c:
-                                                  type: string
-                                                  description: 参照項目アイコン名
-                                                  example: XXXXX
-                                                CMAP_ReferenceFieldSearchResultFieldName__c:
-                                                  type: string
-                                                  description: 参照項目検索結果フィールド名
-                                                  example: XXXXX
-                                                CMAP_ReferenceFieldKeyFieldName__c:
-                                                  type: string
-                                                  description: 参照項目キーフィールド名
-                                                  example: XXXXX
-                                                CMAP_NumberOfRefFieldSearchDisplayCounts__c:
-                                                  type: string
-                                                  description: 参照項目検索結果表示件数
-                                                  example: XXXXX
-                                                CMAP_ReferenceFieldSearchCondition__c:
-                                                  type: string
-                                                  description: 参照項目検索条件
-                                                  example: XXXXX
-                                                CMAP_ReferenceFieldApexControllerExt__c:
-                                                  type: string
-                                                  description: 参照項目Apexコントローラ拡張
-                                                  example: XXXXX
-                                                CMAP_NumberOfLetters__c:
-                                                  type: integer
-                                                  description: 文字数
-                                                  example: 99
-                                                  format: int32
-                                                CMAP_Required__c:
-                                                  type: string
-                                                  description: 必須
-                                                  example: Required
-                                                CMAP_MinimumValue__c:
-                                                  type: integer
-                                                  description: 最小値
-                                                  example: 99
-                                                  format: int32
-                                                CMAP_MaximumValue__c:
-                                                  type: integer
-                                                  description: 最大値
-                                                  example: 99
-                                                  format: int32
-                                                CMAP_RequiredCondition__c:
-                                                  type: string
-                                                  description: 条件付き必須
-                                                  example: XXXXX
-                                                CMAP_ActiveCondition__c:
-                                                  type: string
-                                                  description: 条件付き有効
-                                                  example: XXXXX
-                                                CMAP_VisibleCondition__c:
-                                                  type: string
-                                                  description: 条件付き表示
-                                                  example: XXXXX
-                                                CMAP_DefaultValue__c:
-                                                  type: string
-                                                  description: デフォルト値
-                                                  example: XXXXX
-                                                CMAP_Option__c:
-                                                  type: string
-                                                  description: 選択肢
-                                                  example: XXXXX
-                                                CMAP_OptionCondition__c:
-                                                  type: string
-                                                  description: 条件付き選択肢
-                                                  example: XXXXX
-                                                CMAP_HelpText__c:
-                                                  type: string
-                                                  description: ヘルプテキスト
-                                                  example: XXXXX
-                                                CMAP_HelpTextCondition__c:
-                                                  type: string
-                                                  description: 条件付きヘルプテキスト
-                                                  example: XXXXX
-                                                CMAP_Precaution__c:
-                                                  type: string
-                                                  description: 注意事項
-                                                  example: XXXXX
-                                                CMAP_PrecautionCondition__c:
-                                                  type: string
-                                                  description: 条件付き注意事項
-                                                  example: XXXXX
-                                                CMAP_Placeholder__c:
-                                                  type: string
-                                                  description: プレースホルダ
-                                                  example: XXXXX
-                                                CMAP_ValidationPattern__c:
-                                                  type: string
-                                                  description: バリデーションパターン
-                                                  example: XXXXX
-                                                CMAP_ValidationErrorMessage__c:
-                                                  type: string
-                                                  description: バリデーションエラーメッセージ
-                                                  example: XXXXX
-                                                CMAP_ReadOnly__c:
-                                                  type: string
-                                                  description: 読み取り専用
-                                                  example: readonly
-                                            FieldMetadataAddition:
-                                              type: object
-                                              description: 項目メタデータ拡張補足情報
-                                              properties:
-                                                lookupObjectLabel:
-                                                  type: string
-                                                  description: 参照オブジェクトラベル
-                                                  example: XXXXX
-                                                lookupObjectName:
-                                                  type: string
-                                                  description: 参照オブジェクト名
-                                                  example: XXXXX
-                                                orderItemAttributeDefinitionId:
-                                                  type: string
-                                                  description: 申込商品属性定義ID
-                                                  example: XXXXX
-                                        MultiFieldMetadata:
-                                          type: array
-                                          description: 複数項目の単項目メタデータリスト
-                                          items:
+                                          description: 項目メタデータ定義
+                                          additionalProperties:
                                             type: object
+                                            description: 項目名 ※このキーは可変
                                             properties:
-                                              FieldMetadataDefinitions:
+                                              FieldMetadata:
                                                 type: object
-                                                description: 項目メタデータ定義
-                                                additionalProperties:
-                                                  type: object
-                                                  description: 項目名 ※このキーは可変
-                                                  properties:
-                                                    FieldMetadata:
-                                                      type: object
-                                                      description: 項目メタデータ
-                                                      properties:
-                                                        FieldMetadataExtension:
-                                                          type: object
-                                                          description: 項目メタデータ拡張
-                                                          properties:
-                                                            CMAP_FieldName__c:
-                                                              type: string
-                                                              description: 項目名
-                                                              example: XXXXX
-                                                            CMAP_FieldLabel__c:
-                                                              type: string
-                                                              description: 項目ラベル
-                                                              example: XXXXX
-                                                            CMAP_Type__c:
-                                                              type: string
-                                                              description: 型
-                                                              example: text
-                                                            CMAP_MultipleFieldType__c:
-                                                              type: string
-                                                              description: 複数項目型
-                                                              example: text
-                                                            CMAP_ContainedFieldNames__c:
-                                                              type: string
-                                                              description: 複数項目に含む単項目名
-                                                              example: XXXXX
-                                                            CMAP_MulticolumnSaveType__c:
-                                                              type: string
-                                                              description: 複数項目の保存方式
-                                                              example: singleField
-                                                            CMAP_ReferenceFieldIconName__c:
-                                                              type: string
-                                                              description: 参照項目アイコン名
-                                                              example: XXXXX
-                                                            CMAP_ReferenceFieldSearchResultFieldName__c:
-                                                              type: string
-                                                              description: 参照項目検索結果フィールド名
-                                                              example: XXXXX
-                                                            CMAP_ReferenceFieldKeyFieldName__c:
-                                                              type: string
-                                                              description: 参照項目キーフィールド名
-                                                              example: XXXXX
-                                                            CMAP_NumberOfRefFieldSearchDisplayCounts__c:
-                                                              type: string
-                                                              description: 参照項目検索結果表示件数
-                                                              example: XXXXX
-                                                            CMAP_ReferenceFieldSearchCondition__c:
-                                                              type: string
-                                                              description: 参照項目検索条件
-                                                              example: XXXXX
-                                                            CMAP_ReferenceFieldApexControllerExt__c:
-                                                              type: string
-                                                              description: 参照項目Apexコントローラ拡張
-                                                              example: XXXXX
-                                                            CMAP_NumberOfLetters__c:
-                                                              type: integer
-                                                              description: 文字数
-                                                              example: 99
-                                                              format: int32
-                                                            CMAP_Required__c:
-                                                              type: string
-                                                              description: 必須
-                                                              example: Required
-                                                            CMAP_MinimumValue__c:
-                                                              type: integer
-                                                              description: 最小値
-                                                              example: 99
-                                                              format: int32
-                                                            CMAP_MaximumValue__c:
-                                                              type: integer
-                                                              description: 最大値
-                                                              example: 99
-                                                              format: int32
-                                                            CMAP_RequiredCondition__c:
-                                                              type: string
-                                                              description: 条件付き必須
-                                                              example: XXXXX
-                                                            CMAP_ActiveCondition__c:
-                                                              type: string
-                                                              description: 条件付き有効
-                                                              example: XXXXX
-                                                            CMAP_VisibleCondition__c:
-                                                              type: string
-                                                              description: 条件付き表示
-                                                              example: XXXXX
-                                                            CMAP_DefaultValue__c:
-                                                              type: string
-                                                              description: デフォルト値
-                                                              example: XXXXX
-                                                            CMAP_Option__c:
-                                                              type: string
-                                                              description: 選択肢
-                                                              example: XXXXX
-                                                            CMAP_OptionCondition__c:
-                                                              type: string
-                                                              description: 条件付き選択肢
-                                                              example: XXXXX
-                                                            CMAP_HelpText__c:
-                                                              type: string
-                                                              description: ヘルプテキスト
-                                                              example: XXXXX
-                                                            CMAP_HelpTextCondition__c:
-                                                              type: string
-                                                              description: 条件付きヘルプテキスト
-                                                              example: XXXXX
-                                                            CMAP_Precaution__c:
-                                                              type: string
-                                                              description: 注意事項
-                                                              example: XXXXX
-                                                            CMAP_PrecautionCondition__c:
-                                                              type: string
-                                                              description: 条件付き注意事項
-                                                              example: XXXXX
-                                                            CMAP_Placeholder__c:
-                                                              type: string
-                                                              description: プレースホルダ
-                                                              example: XXXXX
-                                                            CMAP_ValidationPattern__c:
-                                                              type: string
-                                                              description: バリデーションパターン
-                                                              example: XXXXX
-                                                            CMAP_ValidationErrorMessage__c:
-                                                              type: string
-                                                              description: バリデーションエラーメッセージ
-                                                              example: XXXXX
-                                                            CMAP_ReadOnly__c:
-                                                              type: string
-                                                              description: 読み取り専用
-                                                              example: readonly
-                                                        FieldMetadataAddition:
-                                                          type: object
-                                                          description: 項目メタデータ拡張補足情報
-                                                          properties:
-                                                            lookupObjectLabel:
-                                                              type: string
-                                                              description: 参照オブジェクトラベル
-                                                              example: XXXXX
-                                                            lookupObjectName:
-                                                              type: string
-                                                              description: 参照オブジェクト名
-                                                              example: XXXXX
-                                                            orderItemAttributeDefinitionId:
-                                                              type: string
-                                                              description: 申込商品属性定義ID
-                                                              example: XXXXX
+                                                description: 項目メタデータ
+                                                properties:
+                                                  FieldMetadataExtension:
+                                                    type: object
+                                                    description: 項目メタデータ拡張
+                                                    properties:
+                                                      CMAP_FieldName__c:
+                                                        type: string
+                                                        description: 項目名
+                                                        example: XXXXX
+                                                      CMAP_FieldLabel__c:
+                                                        type: string
+                                                        description: 項目ラベル
+                                                        example: XXXXX
+                                                      CMAP_Type__c:
+                                                        type: string
+                                                        description: 型
+                                                        example: text
+                                                      CMAP_MultipleFieldType__c:
+                                                        type: string
+                                                        description: 複数項目型
+                                                        example: text
+                                                      CMAP_ContainedFieldNames__c:
+                                                        type: string
+                                                        description: 複数項目に含む単項目名
+                                                        example: XXXXX
+                                                      CMAP_MulticolumnSaveType__c:
+                                                        type: string
+                                                        description: 複数項目の保存方式
+                                                        example: singleField
+                                                      CMAP_ReferenceFieldIconName__c:
+                                                        type: string
+                                                        description: 参照項目アイコン名
+                                                        example: XXXXX
+                                                      CMAP_ReferenceFieldSearchResultFieldName__c:
+                                                        type: string
+                                                        description: 参照項目検索結果フィールド名
+                                                        example: XXXXX
+                                                      CMAP_ReferenceFieldKeyFieldName__c:
+                                                        type: string
+                                                        description: 参照項目キーフィールド名
+                                                        example: XXXXX
+                                                      CMAP_NumberOfRefFieldSearchDisplayCounts__c:
+                                                        type: string
+                                                        description: 参照項目検索結果表示件数
+                                                        example: XXXXX
+                                                      CMAP_ReferenceFieldSearchCondition__c:
+                                                        type: string
+                                                        description: 参照項目検索条件
+                                                        example: XXXXX
+                                                      CMAP_ReferenceFieldApexControllerExt__c:
+                                                        type: string
+                                                        description: 参照項目Apexコントローラ拡張
+                                                        example: XXXXX
+                                                      CMAP_NumberOfLetters__c:
+                                                        type: integer
+                                                        description: 文字数
+                                                        example: 99
+                                                        format: int32
+                                                      CMAP_Required__c:
+                                                        type: string
+                                                        description: 必須
+                                                        example: Required
+                                                      CMAP_MinimumValue__c:
+                                                        type: integer
+                                                        description: 最小値
+                                                        example: 99
+                                                        format: int32
+                                                      CMAP_MaximumValue__c:
+                                                        type: integer
+                                                        description: 最大値
+                                                        example: 99
+                                                        format: int32
+                                                      CMAP_RequiredCondition__c:
+                                                        type: string
+                                                        description: 条件付き必須
+                                                        example: XXXXX
+                                                      CMAP_ActiveCondition__c:
+                                                        type: string
+                                                        description: 条件付き有効
+                                                        example: XXXXX
+                                                      CMAP_VisibleCondition__c:
+                                                        type: string
+                                                        description: 条件付き表示
+                                                        example: XXXXX
+                                                      CMAP_DefaultValue__c:
+                                                        type: string
+                                                        description: デフォルト値
+                                                        example: XXXXX
+                                                      CMAP_Option__c:
+                                                        type: string
+                                                        description: 選択肢
+                                                        example: XXXXX
+                                                      CMAP_OptionCondition__c:
+                                                        type: string
+                                                        description: 条件付き選択肢
+                                                        example: XXXXX
+                                                      CMAP_HelpText__c:
+                                                        type: string
+                                                        description: ヘルプテキスト
+                                                        example: XXXXX
+                                                      CMAP_HelpTextCondition__c:
+                                                        type: string
+                                                        description: 条件付きヘルプテキスト
+                                                        example: XXXXX
+                                                      CMAP_Precaution__c:
+                                                        type: string
+                                                        description: 注意事項
+                                                        example: XXXXX
+                                                      CMAP_PrecautionCondition__c:
+                                                        type: string
+                                                        description: 条件付き注意事項
+                                                        example: XXXXX
+                                                      CMAP_Placeholder__c:
+                                                        type: string
+                                                        description: プレースホルダ
+                                                        example: XXXXX
+                                                      CMAP_ValidationPattern__c:
+                                                        type: string
+                                                        description: バリデーションパターン
+                                                        example: XXXXX
+                                                      CMAP_ValidationErrorMessage__c:
+                                                        type: string
+                                                        description: バリデーションエラーメッセージ
+                                                        example: XXXXX
+                                                      CMAP_ReadOnly__c:
+                                                        type: string
+                                                        description: 読み取り専用
+                                                        example: readonly
+                                                  FieldMetadataAddition:
+                                                    type: object
+                                                    description: 項目メタデータ拡張補足情報
+                                                    properties:
+                                                      lookupObjectLabel:
+                                                        type: string
+                                                        description: 参照オブジェクトラベル
+                                                        example: XXXXX
+                                                      lookupObjectName:
+                                                        type: string
+                                                        description: 参照オブジェクト名
+                                                        example: XXXXX
+                                                      orderItemAttributeDefinitionId:
+                                                        type: string
+                                                        description: 申込商品属性定義ID
+                                                        example: XXXXX
                       hasPostProcess:
                         type: boolean
                         description: 後処理有無
                         example: false
+                  ProcessResult:
+                    $ref: '#/components/schemas/ProcessResultModel'
+        '400':
+          $ref: '#/components/responses/BadRequestResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerErrorResponse'
+  /order/RetrieveOrderCategoryList:
+    get:
+      tags:
+        - Order
+      security:
+        - bearer: []
+      summary: 申込区分取得API
+      description: |-
+        [Overview]
+
+        指定の遷移元データを元に、申込可能な申込区分を取得する
+
+        [Details]
+
+        1.Queryパラメータ定義に従いバリデーションを行う
+
+        2.Queryパラメータリクエスト項目として、c-mapの「申込区分取得API」をコールする
+
+        3.c-mapからのレスポンスに応じて値を返却する。
+
+          - 3-1. httpステータスが400番代の場合、エラーメッセージを格納しhttpステータス400を返し処理を終了する。
+
+          - 3.2. httpステータスが500番代の場合、エラーメッセージを格納しhttpステータス500を返し処理を終了する。
+
+          - 3.3. httpステータスが200の場合、レスポンス項目値を設定する。
+
+          - 3.4. httpステータスが200でレスポンスが空のリストの場合、空のリストを返却する。
+      operationId: RetrieveOrderCategoryList
+      parameters:
+        - in: query
+          name: changeType
+          description: 変更種別
+          required: false
+          schema:
+            type: string
+            example: OrderChange
+            enum:
+              - OrderChange
+              - IndividualContractChange
+        - in: query
+          name: orderChannelCategory
+          description: 申込チャネル区分
+          required: true
+          schema:
+            type: string
+            example: Web
+            enum:
+              - Web
+              - CallCenter
+              - Agency
+              - ApplianceStore
+              - AuShop
+        - in: query
+          name: orderId
+          description: 申込ID
+          required: false
+          schema:
+            type: string
+            maxLength: 18
+            example: XXXXX
+        - in: query
+          name: individualContractId
+          description: 個別契約／購入ID
+          required: false
+          schema:
+            type: string
+            maxLength: 18
+            example: XXXXX
+      responses:
+        '200':
+          description: 成功時
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  OrderCategoryInfos:
+                    type: array
+                    description: 申込区分情報リスト
+                    items:
+                      type: object
+                      properties:
+                        orderCategory:
+                          type: string
+                          description: 申込区分
+                          example: NewContractPurchace
+                        orderCategoryLabel:
+                          type: string
+                          description: 申込区分ラベル
+                          example: XXXXX
                   ProcessResult:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
