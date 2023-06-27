@@ -5418,7 +5418,7 @@ paths:
           $ref: '#/components/responses/BadRequestResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
-  /order/AuthorizeCraditCard:
+  /order/AuthorizeCreditCard:
     post:
       tags:
         - Order
@@ -5435,36 +5435,14 @@ paths:
         1.requestBodyから「リクエスト項目」を取得する。
 
           - 1-1. リクエスト項目に定義している、required属性に対して、単項目バリデーションチェックを実施する。
-
           - 1-2. バリデーションチェックがNGだった場合、400と下記のエラーメッセージを返して処理を終了する。
             - ｛項目名, 項目名｝が空白です。
 
-        2.下記リクエスト項目を設定してYDSの「オーソリ依頼API」をコールする。
+        2.requestBodyに以下項目を追加しリクエスト項目として、YDSの「オーソリ依頼API」をコールする。
 
-          - trans_no（取引番号）：TransactionNumber（※本APIのINPUT）
-          - trans_date（取引日付）：TransactionDate（※本APIのINPUT）
           - center_id（接続センターコード）：Ctc.Foundation.MuleAPI.configファイルから取得
           - yds_id（センター固有コード）：Ctc.Foundation.MuleAPI.configファイルから取得
           - com_id（契約会社コード）：Ctc.Foundation.MuleAPI.configファイルから取得
-          - term_id（端末識別コード）：TerminalIdentificationCode（※本APIのINPUT）
-          - item_id（商品コード）：""
-          - item_name（商品名）：""
-          - div_trade（取引区分）：0
-          - amount（金額）：1
-          - biz_info（業務情報）：
-          
-            以下の値を連結した文字列を設定
-            
-            - 業務コード："500"
-            - 顧客コード：CustomerCode（※本APIのINPUT）
-            - トークン番号：TokenNumber（※本APIのINPUT）
-            - 有効期限：ExpirationDate（※本APIのINPUT）
-            - 支払方法："10"
-            - 分割回数："  "（半角スペース2つ）
-            - セキュリティコード：SecurityCode（※本APIのINPUT）
-            - 顧客名：CustomerName（※本APIのINPUT）
-
-          - hash（ハッシュ値）：HashValue（※本APIのINPUT）
 
         3.YDSからのレスポンスに応じて値を返却する。
           
@@ -5482,9 +5460,9 @@ paths:
             - タイムアウトでYDSからレスポンスが取得できなかった場合、「BusinessErrors」にコード"E5124"とそのメッセージを設定する。
 
           - 3-3. httpステータスが200の場合、APIから取得したレスポンスを下記レスポンス項目に設定する。
-            -  CreditCardLastFourNumber：APIから取得した「無害化カード番号」の末尾4桁
-            -  YamaguchiInforamtionManagementId：APIから取得した「顧客コード」
-      operationId: AuthorizeCraditCard
+            - CMAP_CreditCardNumberLastFourDigits__c：APIから取得した「無害化カード番号」の末尾4桁
+            - CMAP_YamaguchiInfoId__c：APIから取得した「顧客コード」
+      operationId: AuthorizeCreditCard
       requestBody:
         description: リクエスト項目を指定
         required: true
@@ -5492,60 +5470,54 @@ paths:
           application/json:
             schema:
               type: object
-              required:
-                - TransactionNumber
-                - TransactionDate
-                - TerminalIdentificationCode
-                - CustomerCode
-                - TokenNumber
-                - ExpirationDate
-                - SecurityCode
-                - CustomerName
-                - HashValue
               properties:
-                TransactionNumber:
+                trans_no:
                   title: 取引番号
                   type: integer
                   format: int32
                   minimum: 1
                   maximum: 99999
                   example: 99999
-                TransactionDate:
+                trans_date:
                   title: 取引日付
                   type: string
                   maxLength: 8
                   example: 99991231
-                TerminalIdentificationCode:
+                term_id:
                   title: 端末識別コード
                   type: string
                   maxLength: 10
                   example: XXXXX
-                CustomerCode:
-                  title: 顧客コード
+                item_id:
+                  title: 商品コード
                   type: string
-                  maxLength: 10
+                  maxLength: 15
                   example: XXXXX
-                TokenNumber:
-                  title: トークン番号
-                  type: string
-                  maxLength: 16
-                  example: XXXXX
-                ExpirationDate:
-                  title: 有効期限
-                  type: string
-                  maxLength: 4
-                  example: 1226
-                SecurityCode:
-                  title: セキュリティコード
-                  type: string
-                  maxLength: 4
-                  example: 999
-                CustomerName:
-                  title: 顧客名
+                item_name:
+                  title: 商品名
                   type: string
                   maxLength: 32
-                  example: 中部太郎
-                HashValue:
+                  example: XXXXX
+                div_trade:
+                  title: 取引区分
+                  type: integer
+                  format: int32
+                  minimum: 0
+                  maximum: 2
+                  example: 0
+                amount:
+                  title: 金額
+                  type: integer
+                  format: int32
+                  minimum: 1
+                  maximum: 9999999
+                  example: 1
+                biz_info:
+                  title: 業務情報
+                  type: string
+                  maxLength: 128
+                  example: XXXXX
+                hash:
                   title: ハッシュ値
                   type: string
                   maxLength: 64
@@ -5558,11 +5530,11 @@ paths:
               schema:
                 type: object
                 properties:
-                  CreditCardLastFourNumber:
+                  CMAP_CreditCardNumberLastFourDigits__c:
                     type: string
                     description: カード番号末尾4桁
                     example: 9999
-                  YamaguchiInforamtionManagementId:
+                  CMAP_YamaguchiInfoId__c:
                     type: string
                     description: 山口情報管理ID
                     example: XXXXX
@@ -9001,424 +8973,6 @@ paths:
                         type: boolean
                         description: 後処理有無
                         example: false
-                  ProcessResult:
-                    $ref: '#/components/schemas/ProcessResultModel'
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-  /order/RetrieveOrderCategoryList:
-    get:
-      tags:
-        - Order
-      security:
-        - bearer: []
-      summary: 申込区分取得API
-      description: |-
-        [Overview]
-
-        指定の遷移元データを元に、申込可能な申込区分を取得する
-
-        [Details]
-
-        1.Queryパラメータ定義に従いバリデーションを行う
-
-        2.Queryパラメータリクエスト項目として、c-mapの「申込区分取得API」をコールする
-
-        3.c-mapからのレスポンスに応じて値を返却する。
-
-          - 3-1. httpステータスが400番代の場合、エラーメッセージを格納しhttpステータス400を返し処理を終了する。
-
-          - 3.2. httpステータスが500番代の場合、エラーメッセージを格納しhttpステータス500を返し処理を終了する。
-
-          - 3.3. httpステータスが200の場合、レスポンス項目値を設定する。
-
-          - 3.4. httpステータスが200でレスポンスが空のリストの場合、空のリストを返却する。
-      operationId: RetrieveOrderCategoryList
-      parameters:
-        - in: query
-          name: changeType
-          description: 変更種別
-          required: false
-          schema:
-            type: string
-            example: OrderChange
-            enum:
-              - OrderChange
-              - IndividualContractChange
-        - in: query
-          name: orderChannelCategory
-          description: 申込チャネル区分
-          required: true
-          schema:
-            type: string
-            example: Web
-            enum:
-              - Web
-              - CallCenter
-              - Agency
-              - ApplianceStore
-              - AuShop
-        - in: query
-          name: orderId
-          description: 申込ID
-          required: false
-          schema:
-            type: string
-            maxLength: 18
-            example: XXXXX
-        - in: query
-          name: individualContractId
-          description: 個別契約／購入ID
-          required: false
-          schema:
-            type: string
-            maxLength: 18
-            example: XXXXX
-      responses:
-        '200':
-          description: 成功時
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  OrderCategoryInfos:
-                    type: array
-                    description: 申込区分情報リスト
-                    items:
-                      type: object
-                      properties:
-                        orderCategory:
-                          type: string
-                          description: 申込区分
-                          example: NewContractPurchace
-                        orderCategoryLabel:
-                          type: string
-                          description: 申込区分ラベル
-                          example: XXXXX
-                  ProcessResult:
-                    $ref: '#/components/schemas/ProcessResultModel'
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-  /order/CheckSelectBenefit:
-    post:
-      tags:
-        - Order
-      security:
-        - bearer: []
-      summary: 特典適用チェックAPI
-      description: >-
-        [Overview]
-
-
-        申込情報を元に、特典が適用・選択可能かチェックする。
-
-        ※既に適用・選択している特典も含む
-
-        特典リスト取得APIを呼び出して返却される特典商品リストに申込商品(特典商品)が含まれるかをチェックする
-
-
-        [Details]
-
-
-        1.requestBodyから「リクエスト項目」を取得する。
-
-          - 1-1. リクエスト項目に定義している、required属性に対して、単項目バリデーションチェックを実施する。
-
-          - 1-2. バリデーションチェックがNGだった場合、400と下記のエラーメッセージを返して処理を終了する。
-
-            - ｛項目名, 項目名｝が空白です。
-
-        2.requestBodyをリクエスト項目として、c-mapの「特典適用チェックAPI」をコールする。
-
-
-        - 2-1. httpステータスが400番代の場合、エラーメッセージを格納しhttpステータス400を返す。
-
-
-        - 2-2. httpステータスが500番代の場合、エラーメッセージを格納しhttpステータス500を返す。
-
-
-        - 2-3.
-        httpステータスが200の場合、かつAPIから取得した「ReturnCode」が成功:Sucsessの場合、[IsApplicationSuccess]にtrueを、[ApplicationNumber]に「CMAP_OrderAcceptNumber__c」（申込受付番号）を設定して返す。
-
-
-        - 2-4.
-        httpステータスが200の場合、かつAPIから取得した「ReturnCode」が成功:Sucsessではない場合、[IsApplicationSuccess]にfalseを設定し、[ApplicationProcessErrorMessage]にc-mapから返却された「ResultMessage」を設定して返す。         
-             
-      operationId: CheckSelectBenefit
-      requestBody:
-        description: リクエスト項目を指定
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                orderRelatedInfo:
-                  $ref: '#/components/schemas/InputBenefitModel'
-      responses:
-        '200':
-          description: 成功時
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  ApplicationCheckResults:
-                    type: object
-                    description: 適用チェック結果リスト
-                    properties:
-                      OrderItem:
-                        type: object
-                        description: 申込商品
-                        properties:
-                          CMAP_OfferPlanProduct__c:
-                            type: string
-                            description: 提供プラン商品ID
-                            example: XXXXX
-                          CMAP_MainSubProductGroupId__c:
-                            type: string
-                            description: メイン/サブ商品グループID
-                            example: XXXXX
-                          CMAP_MainSubProductGroupCategory__c:
-                            type: string
-                            description: メイン/サブ商品グループ区分
-                            example: MainProduct
-                          CMAP_MainSubProductGroupName__c:
-                            type: string
-                            description: メイン/サブ商品グループ名
-                            example: XXXXX
-                          CMAP_ProductCategoryId__c:
-                            type: string
-                            description: 商品カテゴリID
-                            example: XXXXX
-                          CMAP_ProductCategoryName__c:
-                            type: string
-                            description: 商品カテゴリ名
-                            example: XXXXX
-                          Product2Id:
-                            type: string
-                            description: 商品ID
-                            example: XXXXX
-                          CMAP_ProductName__c:
-                            type: string
-                            description: 商品名
-                            example: XXXXX
-                          UnitPrice:
-                            type: integer
-                            description: 単価
-                            example: 1000
-                            format: int32
-                          CMAP_UnitPriceTaxIncluded__c:
-                            type: integer
-                            description: 単価(税込)
-                            example: 1100
-                            format: int32
-                          CMAP_ComsumptionTaxRate__c:
-                            type: number
-                            description: 消費税率
-                            example: 10.5
-                            format: float
-                          Quantity:
-                            type: number
-                            description: 数量
-                            example: 2.5
-                            format: float
-                          CMAP_PriceCategory__c:
-                            type: string
-                            description: 価格区分
-                            example: LumpSumPayment
-                          CMAP_InstallmentPaymentMonthly__c:
-                            type: boolean
-                            description: 分割払い/月
-                            example: false
-                          CMAP_InstallmentPayMonthlyPriceTaxExc__c:
-                            type: integer
-                            description: 分割払い価格/月(税抜)
-                            example: 1000
-                            format: int32
-                          CMAP_InstallmentPayMonthlyPriceTaxInc__c:
-                            type: integer
-                            description: 分割払い価格/月(税込)
-                            example: 1100
-                            format: int32
-                          CMAP_NumberOfInstallments__c:
-                            type: number
-                            description: 分割回数
-                            example: 3.5
-                            format: float
-                          CMAP_InstallmentPayFirstMonthPriceTaxExc__c:
-                            type: integer
-                            description: 分割払い初月価格/月(税抜)
-                            example: 1000
-                            format: int32
-                          CMAP_InstallmentPayFirstMonthPriceTaxInc__c:
-                            type: integer
-                            description: 分割払い初月価格/月(税込)
-                            example: 1100
-                            format: int32
-                          CMAP_InstallmentPaymentCurrently__c:
-                            type: boolean
-                            description: 分割払い中
-                            example: false
-                          CMAP_SelectionAnnualPayment__c:
-                            type: boolean
-                            description: 【月額払い／年額払い】年額払いを選択
-                            example: false
-                          CMAP_AnnualPaymentPriceTaxExcluded__c:
-                            type: integer
-                            description: 年額払い価格(税抜)
-                            example: 12000
-                            format: int32
-                          CMAP_AnnualPaymentPriceTaxIncluded__c:
-                            type: integer
-                            description: 年額払い価格(税込)
-                            example: 13200
-                            format: int32
-                          CMAP_SetParentProductId__c:
-                            type: string
-                            description: セット親商品ID
-                            example: XXXXX
-                          CMAP_Unchargeable__c:
-                            type: boolean
-                            description: 請求対象外
-                            example: false
-                          CMAP_Asset__c:
-                            type: string
-                            description: 納入商品ID
-                            example: XXXXX
-                          CMAP_ProductSelectionState__c:
-                            type: string
-                            description: 商品選択状態
-                            example: Selected
-                          CMAP_LastTimeChangeCategory__c:
-                            type: string
-                            description: 前回変更区分
-                            example: Added
-                          CMAP_HasOrderItemAttribute__c:
-                            type: boolean
-                            description: 申込商品属性あり
-                            example: false
-                          CMAP_AvailableDailyPricing__c:
-                            type: boolean
-                            description: 価格日割あり
-                            example: false
-                          CMAP_UnchangeableContract__c:
-                            type: boolean
-                            description: 契約変更不可
-                            example: false
-                          CMAP_SetProduct__c:
-                            type: string
-                            description: セット商品ID
-                            example: XXXXX
-                          CMAP_BenefitProduct__c:
-                            type: string
-                            description: 特典商品ID
-                            example: XXXXX
-                          CMAP_BenefitId__c:
-                            type: string
-                            description: 特典ID
-                            example: XXXXX
-                          CMAP_BenefitName__c:
-                            type: string
-                            description: 特典名
-                            example: XXXXX
-                          CMAP_BenefitCampaignId__c:
-                            type: string
-                            description: 特典キャンペーンID
-                            example: XXXXX
-                          CMAP_BenefitCampaignName__c:
-                            type: string
-                            description: 特典キャンペーン名
-                            example: XXXXX
-                          CMAP_GrantUnitPrice__c:
-                            type: integer
-                            description: 供与単価
-                            example: 1000
-                            format: int32
-                          CMAP_GrantPoint__c:
-                            type: number
-                            description: 供与ポイント
-                            example: 421.9
-                            format: float
-                          CMAP_ChangeableBenefit__c:
-                            type: boolean
-                            description: 特典変更可
-                            example: false
-                          CMAP_HasPriceChanged__c:
-                            type: boolean
-                            description: 金額変更
-                            example: false
-                          CMAP_OrderAutomaticSelectionProduct__c:
-                            type: string
-                            description: 申込自動選択商品
-                            example: XXXXX
-                          CMAP_TaxationCategory__c:
-                            type: string
-                            description: 課税区分
-                            example: Taxation
-                          CMAP_NumberOfTimesPaid__c:
-                            type: number
-                            description: 支払い済回数
-                            example: 12.8
-                            format: float
-                          CMAP_RemainingDebtTaxExcluded__c:
-                            type: integer
-                            description: 残債(税抜)
-                            example: 9865
-                            format: int32
-                          CMAP_RemainingDebtLumpSumPayment__c:
-                            type: boolean
-                            description: 残債一括払い
-                            example: false
-                          CMAP_OfferStartDate__c:
-                            type: string
-                            description: 提供開始日
-                            example: '2023-09-21'
-                            format: date
-                          CMAP_ChangeSourceDestinationCategory__c:
-                            type: string
-                            description: 移転/プラン変更元先区分
-                            example: ChangeSource
-                          CMAP_InheritsMovementAssetAttribute__c:
-                            type: boolean
-                            description: 移転時納入商品属性引継
-                            example: false
-                          CMAP_ChangeSourceOrderItem__c:
-                            type: string
-                            description: 【移転/プラン変更元】申込商品ID
-                            example: XXXXX
-                          CMAP_OrderItemBeforeChange__c:
-                            type: string
-                            description: 変更前の申込商品ID
-                            example: XXXXX
-                          CMAP_OrderItemTypeSelection__c:
-                            type: boolean
-                            description: 申込商品種別：選択商品
-                            example: false
-                          CMAP_OrderItemTypeBenefit__c:
-                            type: boolean
-                            description: 申込商品種別：特典商品
-                            example: false
-                          CMAP_OrderItemTypeAutomaticSelection__c:
-                            type: boolean
-                            description: 申込商品種別：自動選択商品
-                            example: false
-                          CMAP_BeforeOffer__c:
-                            type: boolean
-                            description: 提供開始前
-                            example: false
-                      checkResult:
-                        type: string
-                        description: チェック結果
-                        example: OK
-                      errorMessage:
-                        type: string
-                        description: エラーメッセージ
-                        example: XXXXX
                   ProcessResult:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
