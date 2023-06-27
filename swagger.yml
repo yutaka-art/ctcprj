@@ -5432,93 +5432,58 @@ paths:
 
         [Details]
 
-        1.requestBodyから「リクエスト項目」を取得し、バリデーションチェックを行う。
+        1.requestBodyから「リクエスト項目」を取得する。
 
-          - 1-1. 必須チェックを行う。
+          - 1-1. リクエスト項目に定義している、required属性に対して、単項目バリデーションチェックを実施する。
 
-            - 1-1-1. NGだった場合、レスポンス「Result」にfalse、「ErrorMessage」に下記エラーメッセージを設定し、httpステータス400を返し処理を終了する。
+          - 1-2. バリデーションチェックがNGだった場合、400と下記のエラーメッセージを返して処理を終了する。
+            - ｛項目名, 項目名｝が空白です。
 
-              - ｛項目名, 項目名｝が空白です。 
-
-          - 1-2. 桁数チェックを行う。
-
-            - TransactionDate（取引日付）：8桁
-
-            - TerminalIdentificationCode（端末識別コード）：10桁
-
-            - CustomerCode（顧客コード）：10桁
-
-            - TokenNumber（トークン番号）：16桁
-
-            - ExpirationDate（有効期限）：4桁
-
-            - SecurityCode（セキュリティコード）：4桁以内
-
-            - CustomerName（顧客名）：32桁以内
-
-            - HashValue（ハッシュ値）：64桁以内
-
-            - 1-2-1. NGだった場合、レスポンス「Result」にfalse、「ErrorMessage」に下記エラーメッセージを設定し、httpステータス400を返し処理を終了する。
-
-              - ｛項目名, 項目名｝の桁数が不正です。
-
-          - 1-3. 数値の範囲チェックを行う。
-
-            - TransactionNumber（取引番号）：1～99999
-
-            - MaxNumber（最大取得件数）：1～999
-
-            - 1-3-1. NGだった場合、レスポンス「Result」にfalse、「ErrorMessage」に下記エラーメッセージを設定し、httpステータス400を返し処理を終了する。
-
-              - ｛項目名, 項目名｝の範囲が不正です。
-
-        2.下記リクエスト項目を設定してYDSのオーソリAPI（TBD）をコールする。
+        2.下記リクエスト項目を設定してYDSの「オーソリ依頼API」をコールする。
 
           - trans_no（取引番号）：TransactionNumber（※本APIのINPUT）
-
           - trans_date（取引日付）：TransactionDate（※本APIのINPUT）
-
-          - center_id（接続センターコード）：XXXXXX（ctcに確認中）
-
-          - yds_id（センター固有コード）：XXXXXX（ctcに確認中）
-
-          - com_id（契約会社コード）：XXXXXX（ctcに確認中）
-
+          - center_id（接続センターコード）：Ctc.Foundation.MuleAPI.configファイルから取得
+          - yds_id（センター固有コード）：Ctc.Foundation.MuleAPI.configファイルから取得
+          - com_id（契約会社コード）：Ctc.Foundation.MuleAPI.configファイルから取得
           - term_id（端末識別コード）：TerminalIdentificationCode（※本APIのINPUT）
-
+          - item_id（商品コード）：""
+          - item_name（商品名）：""
           - div_trade（取引区分）：0
-
-          - amount（金額）：0
-
-          - business_code（業務コード）：XXXXXX（ctcに確認中）
-
-          - customer_code（顧客コード）：CustomerCode（※本APIのINPUT）
-
-          - token_no（トークン番号）：TokenNumber（※本APIのINPUT）
-
-          - expiration_date（有効期限）：ExpirationDate（※本APIのINPUT）
-
-          - security_code（セキュリティコード）：SecurityCode（※本APIのINPUT）
-
-          - customer_name（顧客名）：CustomerName（※本APIのINPUT）
+          - amount（金額）：1
+          - biz_info（業務情報）：
+          
+            以下の値を連結した文字列を設定
+            
+            - 業務コード："500"
+            - 顧客コード：CustomerCode（※本APIのINPUT）
+            - トークン番号：TokenNumber（※本APIのINPUT）
+            - 有効期限：ExpirationDate（※本APIのINPUT）
+            - 支払方法："10"
+            - 分割回数："  "（半角スペース2つ）
+            - セキュリティコード：SecurityCode（※本APIのINPUT）
+            - 顧客名：CustomerName（※本APIのINPUT）
 
           - hash（ハッシュ値）：HashValue（※本APIのINPUT）
 
         3.YDSからのレスポンスに応じて値を返却する。
+          
+          - 3-1. httpステータスが400番台の場合、エラーメッセージを格納しhttpステータス400を返す。
+          - 3-2. httpステータスが500番台の場合、エラーメッセージを格納しhttpステータス500を返す。
+            
+            [エラーメッセージ]
+            - APIから取得した「要求エラーコード」が"0000"かつ「オーソリーエラーコード」が"G83"の場合、「BusinessErrors」にコード"E5120"とそのメッセージを設定する。
+            - APIから取得した「要求エラーコード」が"0000"かつ「オーソリーエラーコード」が"S56"の場合、「BusinessErrors」にコード"E5120"とそのメッセージを設定する。
+            - APIから取得した「要求エラーコード」が"0000"かつ「オーソリーエラーコード」が"G65"の場合、「BusinessErrors」にコード"E5121"とそのメッセージを設定する。
+            - APIから取得した「要求エラーコード」が"0000"かつ「オーソリーエラーコード」が"G*"の場合、「BusinessErrors」にコード"E5122"とそのメッセージを設定する。
+            - APIから取得した「要求エラーコード」が"4120"かつ「オーソリーエラーコード」がなしの場合、「BusinessErrors」にコード"E5122"とそのメッセージを設定する。
+            - APIから取得した「要求エラーコード」が"0000"かつ「オーソリーエラーコード」が上記以外の場合、「BusinessErrors」にコード"E5123"とそのメッセージを設定する。
+            - APIから取得した「要求エラーコード」が上記以外かつ「オーソリーエラーコード」がなしの場合、「BusinessErrors」にコード"E5123"とそのメッセージを設定する。
+            - タイムアウトでYDSからレスポンスが取得できなかった場合、「BusinessErrors」にコード"E5124"とそのメッセージを設定する。
 
-          - 3-1. httpステータスが400番台の場合、エラーメッセージを格納し、レスポンス項目（「Result」にfalse、「ErrorMessage」にエラーメッセージ）を設定してhttpステータス400を返し処理を終了する。
-
-          - 3-2. httpステータスが500番台の場合、エラーメッセージを格納し、レスポンス項目（「Result」にfalse、「ErrorMessage」にエラーメッセージ）を設定してhttpステータス500を返し処理を終了する。
-
-          - 3-3. httpステータスが200の場合、下記レスポンス項目を設定して返却する
-
-            -  CreditCardLastFourNumber：YDSからのレスポンス「card_no」の末尾4桁
-
-            -  YamaguchiInforamtionManagementId：YDSからのレスポンス「trans_no」「trans_date」「com_id」を連結した値
-
-            -  Result：true
-
-            -  Message：設定値なし
+          - 3-3. httpステータスが200の場合、APIから取得したレスポンスを下記レスポンス項目に設定する。
+            -  CreditCardLastFourNumber：APIから取得した「無害化カード番号」の末尾4桁
+            -  YamaguchiInforamtionManagementId：APIから取得した「顧客コード」
       operationId: AuthorizeCraditCard
       requestBody:
         description: リクエスト項目を指定
@@ -5537,7 +5502,6 @@ paths:
                 - SecurityCode
                 - CustomerName
                 - HashValue
-                - MaxNumber
               properties:
                 TransactionNumber:
                   title: 取引番号
@@ -5586,13 +5550,6 @@ paths:
                   type: string
                   maxLength: 64
                   example: XXXXX
-                MaxNumber:
-                  title: 最大取得件数
-                  type: integer
-                  format: int32
-                  minimum: 1
-                  maximum: 999
-                  example: 999
       responses:
         '200':
           description: 成功時
@@ -5608,14 +5565,6 @@ paths:
                   YamaguchiInforamtionManagementId:
                     type: string
                     description: 山口情報管理ID
-                    example: XXXXX
-                  Result:
-                    type: boolean
-                    description: 処理結果
-                    example: true
-                  ErrorMessage:
-                    type: string
-                    description: エラーメッセージ
                     example: XXXXX
         '400':
           $ref: '#/components/responses/BadRequestResponse'
@@ -5960,7 +5909,11 @@ paths:
         [Overview]
 
 
-        ユーザが指定した提供プラン（1件）に含まれる商品のリストを返す。
+        指定の申込商品を元に、自動適用される特典と、任意適用可能な特典を返す。
+
+        ※「自動選択商品適用」実行後の申込商品をInputとすること。
+
+        (前提となる申込商品が変わる可能性のある処理が事前に実行されていること)
 
 
         [Details]
@@ -5968,19 +5921,11 @@ paths:
 
         1.requestBodyから「リクエスト項目」を取得する。
 
-          - 1-1. リクエスト項目に定義している、required属性に対して、単項目バリデーションチェックを実施する。
+          - 1-1. リクエスト項目に定義している属性に対して、単項目バリデーションチェックを実施する。
 
-          - 1-2. orderCategoryCurrentlySelected（申込区分（選択中/単一））が「Cancel」の場合、下記項目が空白でないかバリデーションチェックを実施する。
+          - 1-2. バリデーションチェックがNGだった場合、400と下記のエラーメッセージを返して処理を終了する。
 
-            - CMAP_CancelDate__c（キャンセル日）
-
-          - 1-3. orderCategoryCurrentlySelected（申込区分（選択中/単一））が「TerminationRemainingDebtLumpSumPayment」の場合、下記項目が空白でないかバリデーションチェックを実施する。
-
-            - CMAP_TerminationRequestDate__c（解約希望日）
-
-          - 1-4. バリデーションチェックがNGだった場合、400と下記のエラーメッセージを返して処理を終了する。
-
-            - ｛項目名, 項目名｝が空白です。
+            - ｛項目名, 項目名｝が空白です。 
 
         2.requestBodyをリクエスト項目として、c-mapの「特典リスト取得API」をコールする。
 
