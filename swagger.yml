@@ -126,11 +126,11 @@ paths:
         [Details]
 
 
-        1.Queryから「PostalCode」、「Service」を取得する。
+        1.Queryから「PostalCodes」、「Services」を取得する。
 
-          - 1-1. 「PostalCode」または「Service」が空の場合、400を返し処理を終了する。
+          - 1-1. 「PostalCodes」または「Services」が空の場合、400を返し処理を終了する。
 
-        2.「PostalCode」を絞り込み条件にSitecore Master
+        2.「PostalCodes」を絞り込み条件にSitecore Master
         DBの[郵便番号マスタテーブル(PostalCode)]より下記項目を取得する。
 
             - PrefectureMasterCode（県コード）
@@ -141,6 +141,7 @@ paths:
           [条件]
           -  [対象エリア] = 「2.」で取得した「PrefectureMasterCode（県コード）」
           -  [対象市区町村] = 「2.」で取得した「CityCode（市区町村コード）」
+          -  [サービス区分文字列] = 「1.」で取得した「Services」（複数存在する場合はいずれかが一致する場合）
           -  [HP表示フラグ] = TRUE
           -  [メンテンナンス終了] > 現在日時
           -  [掲載開始] ≦ 現在日時 かつ 現在日時 ≦ [掲載終了]
@@ -151,13 +152,13 @@ paths:
           -  [TargetAreaTitle] :「TargetMunicipality」の値
           -  [MaintenanceStartDate] :「MaintenanceStartDate」
           -  [MaintenanceEndDate] :「MaintenanceEndDate」
-          -  [ServiceTypeText] :「ServiceType」の値
+          -  [ServiceTypeText] :「ServiceType」の値 ※複数存在する場合は、カンマで区切りの文字列とする
           -  [MaintenanceContents] :「MaintenanceContents」
-          -  [ItemName] :「ItemName」
+          -  [ConstructionDetailURL] :「ItemPath」を基に生成
       operationId: RetrieveConstructionList
       parameters:
         - in: query
-          name: PostalCode
+          name: PostalCodes
           description: 郵便番号
           required: true
           schema:
@@ -170,7 +171,7 @@ paths:
               - '1730032'
               - '2313123'
         - in: query
-          name: Service
+          name: Services
           description: サービス
           required: true
           schema:
@@ -201,25 +202,26 @@ paths:
                         MaintenanceStartDate:
                           type: string
                           description: メンテナンス開始日
-                          example: 2022年7月21日14:00
-                          format: yyyy年m月d日hh:mm
+                          example: '2022-07-21 14:00:00'
+                          format: date-time
                         MaintenanceEndDate:
                           type: string
                           description: メンテナンス終了日
-                          example: 2022年7月21日15:00
-                          format: yyyy年m月d日hh:mm
+                          example: '2022-07-21 15:00:00'
+                          format: date-time
                         ServiceTypeText:
                           type: string
                           description: サービス
-                          example: インターネット
+                          example: インターネット,光電話,光テレビ
                         MaintenanceContents:
                           type: string
                           description: メンテンナンス内容
                           example: 設備メンテナンス
-                        ItemName:
+                        ConstructionDetailURL:
                           type: string
-                          description: アイテム名
-                          example: 20220809132615
+                          description: メンテナンス詳細リンク
+                          example: >-
+                            https://www.commufa.jp/construction/detail/20230627162549
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '500':
@@ -254,7 +256,8 @@ paths:
           [レスポンス項目]
           -  [InformationTitle] :「InformationTitle」
           -  [PublicationStartDate] :「PublicationStartDate」
-          -  [ItemName] :「ItemPath」の「information/」の後からアイテム名まで
+          -  [InformationType] :「InformationType」の値
+          -  [InformationDetailURL] :「ItemPath」を基に生成
       operationId: RetrieveInformationList
       responses:
         '200':
@@ -276,12 +279,16 @@ paths:
                         PublicationStartDate:
                           type: string
                           description: 掲載開始日
-                          format: yyyy/m/d
-                          example: 2006/6/22
-                        ItemName:
+                          format: date
+                          example: '2006-06-22'
+                        InformationType:
                           type: string
-                          description: アイテム名（「information/」の後からアイテム名まで）
-                          example: 2006/200606220065
+                          description: お知らせ区分
+                          example: その他
+                        InformationDetailURL:
+                          type: string
+                          description: お知らせ詳細リンク
+                          example: https://www.commufa.jp/information/2023/202306021500
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '500':
@@ -303,11 +310,11 @@ paths:
         [Details]
 
 
-        1.Queryから「PostalCode」、「Service」を取得する。
+        1.Queryから「PostalCodes」、「Services」を取得する。
 
-          - 1-1. 「PostalCode」または「Service」が空の場合、400を返し処理を終了する。
+          - 1-1. 「PostalCodes」または「Services」が空の場合、400を返し処理を終了する。
 
-        2.「PostalCode」を絞り込み条件にSitecore Master
+        2.「PostalCodes」を絞り込み条件にSitecore Master
         DBの[郵便番号マスタテーブル(PostalCode)]より下記項目を取得する。
 
             - PrefectureMasterCode（県コード）
@@ -318,6 +325,7 @@ paths:
           [条件]
           -  [対象エリア] = 「2.」で取得した「PrefectureMasterCode（県コード）」
           -  [対象市区町村] = 「2.」で取得した「CityCode（市区町村コード）」
+          -  [サービス区分文字列] = 「1.」で取得した「Services」（複数存在する場合はいずれかが一致する場合）
           -  [HP表示フラグ] = TRUE
           -  [障害復旧] > 現在日時 または [障害復旧] = ブランク
           -  [掲載開始] ≦ 現在日時 かつ 現在日時 ≦ [掲載終了]
@@ -328,13 +336,13 @@ paths:
           -  [TargetAreaTitle] :「TargetMunicipality」の値
           -  [TroubleStartDate] :「TroubleStartDate」
           -  [TroubleEndDate] :「TroubleEndDate」
-          -  [ServiceTypeText] :「ServiceType」の値
+          -  [ServiceTypeText] :「ServiceType」の値 ※複数存在する場合は、カンマで区切りの文字列とする
           -  [TroubleCause] :「TroubleCause」
-          -  [ItemName] :「ItemName」
+          -  [TroubleDetailURL] :「ItemPath」を基に生成
       operationId: RetrieveTroubleList
       parameters:
         - in: query
-          name: PostalCode
+          name: PostalCodes
           description: 郵便番号
           required: true
           schema:
@@ -347,7 +355,7 @@ paths:
               - '1730032'
               - '2313123'
         - in: query
-          name: Service
+          name: Services
           description: サービス
           required: true
           schema:
@@ -378,25 +386,25 @@ paths:
                         TroubleStartDate:
                           type: string
                           description: 障害発生
-                          example: 2022年7月21日14:00
-                          format: yyyy年m月d日hh:mm
+                          example: '2022-07-21 14:00:00'
+                          format: date-time
                         TroubleEndDate:
                           type: string
                           description: 障害復旧
-                          example: 2022年7月21日15:00
-                          format: yyyy年m月d日hh:mm
+                          example: '2022-07-21 15:00:00'
+                          format: date-time
                         ServiceTypeText:
                           type: string
                           description: サービス
-                          example: インターネット
+                          example: インターネット,光電話,光テレビ
                         TroubleCause:
                           type: string
                           description: 障害原因
                           example: 電柱上の光ケーブル損傷の疑い
-                        ItemName:
+                        TroubleDetailURL:
                           type: string
-                          description: アイテム名
-                          example: 20220129008917
+                          description: 障害詳細URL
+                          example: https://www.commufa.jp/trouble/detail/20230628153612
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '500':
