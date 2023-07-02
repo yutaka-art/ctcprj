@@ -110,7 +110,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /common/RetrieveConstructionList:
-    get:
+    post:
       tags:
         - Common
       security:
@@ -126,11 +126,11 @@ paths:
         [Details]
 
 
-        1.Queryから「ContractInfo」を取得する。
+        1.requestBodyから「リクエスト項目」を取得し、バリデーションチェックを行う。
 
-          - 1-1. Queryパラメータ定義に従いバリデーションチェックを行う。バリデーションエラーが存在する場合、400を返し処理を終了する。
+          - 1-1. パラメータ定義に従いバリデーションチェックを行う。バリデーションエラーが存在する場合、400を返し処理を終了する。
          
-        2.「1.」で取得した「ContractInfo.PostalCode」を絞り込み条件にSitecore Master
+        2.「1.」で取得した「ContractInfos.PostalCode」を絞り込み条件にSitecore Master
         DBの[郵便番号マスタテーブル(PostalCode)]より下記項目を取得する。
 
             - PrefectureMasterCode（県コード）
@@ -158,31 +158,37 @@ paths:
           -  [MaintenanceContents] :「MaintenanceContents」
           -  [ConstructionDetailURL] :「ItemPath」を基に生成
       operationId: RetrieveConstructionList
-      parameters:
-        - in: query
-          name: ContractInfo
-          description: 契約情報
-          required: true
-          schema:
-            type: object
-            required:
-              - PostalCode
-              - Services
-            properties:
-              PostalCode:
-                title: 郵便番号
-                type: string
-                maxLength: 7
-                example: '2700163'
-              Services:
-                title: サービス
-                type: array
-                items:
-                  type: string
-                example:
-                  - 光電話
-                  - 光テレビ
-                  - インターネット
+      requestBody:
+        description: リクエスト項目を指定
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - ContractInfos
+              properties:
+                ContractInfos:
+                  type: array
+                  description: 契約情報
+                  items:
+                    type: object
+                    required:
+                      - PostalCode
+                      - Services
+                    properties:
+                      PostalCode:
+                        title: 郵便番号
+                        type: string
+                        maxLength: 7
+                        example: '2700163'
+                      Services:
+                        title: サービス
+                        type: string
+                        example:
+                          - 光電話
+                          - 光テレビ
+                          - インターネット
       responses:
         '200':
           description: 成功時
@@ -295,7 +301,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /common/RetrieveTroubleList:
-    get:
+    post:
       tags:
         - Common
       security:
@@ -311,11 +317,11 @@ paths:
         [Details]
 
 
-        1.Queryから「ContractInfo」を取得する。
+        1.requestBodyから「リクエスト項目」を取得し、バリデーションチェックを行う。
 
-          - 1-1. Queryパラメータ定義に従いバリデーションチェックを行う。バリデーションエラーが存在する場合、400を返し処理を終了する。
+          - 1-1. パラメータ定義に従いバリデーションチェックを行う。バリデーションエラーが存在する場合、400を返し処理を終了する。
 
-        2.「1.」で取得した「ContractInfo.PostalCode」を絞り込み条件にSitecore Master
+        2.「1.」で取得した「ContractInfos.PostalCode」を絞り込み条件にSitecore Master
         DBの[郵便番号マスタテーブル(PostalCode)]より下記項目を取得する。
 
             - PrefectureMasterCode（県コード）
@@ -326,7 +332,7 @@ paths:
           [条件]
           -  [対象エリア] = 「2.」で取得した「PrefectureMasterCode（県コード）」※1
           -  [対象市区町村] = 「2.」で取得した「CityCode（市区町村コード）」※1
-          -  [サービス区分文字列] = 「1.」で取得した「ContractInfo.Services」※1（複数存在する場合はいずれかが一致する場合）
+          -  [サービス区分文字列] = 「1.」で取得した「ContractInfos.Services」※1（複数存在する場合はいずれかが一致する場合）
           -  [HP表示フラグ] = TRUE
           -  [障害復旧] > 現在日時 または [障害復旧] = ブランク
           -  [掲載開始] ≦ 現在日時 かつ 現在日時 ≦ [掲載終了]
@@ -343,31 +349,37 @@ paths:
           -  [TroubleCause] :「TroubleCause」
           -  [TroubleDetailURL] :「ItemPath」を基に生成
       operationId: RetrieveTroubleList
-      parameters:
-        - in: query
-          name: ContractInfo
-          description: 契約情報
-          required: true
-          schema:
-            type: object
-            required:
-              - PostalCode
-              - Services
-            properties:
-              PostalCode:
-                title: 郵便番号
-                type: string
-                maxLength: 7
-                example: '2700163'
-              Services:
-                title: サービス
-                type: array
-                items:
-                  type: string
-                example:
-                  - 光電話
-                  - 光テレビ
-                  - インターネット
+      requestBody:
+        description: リクエスト項目を指定
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - ContractInfos
+              properties:
+                ContractInfos:
+                  type: array
+                  description: 契約情報
+                  items:
+                    type: object
+                    required:
+                      - PostalCode
+                      - Services
+                    properties:
+                      PostalCode:
+                        title: 郵便番号
+                        type: string
+                        maxLength: 7
+                        example: '2700163'
+                      Services:
+                        title: サービス
+                        type: string
+                        example:
+                          - 光電話
+                          - 光テレビ
+                          - インターネット
       responses:
         '200':
           description: 成功時
