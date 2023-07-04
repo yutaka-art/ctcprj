@@ -3874,41 +3874,44 @@ paths:
       description: |-
         [Overview]
 
-        INPUTのメールアドレスに対して、メールアドレス死活チェック用の認証コードを送信する。
+        INPUTのメールアドレスに対して、メールアドレス死活チェック用の認証コードを送信する
+
+        ※c-mapAPIは当該メールアドレスに対する重複チェック、および、メール送信までを機能として担保する
 
         [Details]
 
-        1. requestBodyから「リクエスト項目」を取得し、バリデーションチェックを行う。
+        1. requestBodyから「リクエスト項目」を取得し、バリデーションチェックを行う
 
-          - 1-1. 必須チェックを行う。
+        2. 取得した「リクエスト項目」を加工し、c-mapのメールアドレス死活確認APIをコールする
 
-            - 1-1-1. NGだった場合、レスポンス「Result」にfalse、「ErrorMessage」に下記エラーメッセージを設定し、httpステータス400を返し処理を終了する。
+          - 2-1. AuthCodeをAES256-cbc形式で復号化する
 
-              - ｛項目名, 項目名｝が空白です。 
+            - 2-1-1. KEYはフロント、バックエンドともに同じ値を保持することを前提とする
 
-          - 1-2. 桁数チェックを行う。
+            - 2-1-2. IVはInputのAuthCodeの接頭(16バイト)をByte配列として生成する
 
-            - 1-2-1. 80桁以内ではない場合、レスポンス「Result」にfalse、「ErrorMessage」に下記エラーメッセージを設定し、httpステータス400を返し処理を終了する。
+            - 2-1-3. KEY,IVをパラメータとしてSystem.Security.Cryptography.Aesを利用し復号化する
 
-              - ｛項目名, 項目名｝の桁数が不正です。
+            - 2-1-4. 復号化に失敗した場合は、バックエンドで定義したエラーコードを設定し処理を終了する
 
-          - 1-3. バリデーションチェックで問題がない場合は、EmailAddressを[セッション情報].[Application].[InputCustomerInfo].[AuthenticationEmailAddress]に格納する。
+          - 2-2 下記リクエスト項目を設定してc-mapのメールアドレス死活確認APIをコールする
 
-        2.下記リクエスト項目を設定してc-mapの認証コード送信API（仮）をコールする。
+            - EmailAddress：EmailAddress
 
-          - EmailAddress：EmailAddress（※本APIのINPUT）
+            - AuthCode：AuthCode ※2-1で生成した数値4桁
 
-        3.c-mapからのレスポンスに応じて値を返却する。  
+        3. その他
+          - 3-1. c-map 返却エラー
 
-          - 3-1. httpステータスが400番台の場合、エラーメッセージを格納し、レスポンス項目（「Result」にfalse、「ErrorMessage」にエラーメッセージ）を設定してhttpステータス400を返し処理を終了する。
+            - er-12001：バリデーションエラー
 
-          - 3-2. httpステータスが500番台の場合、エラーメッセージを格納し、レスポンス項目（「Result」にfalse、「ErrorMessage」にエラーメッセージ）を設定してhttpステータス500を返し処理を終了する。
+            - er-12002：重複チェックAPIのコールでエラー
 
-          - 3-3. httpステータスが200の場合、レスポンス「AuthenticationCode」を[セッション情報].[Application].[InputCustomerInfo].[AuthenticationCode]に格納し、下記レスポンス項目を返却する。
+            - er-12003：メール送信APIのコールでエラー
 
-            -  Result：true
+            - er-12004：メールアドレスの重複があった場合
 
-            -  ErrorMessage：設定値なし
+            - er-12005：メール送信が失敗した場合
       operationId: SendAuthenticationCode
       requestBody:
         description: リクエスト項目を指定
@@ -3917,96 +3920,19 @@ paths:
           application/json:
             schema:
               required:
-                - emailAddress
+                - EmailAddress
+                - AuthCode
               type: object
               properties:
                 EmailAddress:
                   title: メールアドレス
                   type: string
                   example: chubu.taro@commufa.jp
-      responses:
-        '200':
-          description: 成功時
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  Result:
-                    type: boolean
-                    description: 処理結果
-                    example: true
-                  ErrorMessage:
-                    type: string
-                    description: エラーメッセージ
-                    example: XXXXX
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-  /order/CheckAuthenticationCode:
-    post:
-      tags:
-        - Order
-      security:
-        - bearer: []
-      summary: 認証コードチェックAPI
-      description: >-
-        [Overview]
-
-
-        INPUTで受け取った認証コードと、セッションで保持しているメールアドレス死活チェック用の認証コードが一致するかをチェックする。
-
-
-        [Details]
-
-
-        1. requestBodyから「リクエスト項目」を取得し、バリデーションチェックを行う。
-
-          - 1-1. 必須チェックを行う。
-
-            - 1-1-1. NGだった場合、レスポンス「Result」にfalse、「ErrorMessage」に下記エラーメッセージを設定し、httpステータス400を返し処理を終了する。
-
-              - ｛項目名, 項目名｝が空白です。 
-
-          - 1-2. 桁数チェックを行う。
-
-            - 1-2-1. 6桁（TBD）ではない場合、レスポンス「Result」にfalse、「ErrorMessage」に下記エラーメッセージを設定し、httpステータス400を返し処理を終了する。
-
-              - ｛項目名, 項目名｝の桁数が不正です。
-
-        2.AuthenticationCodeと[セッション情報].[Application].[InputCustomerInfo].[AuthenticationCode]が一致しているかチェックする。
-
-          - 2-1.一致している場合、下記レスポンス項目を返却する。
-
-            -  EmailAddress：[セッション情報].[Application].[InputCustomerInfo].[AuthenticationEmailAddress]
-
-            -  Result：true
-
-            -  ErrorMessage：設定値なし
-
-          - 2-1.一致している場合、下記レスポンス項目を返却する。
-
-            -  EmailAddress：設定値なし
-
-            -  Result：false
-
-            -  ErrorMessage："入力された認証コードは正しくありません。"
-      operationId: CheckAuthenticationCode
-      requestBody:
-        description: リクエスト項目を指定
-        required: true
-        content:
-          application/json:
-            schema:
-              required:
-                - AuthenticationCode
-              type: object
-              properties:
-                AuthenticationCode:
+                AuthCode:
                   title: 認証コード
                   type: string
-                  example: 123456
+                  example: >-
+                    ecfc43f9af5bf2f946bd577ba03a33a55396ad46d5c0c38a24ccf5764d709d04
       responses:
         '200':
           description: 成功時
@@ -4015,18 +3941,18 @@ paths:
               schema:
                 type: object
                 properties:
-                  EmailAddress:
-                    type: string
-                    description: メールアドレス
-                    example: chubu.taro@commufa.jp
                   Result:
                     type: boolean
                     description: 処理結果
-                    example: true
+                    example: false
+                  ErrorCode:
+                    type: string
+                    description: エラーコード
+                    example: er-12004
                   ErrorMessage:
                     type: string
                     description: エラーメッセージ
-                    example: XXXXX
+                    example: 既に同じメールアドレスでのご登録があります。
         '400':
           $ref: '#/components/responses/BadRequestResponse'
         '500':
