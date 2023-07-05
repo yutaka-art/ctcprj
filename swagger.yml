@@ -12779,11 +12779,11 @@ components:
                   title: 配送先／サービス提供先住所 （郵便番号）
                   type: string
                   maxLength: 20
-                  example: XXXXX
+                  example: 173-0032
                 CMAP_DeliveryServiceAddress__StateCode__s:
                   title: 配送先／サービス提供先住所 （都道府県）
                   type: string
-                  example: 23
+                  example: '23'
                 CMAP_DeliveryServiceAddress__City__s:
                   title: 配送先／サービス提供先住所 （市区郡）
                   type: string
