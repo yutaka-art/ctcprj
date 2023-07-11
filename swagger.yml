@@ -5617,22 +5617,22 @@ paths:
                   title: 取引日付
                   type: string
                   maxLength: 8
-                  example: 99991231
+                  example: '99991231'
                 term_id:
                   title: 端末識別コード
                   type: string
                   maxLength: 10
-                  example: XXXXX
+                  example: '1234567890'
                 item_id:
                   title: 商品コード
                   type: string
                   maxLength: 15
-                  example: XXXXX
+                  example: '123456789012345'
                 item_name:
                   title: 商品名
                   type: string
                   maxLength: 32
-                  example: XXXXX
+                  example: １２３４５６７８９０１２３４５
                 div_trade:
                   title: 取引区分
                   type: integer
@@ -5651,12 +5651,15 @@ paths:
                   title: 業務情報
                   type: string
                   maxLength: 128
-                  example: XXXXX
+                  example: >-
+                    5001234567890abcdefghijklmnop991210 
+                    1234中部太郎　　　　　　　　　　　　　　　　　　　　　　　　　　　　
                 hash:
                   title: ハッシュ値
                   type: string
                   maxLength: 64
-                  example: XXXXX
+                  example: >-
+                    123456789012345678901234567890123456789012345678901234567890abcd
       responses:
         '200':
           description: 成功時
