@@ -9278,257 +9278,259 @@ paths:
                 type: object
                 properties:
                   ApplicationCheckResults:
-                    type: object
+                    type: array
                     description: 適用チェック結果リスト
-                    properties:
-                      OrderItem:
-                        type: object
-                        description: 申込商品
-                        properties:
-                          CMAP_OfferPlanProduct__c:
-                            type: string
-                            description: 提供プラン商品ID
-                            example: XXXXX
-                          CMAP_MainSubProductGroupId__c:
-                            type: string
-                            description: メイン/サブ商品グループID
-                            example: XXXXX
-                          CMAP_MainSubProductGroupCategory__c:
-                            type: string
-                            description: メイン/サブ商品グループ区分
-                            example: MainProduct
-                          CMAP_MainSubProductGroupName__c:
-                            type: string
-                            description: メイン/サブ商品グループ名
-                            example: XXXXX
-                          CMAP_ProductCategoryId__c:
-                            type: string
-                            description: 商品カテゴリID
-                            example: XXXXX
-                          CMAP_ProductCategoryName__c:
-                            type: string
-                            description: 商品カテゴリ名
-                            example: XXXXX
-                          Product2Id:
-                            type: string
-                            description: 商品ID
-                            example: XXXXX
-                          CMAP_ProductName__c:
-                            type: string
-                            description: 商品名
-                            example: XXXXX
-                          UnitPrice:
-                            type: integer
-                            description: 単価
-                            example: 1000
-                            format: int32
-                          CMAP_UnitPriceTaxIncluded__c:
-                            type: integer
-                            description: 単価(税込)
-                            example: 1100
-                            format: int32
-                          CMAP_ComsumptionTaxRate__c:
-                            type: number
-                            description: 消費税率
-                            example: 10.5
-                            format: float
-                          Quantity:
-                            type: number
-                            description: 数量
-                            example: 2.5
-                            format: float
-                          CMAP_PriceCategory__c:
-                            type: string
-                            description: 価格区分
-                            example: LumpSumPayment
-                          CMAP_InstallmentPaymentMonthly__c:
-                            type: boolean
-                            description: 分割払い/月
-                            example: false
-                          CMAP_InstallmentPayMonthlyPriceTaxExc__c:
-                            type: integer
-                            description: 分割払い価格/月(税抜)
-                            example: 1000
-                            format: int32
-                          CMAP_InstallmentPayMonthlyPriceTaxInc__c:
-                            type: integer
-                            description: 分割払い価格/月(税込)
-                            example: 1100
-                            format: int32
-                          CMAP_NumberOfInstallments__c:
-                            type: number
-                            description: 分割回数
-                            example: 3.5
-                            format: float
-                          CMAP_InstallmentPayFirstMonthPriceTaxExc__c:
-                            type: integer
-                            description: 分割払い初月価格/月(税抜)
-                            example: 1000
-                            format: int32
-                          CMAP_InstallmentPayFirstMonthPriceTaxInc__c:
-                            type: integer
-                            description: 分割払い初月価格/月(税込)
-                            example: 1100
-                            format: int32
-                          CMAP_InstallmentPaymentCurrently__c:
-                            type: boolean
-                            description: 分割払い中
-                            example: false
-                          CMAP_SelectionAnnualPayment__c:
-                            type: boolean
-                            description: 【月額払い／年額払い】年額払いを選択
-                            example: false
-                          CMAP_AnnualPaymentPriceTaxExcluded__c:
-                            type: integer
-                            description: 年額払い価格(税抜)
-                            example: 12000
-                            format: int32
-                          CMAP_AnnualPaymentPriceTaxIncluded__c:
-                            type: integer
-                            description: 年額払い価格(税込)
-                            example: 13200
-                            format: int32
-                          CMAP_SetParentProductId__c:
-                            type: string
-                            description: セット親商品ID
-                            example: XXXXX
-                          CMAP_Unchargeable__c:
-                            type: boolean
-                            description: 請求対象外
-                            example: false
-                          CMAP_Asset__c:
-                            type: string
-                            description: 納入商品ID
-                            example: XXXXX
-                          CMAP_ProductSelectionState__c:
-                            type: string
-                            description: 商品選択状態
-                            example: Selected
-                          CMAP_LastTimeChangeCategory__c:
-                            type: string
-                            description: 前回変更区分
-                            example: Added
-                          CMAP_HasOrderItemAttribute__c:
-                            type: boolean
-                            description: 申込商品属性あり
-                            example: false
-                          CMAP_AvailableDailyPricing__c:
-                            type: boolean
-                            description: 価格日割あり
-                            example: false
-                          CMAP_UnchangeableContract__c:
-                            type: boolean
-                            description: 契約変更不可
-                            example: false
-                          CMAP_SetProduct__c:
-                            type: string
-                            description: セット商品ID
-                            example: XXXXX
-                          CMAP_BenefitProduct__c:
-                            type: string
-                            description: 特典商品ID
-                            example: XXXXX
-                          CMAP_BenefitId__c:
-                            type: string
-                            description: 特典ID
-                            example: XXXXX
-                          CMAP_BenefitName__c:
-                            type: string
-                            description: 特典名
-                            example: XXXXX
-                          CMAP_BenefitCampaignId__c:
-                            type: string
-                            description: 特典キャンペーンID
-                            example: XXXXX
-                          CMAP_BenefitCampaignName__c:
-                            type: string
-                            description: 特典キャンペーン名
-                            example: XXXXX
-                          CMAP_GrantUnitPrice__c:
-                            type: integer
-                            description: 供与単価
-                            example: 1000
-                            format: int32
-                          CMAP_GrantPoint__c:
-                            type: number
-                            description: 供与ポイント
-                            example: 421.9
-                            format: float
-                          CMAP_ChangeableBenefit__c:
-                            type: boolean
-                            description: 特典変更可
-                            example: false
-                          CMAP_HasPriceChanged__c:
-                            type: boolean
-                            description: 金額変更
-                            example: false
-                          CMAP_OrderAutomaticSelectionProduct__c:
-                            type: string
-                            description: 申込自動選択商品
-                            example: XXXXX
-                          CMAP_TaxationCategory__c:
-                            type: string
-                            description: 課税区分
-                            example: Taxation
-                          CMAP_NumberOfTimesPaid__c:
-                            type: number
-                            description: 支払い済回数
-                            example: 12.8
-                            format: float
-                          CMAP_RemainingDebtTaxExcluded__c:
-                            type: integer
-                            description: 残債(税抜)
-                            example: 9865
-                            format: int32
-                          CMAP_RemainingDebtLumpSumPayment__c:
-                            type: boolean
-                            description: 残債一括払い
-                            example: false
-                          CMAP_OfferStartDate__c:
-                            type: string
-                            description: 提供開始日
-                            example: '2023-09-21'
-                            format: date
-                          CMAP_ChangeSourceDestinationCategory__c:
-                            type: string
-                            description: 移転/プラン変更元先区分
-                            example: ChangeSource
-                          CMAP_InheritsMovementAssetAttribute__c:
-                            type: boolean
-                            description: 移転時納入商品属性引継
-                            example: false
-                          CMAP_ChangeSourceOrderItem__c:
-                            type: string
-                            description: 【移転/プラン変更元】申込商品ID
-                            example: XXXXX
-                          CMAP_OrderItemBeforeChange__c:
-                            type: string
-                            description: 変更前の申込商品ID
-                            example: XXXXX
-                          CMAP_OrderItemTypeSelection__c:
-                            type: boolean
-                            description: 申込商品種別：選択商品
-                            example: false
-                          CMAP_OrderItemTypeBenefit__c:
-                            type: boolean
-                            description: 申込商品種別：特典商品
-                            example: false
-                          CMAP_OrderItemTypeAutomaticSelection__c:
-                            type: boolean
-                            description: 申込商品種別：自動選択商品
-                            example: false
-                          CMAP_BeforeOffer__c:
-                            type: boolean
-                            description: 提供開始前
-                            example: false
-                      checkResult:
-                        type: string
-                        description: チェック結果
-                        example: OK
-                      errorMessage:
-                        type: string
-                        description: エラーメッセージ
-                        example: XXXXX
+                    items:
+                      type: object
+                      properties:
+                        OrderItem:
+                          type: object
+                          description: 申込商品
+                          properties:
+                            CMAP_OfferPlanProduct__c:
+                              type: string
+                              description: 提供プラン商品ID
+                              example: XXXXX
+                            CMAP_MainSubProductGroupId__c:
+                              type: string
+                              description: メイン/サブ商品グループID
+                              example: XXXXX
+                            CMAP_MainSubProductGroupCategory__c:
+                              type: string
+                              description: メイン/サブ商品グループ区分
+                              example: MainProduct
+                            CMAP_MainSubProductGroupName__c:
+                              type: string
+                              description: メイン/サブ商品グループ名
+                              example: XXXXX
+                            CMAP_ProductCategoryId__c:
+                              type: string
+                              description: 商品カテゴリID
+                              example: XXXXX
+                            CMAP_ProductCategoryName__c:
+                              type: string
+                              description: 商品カテゴリ名
+                              example: XXXXX
+                            Product2Id:
+                              type: string
+                              description: 商品ID
+                              example: XXXXX
+                            CMAP_ProductName__c:
+                              type: string
+                              description: 商品名
+                              example: XXXXX
+                            UnitPrice:
+                              type: integer
+                              description: 単価
+                              example: 1000
+                              format: int32
+                            CMAP_UnitPriceTaxIncluded__c:
+                              type: integer
+                              description: 単価(税込)
+                              example: 1100
+                              format: int32
+                            CMAP_ComsumptionTaxRate__c:
+                              type: number
+                              description: 消費税率
+                              example: 10.5
+                              format: float
+                            Quantity:
+                              type: number
+                              description: 数量
+                              example: 2.5
+                              format: float
+                            CMAP_PriceCategory__c:
+                              type: string
+                              description: 価格区分
+                              example: LumpSumPayment
+                            CMAP_InstallmentPaymentMonthly__c:
+                              type: boolean
+                              description: 分割払い/月
+                              example: false
+                            CMAP_InstallmentPayMonthlyPriceTaxExc__c:
+                              type: integer
+                              description: 分割払い価格/月(税抜)
+                              example: 1000
+                              format: int32
+                            CMAP_InstallmentPayMonthlyPriceTaxInc__c:
+                              type: integer
+                              description: 分割払い価格/月(税込)
+                              example: 1100
+                              format: int32
+                            CMAP_NumberOfInstallments__c:
+                              type: number
+                              description: 分割回数
+                              example: 3.5
+                              format: float
+                            CMAP_InstallmentPayFirstMonthPriceTaxExc__c:
+                              type: integer
+                              description: 分割払い初月価格/月(税抜)
+                              example: 1000
+                              format: int32
+                            CMAP_InstallmentPayFirstMonthPriceTaxInc__c:
+                              type: integer
+                              description: 分割払い初月価格/月(税込)
+                              example: 1100
+                              format: int32
+                            CMAP_InstallmentPaymentCurrently__c:
+                              type: boolean
+                              description: 分割払い中
+                              example: false
+                            CMAP_SelectionAnnualPayment__c:
+                              type: boolean
+                              description: 【月額払い／年額払い】年額払いを選択
+                              example: false
+                            CMAP_AnnualPaymentPriceTaxExcluded__c:
+                              type: integer
+                              description: 年額払い価格(税抜)
+                              example: 12000
+                              format: int32
+                            CMAP_AnnualPaymentPriceTaxIncluded__c:
+                              type: integer
+                              description: 年額払い価格(税込)
+                              example: 13200
+                              format: int32
+                            CMAP_SetParentProductId__c:
+                              type: string
+                              description: セット親商品ID
+                              example: XXXXX
+                            CMAP_Unchargeable__c:
+                              type: boolean
+                              description: 請求対象外
+                              example: false
+                            CMAP_Asset__c:
+                              type: string
+                              description: 納入商品ID
+                              example: XXXXX
+                            CMAP_ProductSelectionState__c:
+                              type: string
+                              description: 商品選択状態
+                              example: Selected
+                            CMAP_LastTimeChangeCategory__c:
+                              type: string
+                              description: 前回変更区分
+                              example: Added
+                            CMAP_HasOrderItemAttribute__c:
+                              type: boolean
+                              description: 申込商品属性あり
+                              example: false
+                            CMAP_AvailableDailyPricing__c:
+                              type: boolean
+                              description: 価格日割あり
+                              example: false
+                            CMAP_UnchangeableContract__c:
+                              type: boolean
+                              description: 契約変更不可
+                              example: false
+                            CMAP_SetProduct__c:
+                              type: string
+                              description: セット商品ID
+                              example: XXXXX
+                            CMAP_BenefitProduct__c:
+                              type: string
+                              description: 特典商品ID
+                              example: XXXXX
+                            CMAP_BenefitId__c:
+                              type: string
+                              description: 特典ID
+                              example: XXXXX
+                            CMAP_BenefitName__c:
+                              type: string
+                              description: 特典名
+                              example: XXXXX
+                            CMAP_BenefitCampaignId__c:
+                              type: string
+                              description: 特典キャンペーンID
+                              example: XXXXX
+                            CMAP_BenefitCampaignName__c:
+                              type: string
+                              description: 特典キャンペーン名
+                              example: XXXXX
+                            CMAP_GrantUnitPrice__c:
+                              type: integer
+                              description: 供与単価
+                              example: 1000
+                              format: int32
+                            CMAP_GrantPoint__c:
+                              type: number
+                              description: 供与ポイント
+                              example: 421.9
+                              format: float
+                            CMAP_ChangeableBenefit__c:
+                              type: boolean
+                              description: 特典変更可
+                              example: false
+                            CMAP_HasPriceChanged__c:
+                              type: boolean
+                              description: 金額変更
+                              example: false
+                            CMAP_OrderAutomaticSelectionProduct__c:
+                              type: string
+                              description: 申込自動選択商品
+                              example: XXXXX
+                            CMAP_TaxationCategory__c:
+                              type: string
+                              description: 課税区分
+                              example: Taxation
+                            CMAP_NumberOfTimesPaid__c:
+                              type: number
+                              description: 支払い済回数
+                              example: 12.8
+                              format: float
+                            CMAP_RemainingDebtTaxExcluded__c:
+                              type: integer
+                              description: 残債(税抜)
+                              example: 9865
+                              format: int32
+                            CMAP_RemainingDebtLumpSumPayment__c:
+                              type: boolean
+                              description: 残債一括払い
+                              example: false
+                            CMAP_OfferStartDate__c:
+                              type: string
+                              description: 提供開始日
+                              example: '2023-09-21'
+                              format: date
+                            CMAP_ChangeSourceDestinationCategory__c:
+                              type: string
+                              description: 移転/プラン変更元先区分
+                              example: ChangeSource
+                            CMAP_InheritsMovementAssetAttribute__c:
+                              type: boolean
+                              description: 移転時納入商品属性引継
+                              example: false
+                            CMAP_ChangeSourceOrderItem__c:
+                              type: string
+                              description: 【移転/プラン変更元】申込商品ID
+                              example: XXXXX
+                            CMAP_OrderItemBeforeChange__c:
+                              type: string
+                              description: 変更前の申込商品ID
+                              example: XXXXX
+                            CMAP_OrderItemTypeSelection__c:
+                              type: boolean
+                              description: 申込商品種別：選択商品
+                              example: false
+                            CMAP_OrderItemTypeBenefit__c:
+                              type: boolean
+                              description: 申込商品種別：特典商品
+                              example: false
+                            CMAP_OrderItemTypeAutomaticSelection__c:
+                              type: boolean
+                              description: 申込商品種別：自動選択商品
+                              example: false
+                            CMAP_BeforeOffer__c:
+                              type: boolean
+                              description: 提供開始前
+                              example: false
+                        checkResult:
+                          type: string
+                          description: チェック結果
+                          example: OK
+                        errorMessage:
+                          type: string
+                          description: エラーメッセージ
+                          example: XXXXX
                   ProcessResult:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
