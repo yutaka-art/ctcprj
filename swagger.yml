@@ -3696,11 +3696,11 @@ paths:
         - Order
       security:
         - bearer: []
-      summary: 顧客情報登録API
+      summary: 顧客情報登録更新API
       description: |-
         [Overview]
 
-        顧客情報をc-mapに登録する。
+        顧客情報をc-mapに登録更新する
 
         [Details]
 
@@ -3724,13 +3724,13 @@ paths:
 
         2.下記リクエスト項目を設定してc-mapの顧客登録／更新APIをコールする。
 
-          - duplicateAlertSkipped（重複（警告）スキップ）：true
+          - duplicateAlertSkipped（重複（警告）スキップ）：duplicateAlertSkipped（※本APIのINPUT）
 
-          - orderChannelCategory（申込チャネル区分）：OrderChannelCategory（※本APIのINPUT）
+          - orderChannelCategory（申込チャネル区分）：orderChannelCategory（※本APIのINPUT）
 
-          - registered（登録）：true
+          - registered（登録）：registered（※本APIのINPUT）
 
-          - AccountInfo（顧客情報）：CustomerInfo（※本APIのINPUT）に以下の項目を加えた値
+          - accountInfo（顧客情報）：customerInfo（※本APIのINPUT）に以下の項目を加えた値
 
             -           "CustomerComplementInformation": {"NewAccount": true}
 
@@ -3771,97 +3771,6 @@ paths:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
           $ref: '#/components/responses/BadRequestResponse'
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-  /order/UpdateCustomerInfo:
-    post:
-      tags:
-        - Order
-      security:
-        - bearer: []
-      summary: 顧客情報更新API
-      description: |-
-        [Overview]
-
-        c-mapの顧客情報を更新する。
-
-        [Details]
-
-        1. requestBodyから「リクエスト項目」を取得し、バリデーションチェックを行う。
-
-          - 1-1. 必須チェックを行う。
-
-            - 1-1-1. レンダリング設計書のAPIの表に従いバリデーションチェックを実施する。
-
-            - 1-1-2. バリデーションチェックがNGだった場合、レスポンス「Result」にfalse、「ErrorMessage」に下記エラーメッセージを設定し、httpステータス400を返し処理を終了する。
-
-              - ｛項目名, 項目名｝が空白です。 
-
-          - 1-2. 桁数チェックを行う。
-
-            - 1-2-1. 「リクエスト項目」に指定されているmaxLengthに従い桁数チェックを行う。
-
-            - 1-2-2. バリデーションチェックがNGだった場合、レスポンス「Result」にfalse、「ErrorMessage」に下記エラーメッセージを設定し、httpステータス400を返し処理を終了する。
-
-              - ｛項目名, 項目名｝の桁数が不正です。
-
-        2.下記リクエスト項目を設定してc-mapの顧客登録／更新APIをコールする。
-
-          - duplicateAlertSkipped（重複（警告）スキップ）：true
-
-          - orderChannelCategory（申込チャネル区分）：OrderChannelCategory（※本APIのINPUT）
-
-          - registered（登録）：false
-
-          - AccountInfo（顧客情報）：CustomerInfo（※本APIのINPUT）に以下の項目を加えた値
-
-            -           "CustomerComplementInformation": {"NewAccount": false}
-
-        3.c-mapからのレスポンスに応じて値を返却する。  
-
-          - 3-1. httpステータスが400番台の場合、エラーメッセージを格納し、レスポンス項目（「Result」にfalse、「ErrorMessage」にエラーメッセージ）を設定してhttpステータス400を返し処理を終了する。
-
-          - 3-2. httpステータスが500番台の場合、エラーメッセージを格納し、レスポンス項目（「Result」にfalse、「ErrorMessage」にエラーメッセージ）を設定してhttpステータス500を返し処理を終了する。
-
-          - 3-3. httpステータスが200の場合、下記レスポンス項目を設定して返却する
-
-            -  CustomerInfo：c-mapからのレスポンス「AccountInfo」
-
-            -  Result：true
-
-            -  ErrorMessage：設定値なし
-      operationId: UpdateCustomerInfo
-      requestBody:
-        description: リクエスト項目を指定
-        required: true
-        content:
-          application/json:
-            schema:
-              allOf:
-                - $ref: '#/components/schemas/AccountInfoRequestBodyModel'
-      responses:
-        '200':
-          description: 成功時
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  AccountRegistrationUpdateResultInfo:
-                    $ref: >-
-                      #/components/schemas/AccountRegistrationUpdateResultInfoModel
-                  ProcessResult:
-                    $ref: '#/components/schemas/ProcessResultModel'
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '403':
-          $ref: '#/components/responses/ForbiddenResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '412':
-          $ref: '#/components/responses/PreconditionFailedResponse'
         '500':
           $ref: '#/components/responses/InternalServerErrorResponse'
   /order/SendAuthenticationCode:
@@ -8274,73 +8183,6 @@ paths:
                                 type: string
                                 description: 納入商品属性ID
                                 example: XXXXX
-                  ProcessResult:
-                    $ref: '#/components/schemas/ProcessResultModel'
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '500':
-          $ref: '#/components/responses/InternalServerErrorResponse'
-  /order/RetrieveStoreList:
-    get:
-      tags:
-        - Order
-      security:
-        - bearer: []
-      summary: 店舗リスト取得API
-      description: >-
-        [Overview]
-
-
-        指定されたユーザーIDに紐づく店舗リストを取得する。
-
-
-        [Details]
-
-
-        1.Queryパラメータ定義に従いバリデーションを行う
-
-
-        2.Queryパラメータリクエスト項目として、c-mapの「店舗リスト取得API（c-map側検討中）」をコールする
-
-        - 2-1. httpステータスが400番代の場合、エラーメッセージを格納しhttpステータス400を返し処理を終了する。
-
-        - 2.2. httpステータスが500番代の場合、エラーメッセージを格納しhttpステータス500を返し処理を終了する。
-
-        - 2.3.
-        httpステータスが200でAPIから取得したレスポンスが0件の場合、エラーメッセージを格納しhttpステータス400を返し処理を終了する。
-
-        - 2.4. httpステータスが200でAPIから取得したレスポンスが0件でない場合、下記レスポンス項目に値を設定する。
-      operationId: RetrieveStoreList
-      parameters:
-        - in: query
-          name: userId
-          description: ユーザーID
-          required: true
-          schema:
-            type: string
-            maxLength: 18
-            example: '12345678987'
-      responses:
-        '200':
-          description: 成功時
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  StoreList:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        StoreName:
-                          type: string
-                          description: 店舗名
-                          example: XXXXX
-                        StoreCode:
-                          type: string
-                          description: 店舗コード
-                          example: XXXXX
                   ProcessResult:
                     $ref: '#/components/schemas/ProcessResultModel'
         '400':
